@@ -9,12 +9,12 @@ public interface IEntity<ID extends Serializable> {
      *
      * @return primary key
      */
-    public ID getId();
+    ID getId();
 
     /**
      * sets the primary key
      *
      * @param id primary key
      */
-    public void setId(ID id);
+    void setId(ID id);
 }
