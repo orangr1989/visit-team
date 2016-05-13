@@ -9,9 +9,11 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.Socket;
 
+import java.lang.Exception;
+
 public class ConnectionHandler {
     public static int port = 5000;
-    public static String host = "192.168.52.129";// "192.168.52.129" is the host that runs the server side
+    public static String host = "10.0.0.11";// "192.168.52.129" is the host that runs the server side
     public static String httpProtocol = "http://";
 
     /**
@@ -44,7 +46,11 @@ public class ConnectionHandler {
             if (response == null) {
                 throw new IOException("no response recieved");
             }
-        } finally {
+        }
+        catch (Exception e) {
+            String s = "test";
+        }
+        finally {
             if (socket != null) {
                 socket.close();
             }
