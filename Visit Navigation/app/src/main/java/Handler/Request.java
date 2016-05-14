@@ -12,7 +12,7 @@ public class Request<D> {
      * Supported visit request types
      */
     public enum RequestType {
-        setFingerprint, getLocation, getMapList, getPath,
+        deleteFingerprint, deleteAllFingerprint, getFingerprintList, setFingerprint, getLocation, getMapList, getPath,
         getBuildingMaps, getBuildings, setMap, removeMap, getLocationList, updateLocation, removeLocation
     }
 
@@ -94,6 +94,7 @@ public class Request<D> {
 
     private static Type fingerprintRequestType;
     private static Type fingerprintResponseType;
+    private static Type fingerprintListResponseType;
     private static Type measurementRequestType;
     private static Type locationResponseType;
     private static Type voidRequestType;
@@ -111,6 +112,48 @@ public class Request<D> {
      */
     private void setTypes(RequestType t) {
         switch (t) {
+            case deleteFingerprint:
+                if (fingerprintRequestType == null) {
+                    fingerprintRequestType = new TypeToken<Request<Fingerprint>>() {
+                    }.getType();
+                }
+                requestType = fingerprintRequestType;
+
+                if (voidResponseType == null) {
+                    voidResponseType = new TypeToken<Response<Void>>() {
+                    }.getType();
+                }
+                responseType = voidResponseType;
+                break;
+
+            case deleteAllFingerprint:
+                if (voidRequestType == null) {
+                    voidRequestType = new TypeToken<Request<Void>>() {
+                    }.getType();
+                }
+                requestType = voidRequestType;
+
+                if (voidResponseType == null) {
+                    voidResponseType = new TypeToken<Response<Void>>() {
+                    }.getType();
+                }
+                responseType = voidResponseType;
+                break;
+
+            case getFingerprintList:
+                if (voidRequestType == null) {
+                    voidRequestType = new TypeToken<Request<Void>>() {
+                    }.getType();
+                }
+                requestType = voidRequestType;
+
+                if (fingerprintListResponseType == null) {
+                    fingerprintListResponseType = new TypeToken<Response<Fingerprint>>() {
+                    }.getType();
+                }
+                responseType = fingerprintListResponseType;
+                break;
+
             case setFingerprint:
                 if (fingerprintRequestType == null) {
                     fingerprintRequestType = new TypeToken<Request<Fingerprint>>() {

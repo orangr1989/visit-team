@@ -1,39 +1,71 @@
 package com.inte.indoorpositiontracker;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Application;
 
+import DataModel.Fingerprint;
+import DataModel.Map;
+import Handler.Response;
+import Home.EntityHomeCallback;
+import Home.FingerprintHome;
+import Home.MapHome;
+
 public class IndoorPositionTracker extends Application {
     private ArrayList<Fingerprint> mFingerprints;
-    
-    private FingerprintDatabaseHandler mFingerprintDatabaseHandler;
-    
-    
-    
+
+    protected List<Map> maps;
+
+
     /** INSTANCE METHODS */
     
     @Override
     public void onCreate() {
         super.onCreate();
         mFingerprints = new ArrayList<Fingerprint>();
-        //deleteDatabase(FingerprintDatabaseHandler.DATABASE_NAME); 
-        mFingerprintDatabaseHandler = new FingerprintDatabaseHandler(this);
-        loadFingerprintsFromDatabase();
+        FingerprintHome.getFingerprintList(
+                new EntityHomeCallback() {
+                    @Override
+                    public void onResponse(Response<?> response) {
+                        List<Fingerprint> fPrints = (List<Fingerprint>)response.getData();
+                        for (Fingerprint currPrint : fPrints)
+                        {
+                            mFingerprints.add(currPrint);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Response<?> response) {
+
+                    }
+                }
+        );
+
+        MapHome.getMapList(
+                new EntityHomeCallback() {
+                    @Override
+                    public void onResponse(Response<?> response) {
+                        maps = (List<Map>)response.getData();
+                    }
+
+                    @Override
+                    public void onFailure(Response<?> response) {
+                    }
+                }
+        );
     }
-    
-    public void loadFingerprintsFromDatabase() {
-        mFingerprints = mFingerprintDatabaseHandler.getAllFingerprints(); // fetch fingerprint data from the database
-    }
-    
+
     public ArrayList<Fingerprint> getFingerprintData() {
         return mFingerprints;
     }
+
+    public List<Map> getMaps() { return maps; }
     
     public ArrayList<Fingerprint> getFingerprintData(String map) {
         ArrayList<Fingerprint> fingerprints = new ArrayList<Fingerprint>();
         for(Fingerprint fingerprint : mFingerprints) {
-            if(fingerprint.getMap().compareTo(map) == 0) {
+            if(fingerprint.getLocation().getMap().getMapName().compareTo(map) == 0) {
                 fingerprints.add(fingerprint);
             }
         }
@@ -42,13 +74,13 @@ public class IndoorPositionTracker extends Application {
     }
     
     public void addFingerprint(Fingerprint fingerprint) {
+        FingerprintHome.setFingerprint(fingerprint); // add to server
         mFingerprints.add(fingerprint); // add to fingerprint arraylist
-        mFingerprintDatabaseHandler.addFingerprint(fingerprint); // add to database
     }
     
     public void deleteAllFingerprints() {
         mFingerprints.clear(); // delete all fingerprints from arraylist
-        mFingerprintDatabaseHandler.deleteAllFingerprints(); // delete all fingerprints from database
+        FingerprintHome.deleteFingerprints(); // delete from server
     }
     
     public void deleteAllFingerprints(String map) {
@@ -56,15 +88,10 @@ public class IndoorPositionTracker extends Application {
         
         // collect fingerprints that need to be deleted
         for(Fingerprint fingerprint : mFingerprints) {
-            if(fingerprint.getMap().compareTo(map) == 0) {
-                itemsToRemove.add(fingerprint);
+            if(fingerprint.getLocation().getMap().getMapName().compareTo(map) == 0) {
+                FingerprintHome.deleteFingerprint(fingerprint);
+                mFingerprints.remove(fingerprint);
             }
-        }
-        
-        // delete collected fingerprints
-        for(Fingerprint fingerprint : itemsToRemove) {
-            mFingerprintDatabaseHandler.deleteFingerprint(fingerprint); // delete from database
-            mFingerprints.remove(fingerprint); // delete from arraylist
         }
     }
 }

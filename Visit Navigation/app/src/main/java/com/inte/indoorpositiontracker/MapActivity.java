@@ -1,5 +1,9 @@
 package com.inte.indoorpositiontracker;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -8,6 +12,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -40,9 +46,6 @@ public class MapActivity extends Activity implements OnTouchListener {
 
     protected String mSelectedMap; // id of the map which is currently being displayed
 
-
-
-
     /** INSTANCE METHODS */
 
     @Override
@@ -55,7 +58,8 @@ public class MapActivity extends Activity implements OnTouchListener {
         mApplication = (IndoorPositionTracker) getApplication();
         mWifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
-        this.setMap(R.drawable.angresthome); // set map to default location (== first floor)
+        this.setMap(R.drawable.home); // set map to default location (== first floor)
+        //this.setMap(mApplication.getMaps().get(0).getMapURL());
     }
 
     public void onStart() {
@@ -137,6 +141,22 @@ public class MapActivity extends Activity implements OnTouchListener {
     public void setMap(int resId) {
         mSelectedMap = String.valueOf(resId);
         mMap.setImageResource(resId); // change map image
+    }
+
+    public void setMap(String src) {
+        try {
+            URL urlConnection = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) urlConnection
+                    .openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            mMap.setImageBitmap(myBitmap); // change map image
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
 

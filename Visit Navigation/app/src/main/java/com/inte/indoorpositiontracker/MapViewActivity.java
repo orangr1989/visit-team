@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.TreeSet;
+import java.util.Vector;
 
 import android.content.Intent;
 import android.graphics.PointF;
@@ -14,6 +14,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import DataModel.Fingerprint;
+import DataModel.Location;
+import DataModel.Measurement;
+import DataModel.measure.Wifi;
+import Home.EntityHomeCallback;
+import Home.LocationHome;
+import Handler.Response;
 
 public class MapViewActivity extends MapActivity {
     public final static String EXTRA_MESSAGE_FLOOR = "com.inte.indoorpositiontracker.FLOOR";
@@ -93,42 +101,40 @@ public class MapViewActivity extends MapActivity {
             Thread t = new Thread() {
                 public void run() {
                     mScanThreadCount++;
-                    
-                    HashMap<String, Integer> measurements = new HashMap<String, Integer>();
+
+                    Measurement measure = new Measurement();
+                    Vector<Wifi> wifiList = new Vector<Wifi>();
                     for (ScanResult result : results) {
-                        measurements.put(result.BSSID, result.level);
+                        Wifi wifi = new Wifi();
+                        wifi.setBssid(result.BSSID);
+                        wifi.setRssi(result.level);
+                        wifi.setSsid(result.SSID);
+
+                        wifiList.add(wifi);
                     }
-                    
-                    TreeSet<String> keys = new TreeSet<String>();
-                    keys.addAll(mMeasurements.keySet());
-                    keys.addAll(measurements.keySet());
-                    
-                    // calculate access point signal strengths with weighted averages
-                    // (adjust to suddent big changes in received signal strengths)
-                    for (String key : keys) {
-                        Integer value = measurements.get(key);
-                        Integer oldValue = mMeasurements.get(key);
-                        if(oldValue == null) {
-                            mMeasurements.put(key, value);
-                        } else if(value == null) {
-                            mMeasurements.remove(key);
-                        } else {
-                            value = (int) (oldValue * 0.4f + value * 0.6f);
-                            mMeasurements.put(key, value);
-                        }
-                    }
-                    
-                    
-                    Fingerprint f = new Fingerprint(mMeasurements);
-                    
+
+                    measure.setWiFiReadings(wifiList);
+
                     // find fingerprint closest to our location (one with the smallest euclidean distance to us)
-                    Fingerprint closestMatch = f.getClosestMatch(fingerprints); 
-                    
-                    mLocationPointer.setFingerprint(closestMatch); // translate UI pointer to new location on screen
-                    
-                    // need to refresh map through updateHandler since only UI thread is allowed to touch its views
-                    sUpdateHandler.post(mRefreshMap); 
-                    
+                    LocationHome.getLocation(measure,
+                            new EntityHomeCallback() {
+                                @Override
+                                public void onResponse(Response<?> response) {
+                                    Location l = (Location) response.getData();
+
+                                    mLocationPointer.setFingerprint(l); // translate UI pointer to new location on screen
+
+                                    // need to refresh map through updateHandler since only UI thread is allowed to touch its views
+                                    sUpdateHandler.post(mRefreshMap);
+                                }
+
+                                @Override
+                                public void onFailure(Response<?> response) {
+
+                                }
+                            }
+                    );
+
                     mScanThreadCount--;
                 }
             };

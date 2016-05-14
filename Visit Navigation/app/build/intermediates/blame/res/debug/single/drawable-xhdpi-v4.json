@@ -24,6 +24,10 @@
         "source": "C:\\Nisan\\AndroidProjects\\visit-team\\Visit Navigation\\app\\src\\main\\res\\drawable-xhdpi\\kolmas.gif"
     },
     {
+        "merged": "C:\\Nisan\\AndroidProjects\\visit-team\\Visit Navigation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\home.gif",
+        "source": "C:\\Nisan\\AndroidProjects\\visit-team\\Visit Navigation\\app\\src\\main\\res\\drawable-xhdpi\\home.gif"
+    },
+    {
         "merged": "C:\\Nisan\\AndroidProjects\\visit-team\\Visit Navigation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\angresthome.gif",
         "source": "C:\\Nisan\\AndroidProjects\\visit-team\\Visit Navigation\\app\\src\\main\\res\\drawable-xhdpi\\angresthome.gif"
     },

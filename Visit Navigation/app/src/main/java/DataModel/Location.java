@@ -31,7 +31,7 @@ public class Location implements IEntity<Integer> {
 	/* **************** Constructors **************** */
 
 	public Location() {
-		this("", new Map(), 0, 0, 0);
+		this("", new Map(), 0, 0, 100);
 	}
 
 	public Location(String symbolicId, Map map, int mapXcord, int mapYcord, int accuracy) {
