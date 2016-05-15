@@ -31,8 +31,6 @@ public class IndoorPositionTracker extends Application {
                         {
                             mFingerprints.add(currPrint);
                         }
-
-                        Log.d("GetFingerPrintList success", response.getMessage());
                     }
 
                     @Override
@@ -75,8 +73,13 @@ public class IndoorPositionTracker extends Application {
         for(Fingerprint fingerprint : mFingerprints) {
             if(fingerprint.getLocation().getMap().getMapName().compareTo(map) == 0) {
                 FingerprintHome.deleteFingerprint(fingerprint);
-                mFingerprints.remove(fingerprint);
+                itemsToRemove.add(fingerprint);
             }
+        }
+
+        for (Fingerprint fingerprint : itemsToRemove)
+        {
+            mFingerprints.remove(fingerprint);
         }
     }
 }

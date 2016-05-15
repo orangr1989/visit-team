@@ -63,6 +63,8 @@ public class MapActivity extends Activity implements OnTouchListener {
         mWifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
         this.setMap(R.drawable.home); // set map to default location (== first floor)
+
+        // TODO: get by url
         //this.setMap(mApplication.getMaps().get(0).getMapURL());
 
         // TODO: dynamic load
