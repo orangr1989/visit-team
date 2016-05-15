@@ -46,6 +46,10 @@ public class MapActivity extends Activity implements OnTouchListener {
 
     protected String mSelectedMap; // id of the map which is currently being displayed
 
+    // TODO: get dynamic map name
+    protected  String mapName = "home";
+    List<Map> maps = new ArrayList<Map>();
+
     /** INSTANCE METHODS */
 
     @Override
@@ -60,6 +64,9 @@ public class MapActivity extends Activity implements OnTouchListener {
 
         this.setMap(R.drawable.home); // set map to default location (== first floor)
         //this.setMap(mApplication.getMaps().get(0).getMapURL());
+
+        // TODO: dynamic load
+        addMap();
     }
 
     public void onStart() {
@@ -76,6 +83,17 @@ public class MapActivity extends Activity implements OnTouchListener {
         };
 
         registerReceiver(mReceiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+    }
+
+    protected void addMap()
+    {
+        Map m = new Map();
+        m.setId(1);
+        m.setMapFloorNumber(0);
+        m.setMapName("home");
+        m.setMapURL("http://10.0.0.11/1.jpg");
+
+        maps.add(m);
     }
 
     public void onReceiveWifiScanResults(List<ScanResult> results) {

@@ -148,7 +148,7 @@ public class Request<D> {
                 requestType = voidRequestType;
 
                 if (fingerprintListResponseType == null) {
-                    fingerprintListResponseType = new TypeToken<Response<Fingerprint>>() {
+                    fingerprintListResponseType = new TypeToken<Response<List<Fingerprint>>>() {
                     }.getType();
                 }
                 responseType = fingerprintListResponseType;

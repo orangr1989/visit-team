@@ -12,6 +12,7 @@ import android.graphics.PointF;
 import android.net.wifi.ScanResult;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -92,7 +93,7 @@ public class MapViewActivity extends MapActivity {
     @Override
     public void onReceiveWifiScanResults(final List<ScanResult> results) {
         IndoorPositionTracker application = (IndoorPositionTracker) getApplication();
-        final ArrayList<Fingerprint> fingerprints = application.getFingerprintData(mSelectedMap);
+        final ArrayList<Fingerprint> fingerprints = application.getFingerprintData(mapName);
         
         // calculating the location might take some time in case there are a lot of fingerprints (>10000),
         // so it's reasonable to limit scan thread count to make sure there are not too many of these threads
@@ -130,7 +131,7 @@ public class MapViewActivity extends MapActivity {
 
                                 @Override
                                 public void onFailure(Response<?> response) {
-
+                                    Log.d("MapViewActivity", response.getMessage());
                                 }
                             }
                     );

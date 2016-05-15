@@ -91,9 +91,9 @@ public class MapEditActivity extends MapActivity {
                     scanNext();
                 } else {
                     Map map = null;
-                    for (Map currMap : mApplication.getMaps())
+                    for (Map currMap : maps)
                     {
-                        if (currMap.getMapName() == mSelectedMap)
+                        if (currMap.getMapName() == mapName)
                             map = currMap;
                     }
                     Location l = new Location("", map, (int)mPointer.getLocation().x, (int)mPointer.getLocation().y, 100);
@@ -222,7 +222,7 @@ public class MapEditActivity extends MapActivity {
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog,int id) {
                 mMap.deleteFingerprints(); // delete fingerprints from the screen
-                mApplication.deleteAllFingerprints(mSelectedMap); // delete fingerprints from the database
+                mApplication.deleteAllFingerprints(mapName); // delete fingerprints from the database
             }
         });
         
@@ -243,7 +243,7 @@ public class MapEditActivity extends MapActivity {
         super.setMap(resId);
         mMap.deleteFingerprints(); // clear screen from fingerprints
         
-        ArrayList<Fingerprint> fingerprints = mApplication.getFingerprintData(mSelectedMap); // load fingerprints from the database
+        ArrayList<Fingerprint> fingerprints = mApplication.getFingerprintData(mapName); // load fingerprints from the database
         
         // add WifiPointViews on map with fingerprint data loaded from the database
         for(Fingerprint fingerprint : fingerprints) {

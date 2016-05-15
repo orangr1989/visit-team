@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Application;
+import android.util.Log;
 
 import DataModel.Fingerprint;
 import DataModel.Map;
@@ -14,9 +15,6 @@ import Home.MapHome;
 
 public class IndoorPositionTracker extends Application {
     private ArrayList<Fingerprint> mFingerprints;
-
-    protected List<Map> maps;
-
 
     /** INSTANCE METHODS */
     
@@ -33,24 +31,13 @@ public class IndoorPositionTracker extends Application {
                         {
                             mFingerprints.add(currPrint);
                         }
+
+                        Log.d("GetFingerPrintList success", response.getMessage());
                     }
 
                     @Override
                     public void onFailure(Response<?> response) {
-
-                    }
-                }
-        );
-
-        MapHome.getMapList(
-                new EntityHomeCallback() {
-                    @Override
-                    public void onResponse(Response<?> response) {
-                        maps = (List<Map>)response.getData();
-                    }
-
-                    @Override
-                    public void onFailure(Response<?> response) {
+                        Log.d("GetFingerPrintList", response.getMessage());
                     }
                 }
         );
@@ -60,8 +47,6 @@ public class IndoorPositionTracker extends Application {
         return mFingerprints;
     }
 
-    public List<Map> getMaps() { return maps; }
-    
     public ArrayList<Fingerprint> getFingerprintData(String map) {
         ArrayList<Fingerprint> fingerprints = new ArrayList<Fingerprint>();
         for(Fingerprint fingerprint : mFingerprints) {
