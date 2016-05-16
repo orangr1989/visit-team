@@ -206,6 +206,9 @@ public class EntityHome implements PerformRequestTaskCallback {
      * @return <code>true</code> if request was successful
      */
     private static boolean isSuccess(Response<?> response) {
+        if (response == null)
+            return false;
+
         return response.getStatus() == Response.Status.ok;
     }
 

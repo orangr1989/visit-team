@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\src\main\AndroidManifest.xml:1:1-41:12
+ADDED from C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\src\main\AndroidManifest.xml:1:1-43:12
 	package
 		ADDED from C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\src\main\AndroidManifest.xml:2:5-45
 		INJECTED from C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\src\main\AndroidManifest.xml
@@ -39,7 +39,7 @@ ADDED from C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\src\main\And
 	android:name
 		ADDED from C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\src\main\AndroidManifest.xml:13:22-64
 application
-ADDED from C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\src\main\AndroidManifest.xml:15:5-39:19
+ADDED from C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\src\main\AndroidManifest.xml:15:5-41:19
 MERGED from [com.android.support:support-v4:21.0.3] C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:16:5-19
 	android:label
 		ADDED from C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\src\main\AndroidManifest.xml:18:9-41
@@ -79,3 +79,7 @@ ADDED from C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\src\main\And
 		ADDED from C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\src\main\AndroidManifest.xml:35:14-76
 	android:name
 		ADDED from C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\src\main\AndroidManifest.xml:34:14-60
+service#com.inte.indoorpositiontracker.SynchronizationManager
+ADDED from C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\src\main\AndroidManifest.xml:38:5-62
+	android:name
+		ADDED from C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\src\main\AndroidManifest.xml:38:14-51

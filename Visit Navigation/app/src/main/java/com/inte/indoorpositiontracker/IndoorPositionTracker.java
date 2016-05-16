@@ -12,9 +12,13 @@ import Handler.Response;
 import Home.EntityHomeCallback;
 import Home.FingerprintHome;
 import Home.MapHome;
+import db.MapDatabaseHandler;
 
 public class IndoorPositionTracker extends Application {
+    private MapDatabaseHandler mMapDatabaseHandler;
+
     private ArrayList<Fingerprint> mFingerprints;
+    private ArrayList<Map> mMaps;
 
     /** INSTANCE METHODS */
     
@@ -39,6 +43,8 @@ public class IndoorPositionTracker extends Application {
                     }
                 }
         );
+
+        mMapDatabaseHandler = new MapDatabaseHandler(this);
     }
 
     public ArrayList<Fingerprint> getFingerprintData() {
@@ -81,5 +87,20 @@ public class IndoorPositionTracker extends Application {
         {
             mFingerprints.remove(fingerprint);
         }
+    }
+
+    public ArrayList<Map> getMaps () {
+        if (mMaps == null)
+            mMaps = mMapDatabaseHandler.getAllMaps();
+
+        return  mMaps;
+    }
+
+    public void addMap(Map map) {
+        mMapDatabaseHandler.addMap(map);
+    }
+
+    public Map getMapById(int id) {
+        return mMapDatabaseHandler.getMap(id);
     }
 }

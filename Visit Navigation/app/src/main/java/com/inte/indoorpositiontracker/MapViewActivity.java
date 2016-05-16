@@ -27,7 +27,7 @@ import Handler.Response;
 public class MapViewActivity extends MapActivity {
     public final static String EXTRA_MESSAGE_FLOOR = "com.inte.indoorpositiontracker.FLOOR";
     
-    private static final int MENU_ITEM_EDIT_MAP = 21;
+    private static final int MENU_ITEM_EDIT_MAP = 210;
     
     public static final int SCAN_DELAY = 1000; // delay for the first scan (milliseconds)
     public static final int SCAN_INTERVAL = 1000; // interval between scans (milliseconds)
@@ -50,18 +50,13 @@ public class MapViewActivity extends MapActivity {
     
     private boolean mPaused = false; // used to detect if the application is on map edit mode
     
-    private HashMap<String, Integer> mMeasurements; // used to calculate weighted averages of signal strengths
-    
-    
     
     /** INSTANCE METHODS*/
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        mMeasurements = new HashMap<String, Integer>();
-        
+
         mLocationPointer = mMap.createNewWifiPointOnMap(new PointF(-1000, -1000));
         mLocationPointer.activate();
         
@@ -93,7 +88,7 @@ public class MapViewActivity extends MapActivity {
     @Override
     public void onReceiveWifiScanResults(final List<ScanResult> results) {
         IndoorPositionTracker application = (IndoorPositionTracker) getApplication();
-        final ArrayList<Fingerprint> fingerprints = application.getFingerprintData(mapName);
+        final ArrayList<Fingerprint> fingerprints = application.getFingerprintData(currMap.getMapName());
         
         // calculating the location might take some time in case there are a lot of fingerprints (>10000),
         // so it's reasonable to limit scan thread count to make sure there are not too many of these threads
@@ -145,7 +140,7 @@ public class MapViewActivity extends MapActivity {
     
     public void startMapEditActivity() {
         Intent intent = new Intent(MapViewActivity.this, MapEditActivity.class);
-        intent.putExtra(EXTRA_MESSAGE_FLOOR, mSelectedMap);
+        //intent.putExtra(EXTRA_MESSAGE_FLOOR, currMap);
         startActivity(intent); // start map edit mode
     }
     
