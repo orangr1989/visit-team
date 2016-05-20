@@ -11,6 +11,8 @@ import android.util.FloatMath;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
+import DataModel.Fingerprint;
+
 public class MapView extends ImageView {
 	// We can be in one of these 3 states
 	private static final int MAP_STATE_NONE = 0;

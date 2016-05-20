@@ -7,6 +7,9 @@ import android.graphics.Paint;
 import android.graphics.PointF;
 import android.view.View;
 
+import DataModel.Fingerprint;
+import DataModel.Location;
+
 public class WifiPointView extends View {
 	private static final int COLOR_INACTIVE = Color.RED;
 	private static final int COLOR_ACTIVE = Color.GREEN;
@@ -74,7 +77,17 @@ public class WifiPointView extends View {
 	
 	public void setFingerprint(Fingerprint fingerprint) {
 		mFingerprint = fingerprint;
-		mLocation = fingerprint.getLocation();
+		mLocation = new PointF((float)fingerprint.getLocation().getMapXcord(),
+				(float)fingerprint.getLocation().getMapYcord());
+	}
+
+	public void setFingerprint(Location location) {
+		mLocation = new PointF((float)location.getMapXcord(),
+				(float)location.getMapYcord());
+	}
+
+	public void setPoint(PointF point) {
+		mLocation = point;
 	}
 	
 	public Fingerprint getFingerprint() {

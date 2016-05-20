@@ -2,25 +2,46 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\user\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
-        jumboMode="false"
+        jar="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
         revision="23.0.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\user\Desktop\Final Project App\AndroidNavApp\indoor-position-tracker-master1\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3_0242e03cd59fe7866a66bd4a95b67553c3e970c1.jar" />
+        sha1="3d8ab3754b173e6c3294491fcad5a811680bb177">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_c85d7a9e0a396fe39bbf9fe351be1bd19883d517\classes.dex" />
     </item>
     <item
-        jar="C:\Users\user\Desktop\Final Project App\AndroidNavApp\indoor-position-tracker-master1\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
+        jar="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="ffed6afaea6e14c7bc9cca946c3dbaa9b60c96fe">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_874516b38ec960bac42b91514d0ad7ed39286c35\classes.dex" />
+    </item>
+    <item
+        jar="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\libs\internal_impl-21.0.3.jar"
+        jumboMode="true"
         revision="23.0.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\user\Desktop\Final Project App\AndroidNavApp\indoor-position-tracker-master1\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3_d5c97d86842d831d42dfa3a71616f7b071286cc7.jar" />
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-21.0.3_38ad85110b3128d9e0b7efe2210fc2b89d09889e\classes.dex" />
     </item>
     <item
-        jar="C:\Users\user\Desktop\Final Project App\AndroidNavApp\indoor-position-tracker-master1\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\classes.jar"
-        jumboMode="false"
+        jar="C:\Program Files\Android\Android Studio\gradle\m2repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.2.4_313aff129984a0a45e086871ec03bfcc02e7284e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\nisan\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-21.0.3_44edd89788e62bbea0489835edc80e08defe3709\classes.dex" />
+    </item>
+    <item
+        jar="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\classes.jar"
+        jumboMode="true"
         revision="23.0.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\user\Desktop\Final Project App\AndroidNavApp\indoor-position-tracker-master1\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-21.0.3_7ffaa0c002a7ae8bcc23e9d836d3d6bb0560fbc2.jar" />
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-21.0.3_2063f90317c699d73ab6792e2076d6b2cfdf66ae\classes.dex" />
     </item>
 
 </items>

@@ -5,20 +5,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.TreeSet;
+import java.util.Vector;
 
 import android.content.Intent;
 import android.graphics.PointF;
 import android.net.wifi.ScanResult;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import DataModel.Fingerprint;
+import DataModel.Location;
+import DataModel.Measurement;
+import DataModel.measure.Wifi;
+import Home.EntityHomeCallback;
+import Home.LocationHome;
+import Handler.Response;
 
 public class MapViewActivity extends MapActivity {
     public final static String EXTRA_MESSAGE_FLOOR = "com.inte.indoorpositiontracker.FLOOR";
     
-    private static final int MENU_ITEM_EDIT_MAP = 21;
+    private static final int MENU_ITEM_EDIT_MAP = 210;
     
     public static final int SCAN_DELAY = 1000; // delay for the first scan (milliseconds)
     public static final int SCAN_INTERVAL = 1000; // interval between scans (milliseconds)
@@ -41,18 +50,13 @@ public class MapViewActivity extends MapActivity {
     
     private boolean mPaused = false; // used to detect if the application is on map edit mode
     
-    private HashMap<String, Integer> mMeasurements; // used to calculate weighted averages of signal strengths
-    
-    
     
     /** INSTANCE METHODS*/
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        mMeasurements = new HashMap<String, Integer>();
-        
+
         mLocationPointer = mMap.createNewWifiPointOnMap(new PointF(-1000, -1000));
         mLocationPointer.activate();
         
@@ -84,7 +88,7 @@ public class MapViewActivity extends MapActivity {
     @Override
     public void onReceiveWifiScanResults(final List<ScanResult> results) {
         IndoorPositionTracker application = (IndoorPositionTracker) getApplication();
-        final ArrayList<Fingerprint> fingerprints = application.getFingerprintData(mSelectedMap);
+        final ArrayList<Fingerprint> fingerprints = application.getFingerprintData(currMap.getMapName());
         
         // calculating the location might take some time in case there are a lot of fingerprints (>10000),
         // so it's reasonable to limit scan thread count to make sure there are not too many of these threads
@@ -93,42 +97,40 @@ public class MapViewActivity extends MapActivity {
             Thread t = new Thread() {
                 public void run() {
                     mScanThreadCount++;
-                    
-                    HashMap<String, Integer> measurements = new HashMap<String, Integer>();
+
+                    Measurement measure = new Measurement();
+                    Vector<Wifi> wifiList = new Vector<Wifi>();
                     for (ScanResult result : results) {
-                        measurements.put(result.BSSID, result.level);
+                        Wifi wifi = new Wifi();
+                        wifi.setBssid(result.BSSID);
+                        wifi.setRssi(result.level);
+                        wifi.setSsid(result.SSID);
+
+                        wifiList.add(wifi);
                     }
-                    
-                    TreeSet<String> keys = new TreeSet<String>();
-                    keys.addAll(mMeasurements.keySet());
-                    keys.addAll(measurements.keySet());
-                    
-                    // calculate access point signal strengths with weighted averages
-                    // (adjust to suddent big changes in received signal strengths)
-                    for (String key : keys) {
-                        Integer value = measurements.get(key);
-                        Integer oldValue = mMeasurements.get(key);
-                        if(oldValue == null) {
-                            mMeasurements.put(key, value);
-                        } else if(value == null) {
-                            mMeasurements.remove(key);
-                        } else {
-                            value = (int) (oldValue * 0.4f + value * 0.6f);
-                            mMeasurements.put(key, value);
-                        }
-                    }
-                    
-                    
-                    Fingerprint f = new Fingerprint(mMeasurements);
-                    
+
+                    measure.setWiFiReadings(wifiList);
+
                     // find fingerprint closest to our location (one with the smallest euclidean distance to us)
-                    Fingerprint closestMatch = f.getClosestMatch(fingerprints); 
-                    
-                    mLocationPointer.setFingerprint(closestMatch); // translate UI pointer to new location on screen
-                    
-                    // need to refresh map through updateHandler since only UI thread is allowed to touch its views
-                    sUpdateHandler.post(mRefreshMap); 
-                    
+                    LocationHome.getLocation(measure,
+                            new EntityHomeCallback() {
+                                @Override
+                                public void onResponse(Response<?> response) {
+                                    Location l = (Location) response.getData();
+
+                                    mLocationPointer.setFingerprint(l); // translate UI pointer to new location on screen
+
+                                    // need to refresh map through updateHandler since only UI thread is allowed to touch its views
+                                    sUpdateHandler.post(mRefreshMap);
+                                }
+
+                                @Override
+                                public void onFailure(Response<?> response) {
+                                    Log.d("MapViewActivity", response.getMessage());
+                                }
+                            }
+                    );
+
                     mScanThreadCount--;
                 }
             };
@@ -138,15 +140,15 @@ public class MapViewActivity extends MapActivity {
     
     public void startMapEditActivity() {
         Intent intent = new Intent(MapViewActivity.this, MapEditActivity.class);
-        intent.putExtra(EXTRA_MESSAGE_FLOOR, mSelectedMap);
+        intent.putExtra(EXTRA_MESSAGE_FLOOR, currMap.getId());
         startActivity(intent); // start map edit mode
     }
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // add menu items
+        menu.add(Menu.NONE, MENU_ITEM_EDIT_MAP, Menu.NONE, "Edit map");
         super.onCreateOptionsMenu(menu); // items for changing map
-        menu.add(Menu.NONE, MENU_ITEM_EDIT_MAP, Menu.NONE, "Edit map"); 
         return true;
     }
     
@@ -158,7 +160,8 @@ public class MapViewActivity extends MapActivity {
                 startMapEditActivity();
                 return true;
         default: // change map
-                return super.onOptionsItemSelected(item);
+            mLocationPointer.setPoint(new PointF(-1000, -1000));
+            return super.onOptionsItemSelected(item);
         }
     }
 }

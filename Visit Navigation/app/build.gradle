@@ -20,8 +20,13 @@ android {
     }
     productFlavors {
     }
+    compileOptions {
+        targetCompatibility 1.6
+        sourceCompatibility 1.6
+    }
 }
 
 dependencies {
     compile 'com.android.support:support-v4:21.0.3'
+    compile 'com.google.code.gson:gson:2.2.+'
 }

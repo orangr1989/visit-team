@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.TreeSet;
+import java.util.Vector;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -20,6 +21,12 @@ import android.view.MotionEvent;
 import android.view.SubMenu;
 import android.view.View;
 import android.widget.Toast;
+
+import DataModel.Fingerprint;
+import DataModel.Location;
+import DataModel.Map;
+import DataModel.Measurement;
+import DataModel.measure.Wifi;
 
 public class MapEditActivity extends MapActivity {
     private static final int MENU_ITEM_SCAN = 31;
@@ -54,8 +61,9 @@ public class MapEditActivity extends MapActivity {
         super.onCreate(savedInstanceState);
         
         Intent intent = getIntent();
-        String floor = intent.getStringExtra(MapViewActivity.EXTRA_MESSAGE_FLOOR);
-        setMap(Integer.valueOf(floor));
+        int mapId = intent.getIntExtra(MapViewActivity.EXTRA_MESSAGE_FLOOR, 1);
+        currMap = mApplication.getMapById(mapId);
+        setMap(currMap.getMapURL());
         
         setTitle(getTitle() + " (edit mode)");
     }
@@ -67,42 +75,25 @@ public class MapEditActivity extends MapActivity {
                 mScansLeft--;
                 
                 // add scan results to hashmap
-                HashMap<String, Integer> measurements = new HashMap<String, Integer>();
+                Measurement measure = new Measurement();
+                Vector<Wifi> wifiList = new Vector<Wifi>();
                 for (ScanResult result : results) {
-                    measurements.put(result.BSSID, result.level);
+                    Wifi wifi = new Wifi();
+                    wifi.setBssid(result.BSSID);
+                    wifi.setRssi(result.level);
+                    wifi.setSsid(result.SSID);
+
+                    wifiList.add(wifi);
                 }
-                
-                TreeSet<String> keys = new TreeSet<String>();
-                keys.addAll(measurements.keySet());
-                keys.addAll(mMeasurements.keySet());
-                
-                // go through scans results and calculate new sum values for each measurement
-                for (String key : keys) {
-                    Integer value = measurements.get(key);
-                    Integer oldValue = mMeasurements.get(key);
-                    
-                    // calculate new value for each measurement (sum of all part-scans)
-                    if(oldValue == null) {
-                        mMeasurements.put(key, value + (-119 * (SCAN_COUNT - 1 - mScansLeft)));
-                    } else if(value == null) {
-                        mMeasurements.put(key, -119 + oldValue);
-                    } else {
-                        mMeasurements.put(key, value + oldValue);
-                    }
-                }
-                
+
+                measure.setWiFiReadings(wifiList);
                 
                 if(mScansLeft > 0) { // keep on scanning
                     scanNext();
-                } else { // calculate averages from sum values of measurements and add them to fingerprint
-                    // calculate average for each measurement
-                    for (String key : mMeasurements.keySet()) {
-                        int value = (int) mMeasurements.get(key) / SCAN_COUNT;
-                        mMeasurements.put(key, value);
-                    }
-                    
-                    Fingerprint f = new Fingerprint(mMeasurements, mSelectedMap); // create fingerprint with the calculated measurement averages
-                    f.setLocation(mPointer.getLocation()); // set the fingerprint to UI pointer location
+                } else {
+                    Location l = new Location("", currMap, (int)mPointer.getLocation().x, (int)mPointer.getLocation().y, 100);
+
+                    Fingerprint f = new Fingerprint(l, measure); // create fingerprint with the calculated measurement averages
                     mMap.createNewWifiPointOnMap(f, mShowFingerprints); // add to map UI
                     
                     mApplication.addFingerprint(f); // add to database
@@ -226,7 +217,7 @@ public class MapEditActivity extends MapActivity {
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog,int id) {
                 mMap.deleteFingerprints(); // delete fingerprints from the screen
-                mApplication.deleteAllFingerprints(mSelectedMap); // delete fingerprints from the database
+                mApplication.deleteAllFingerprints(currMap.getMapName()); // delete fingerprints from the database
             }
         });
         
@@ -247,12 +238,26 @@ public class MapEditActivity extends MapActivity {
         super.setMap(resId);
         mMap.deleteFingerprints(); // clear screen from fingerprints
         
-        ArrayList<Fingerprint> fingerprints = mApplication.getFingerprintData(mSelectedMap); // load fingerprints from the database
+        ArrayList<Fingerprint> fingerprints = mApplication.getFingerprintData(currMap.getMapName()); // load fingerprints from the database
         
         // add WifiPointViews on map with fingerprint data loaded from the database
         for(Fingerprint fingerprint : fingerprints) {
             mMap.createNewWifiPointOnMap(fingerprint, mShowFingerprints);
         }
         
+    }
+
+    @Override
+    public void setMap(String url) {
+        super.setMap(url);
+        mMap.deleteFingerprints(); // clear screen from fingerprints
+
+        ArrayList<Fingerprint> fingerprints = mApplication.getFingerprintData(currMap.getMapName()); // load fingerprints from the database
+
+        // add WifiPointViews on map with fingerprint data loaded from the database
+        for(Fingerprint fingerprint : fingerprints) {
+            mMap.createNewWifiPointOnMap(fingerprint, mShowFingerprints);
+        }
+
     }
 }
