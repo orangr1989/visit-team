@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import DataModel.Map;
 
@@ -58,7 +60,7 @@ public class MapDatabaseHandler extends SQLiteOpenHelper {
 
         ContentValues mapValues = new ContentValues();
         mapValues.put(REMOTE_ID, map.getId());
-        //mapValues.put(KEY_BUILDING, 1);
+        mapValues.put(KEY_BUILDING, 1);
         mapValues.put(MAP_NAME, map.getMapName());
         mapValues.put(MAP_URL, map.getMapURL());
         mapValues.put(FLOOR_NUMBER, map.getMapFloorNumber());
@@ -126,9 +128,22 @@ public class MapDatabaseHandler extends SQLiteOpenHelper {
         return maps;
     }
 
-    public void deleteAllFingerprints() {
+    public void deleteAllMaps() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_MAPS, null, null); // delete all maps
         db.close();
+    }
+
+    public void addMaps(List<Map> mapsToAdd) {
+        List<Map> mapsFromDb = getAllMaps();
+        HashMap<Integer, Map> map = new HashMap<Integer, Map>();
+        for (Map m : mapsFromDb) {
+            map.put(m.getId(), m);
+        }
+
+        for (Map m : mapsToAdd) {
+            if (!map.containsKey(m.getId()))
+                addMap(m);
+        }
     }
 }

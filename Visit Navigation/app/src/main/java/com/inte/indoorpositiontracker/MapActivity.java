@@ -48,8 +48,8 @@ public class MapActivity extends Activity implements OnTouchListener {
     protected String mSelectedMap; // id of the map which is currently being displayed
 
     // TODO: get dynamic map name
-    protected Map currMap;
-    protected List<Map> maps = new ArrayList<Map>();
+    protected Map currMap = new Map();
+    //protected List<Map> maps;
 
     /** INSTANCE METHODS */
 
@@ -60,11 +60,15 @@ public class MapActivity extends Activity implements OnTouchListener {
         mMap = (MapView) findViewById(R.id.mapView);
         mMap.setOnTouchListener(this);
 
+        startService(new Intent(MapActivity.this,
+                SynchronizationManager.class));
+
         mApplication = (IndoorPositionTracker) getApplication();
         mWifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
         //addMap();
-        maps = mApplication.getMaps();
+        //mApplication.deleteAllMaps();
+        List<Map> maps = mApplication.getMaps();
         currMap = maps.get(0);
         this.setMap(currMap.getMapURL());
     }
@@ -93,7 +97,7 @@ public class MapActivity extends Activity implements OnTouchListener {
         m.setMapName("home");
         m.setMapURL("http://10.0.0.11/1.jpg");
 
-        maps.add(m);
+        //maps.add(m);
         mApplication.addMap(m);
     }
 
@@ -117,6 +121,7 @@ public class MapActivity extends Activity implements OnTouchListener {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // add menu items
+        List<Map> maps = mApplication.getMaps();
 
     	super.onCreateOptionsMenu(menu);
     	SubMenu sub = menu.addSubMenu(Menu.NONE, MENU_ITEM_CHOOSE_FLOOR, Menu.NONE, "Choose floor");

@@ -61,7 +61,8 @@ public class MapEditActivity extends MapActivity {
         super.onCreate(savedInstanceState);
         
         Intent intent = getIntent();
-        //String floor = intent.getStringExtra(MapViewActivity.EXTRA_MESSAGE_FLOOR);
+        int mapId = intent.getIntExtra(MapViewActivity.EXTRA_MESSAGE_FLOOR, 1);
+        currMap = mApplication.getMapById(mapId);
         setMap(currMap.getMapURL());
         
         setTitle(getTitle() + " (edit mode)");

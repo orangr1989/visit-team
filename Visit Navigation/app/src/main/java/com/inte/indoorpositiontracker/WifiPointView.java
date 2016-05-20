@@ -85,6 +85,10 @@ public class WifiPointView extends View {
 		mLocation = new PointF((float)location.getMapXcord(),
 				(float)location.getMapYcord());
 	}
+
+	public void setPoint(PointF point) {
+		mLocation = point;
+	}
 	
 	public Fingerprint getFingerprint() {
 	    return mFingerprint;

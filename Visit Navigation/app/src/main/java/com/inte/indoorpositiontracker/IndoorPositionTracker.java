@@ -100,6 +100,10 @@ public class IndoorPositionTracker extends Application {
         mMapDatabaseHandler.addMap(map);
     }
 
+    public void deleteAllMaps() {
+        mMapDatabaseHandler.deleteAllMaps();
+    }
+
     public Map getMapById(int id) {
         return mMapDatabaseHandler.getMap(id);
     }

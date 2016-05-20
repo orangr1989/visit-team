@@ -140,15 +140,15 @@ public class MapViewActivity extends MapActivity {
     
     public void startMapEditActivity() {
         Intent intent = new Intent(MapViewActivity.this, MapEditActivity.class);
-        //intent.putExtra(EXTRA_MESSAGE_FLOOR, currMap);
+        intent.putExtra(EXTRA_MESSAGE_FLOOR, currMap.getId());
         startActivity(intent); // start map edit mode
     }
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // add menu items
+        menu.add(Menu.NONE, MENU_ITEM_EDIT_MAP, Menu.NONE, "Edit map");
         super.onCreateOptionsMenu(menu); // items for changing map
-        menu.add(Menu.NONE, MENU_ITEM_EDIT_MAP, Menu.NONE, "Edit map"); 
         return true;
     }
     
@@ -160,7 +160,8 @@ public class MapViewActivity extends MapActivity {
                 startMapEditActivity();
                 return true;
         default: // change map
-                return super.onOptionsItemSelected(item);
+            mLocationPointer.setPoint(new PointF(-1000, -1000));
+            return super.onOptionsItemSelected(item);
         }
     }
 }
