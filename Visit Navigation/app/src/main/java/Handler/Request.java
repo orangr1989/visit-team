@@ -92,6 +92,8 @@ public class Request<D> {
         return responseType;
     }
 
+    private static Type pathRequestType;
+    private static Type pathResponseType;
     private static Type fingerprintRequestType;
     private static Type fingerprintResponseType;
     private static Type fingerprintListResponseType;
@@ -112,6 +114,20 @@ public class Request<D> {
      */
     private void setTypes(RequestType t) {
         switch (t) {
+            case getPath:
+                if (pathRequestType == null) {
+                    pathRequestType = new TypeToken<Request<PathRequest>>() {
+                    }.getType();
+                }
+                requestType = pathRequestType;
+
+                if (pathResponseType == null) {
+                    pathResponseType = new TypeToken<Response<List<Cell>>>() {
+                    }.getType();
+                }
+                responseType = pathResponseType;
+                break;
+
             case deleteFingerprint:
                 if (fingerprintRequestType == null) {
                     fingerprintRequestType = new TypeToken<Request<Fingerprint>>() {
@@ -120,7 +136,7 @@ public class Request<D> {
                 requestType = fingerprintRequestType;
 
                 if (voidResponseType == null) {
-                    voidResponseType = new TypeToken<Response<Void>>() {
+                    voidResponseType = new TypeToken<Response<List<Cell>>>() {
                     }.getType();
                 }
                 responseType = voidResponseType;

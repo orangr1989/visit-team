@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 
 import DataModel.Fingerprint;
 import DataModel.Location;
@@ -25,9 +26,13 @@ import Home.LocationHome;
 import Handler.Response;
 
 public class MapViewActivity extends MapActivity {
-    public final static String EXTRA_MESSAGE_FLOOR = "com.inte.indoorpositiontracker.FLOOR";
+    public final static String EXTRA_MESSAGE_MAP = "com.inte.indoorpositiontracker.MAP";
+    public final static String EXTRA_MESSAGE_LOCATION_DEST = "com.inte.indoorpositiontracker.LOCATION_DEST";
+    public final static String EXTRA_MESSAGE_X_CORD = "com.inte.indoorpositiontracker.X";
+    public final static String EXTRA_MESSAGE_Y_CORD = "com.inte.indoorpositiontracker.Y";
     
-    private static final int MENU_ITEM_EDIT_MAP = 210;
+    private static final int MENU_ITEM_EDIT_MAP = 100;
+    private static final int MENU_ITEM_CHOOSE_LOCATION = 101;
     
     public static final int SCAN_DELAY = 1000; // delay for the first scan (milliseconds)
     public static final int SCAN_INTERVAL = 1000; // interval between scans (milliseconds)
@@ -140,12 +145,31 @@ public class MapViewActivity extends MapActivity {
     
     public void startMapEditActivity() {
         Intent intent = new Intent(MapViewActivity.this, MapEditActivity.class);
-        intent.putExtra(EXTRA_MESSAGE_FLOOR, currMap.getId());
+        intent.putExtra(EXTRA_MESSAGE_MAP, currMap.getId());
+        startActivity(intent); // start map edit mode
+    }
+
+    public void startMapNavigationActivity(int id) {
+        Intent intent = new Intent(MapViewActivity.this, MapNavigationActivity.class);
+        intent.putExtra(EXTRA_MESSAGE_LOCATION_DEST, id);
+        intent.putExtra(EXTRA_MESSAGE_MAP, currMap.getId());
+
+        intent.putExtra(EXTRA_MESSAGE_X_CORD, 687);
+        intent.putExtra(EXTRA_MESSAGE_Y_CORD, 410);
+
         startActivity(intent); // start map edit mode
     }
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // add floor items
+        List<Location> locations = mApplication.getLocations();
+
+        SubMenu subLocation = menu.addSubMenu(Menu.NONE, MENU_ITEM_CHOOSE_LOCATION, Menu.NONE, "Choose location");
+        for (Location l : locations) {
+            subLocation.add(Menu.NONE, 1000 + l.getId(), Menu.NONE, l.getSymbolicID());
+        }
+
         // add menu items
         menu.add(Menu.NONE, MENU_ITEM_EDIT_MAP, Menu.NONE, "Edit map");
         super.onCreateOptionsMenu(menu); // items for changing map
@@ -155,11 +179,14 @@ public class MapViewActivity extends MapActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-        switch (item.getItemId()) {
-            case MENU_ITEM_EDIT_MAP: // start map edit mode
-                startMapEditActivity();
-                return true;
-        default: // change map
+        if (item.getItemId() == MENU_ITEM_EDIT_MAP) { // start map edit mode
+            startMapEditActivity();
+            return true;
+        }
+        else if (item.getItemId() > 1000) {
+            startMapNavigationActivity(item.getItemId() - 1000);
+            return true;
+        } else { // change map
             mLocationPointer.setPoint(new PointF(-1000, -1000));
             return super.onOptionsItemSelected(item);
         }

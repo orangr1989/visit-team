@@ -31,8 +31,8 @@ public class MapView extends ImageView {
 	float mOldDist = 1f;
 	
 	private ArrayList<WifiPointView> mWifiPoints;
-	
-	
+	private ArrayList<WifiPointView> mWifiPath;
+
 	
 	/** CONSTRUCTORS */
 	
@@ -40,6 +40,7 @@ public class MapView extends ImageView {
 		super(context, attrs);
 		
 		mWifiPoints = new ArrayList<WifiPointView>();
+		mWifiPath = new ArrayList<WifiPointView>();
 	}
 	
 	
@@ -57,6 +58,11 @@ public class MapView extends ImageView {
 		for(WifiPointView point : mWifiPoints) {
 			point.drawWithTransformations(canvas, values);
 		}
+
+		for(WifiPointView point : mWifiPath) {
+			point.drawWithTransformations(canvas, values);
+		}
+
 	}
 
 	
@@ -191,6 +197,20 @@ public class MapView extends ImageView {
 	    WifiPointView wpView = createNewWifiPointOnMap(fingerprint);
 	    wpView.setVisible(visible);
 	    return wpView;
+	}
+
+	public WifiPointView createPath(float x, float y) {
+		WifiPointView wpView = new WifiPointView(getContext());
+		//wpView.activate();
+		float[] values = new float[9];
+		mMatrix.getValues(values);
+		x = (x - values[2]) / values[0];
+		y = (y - values[5]) / values[4];
+		wpView.setPathPoint(x, y);
+		mWifiPath.add(wpView);
+
+		wpView.setVisible(true);
+		return wpView;
 	}
 	
 	

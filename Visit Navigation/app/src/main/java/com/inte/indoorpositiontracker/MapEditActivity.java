@@ -61,7 +61,7 @@ public class MapEditActivity extends MapActivity {
         super.onCreate(savedInstanceState);
         
         Intent intent = getIntent();
-        int mapId = intent.getIntExtra(MapViewActivity.EXTRA_MESSAGE_FLOOR, 1);
+        int mapId = intent.getIntExtra(MapViewActivity.EXTRA_MESSAGE_MAP, 1);
         currMap = mApplication.getMapById(mapId);
         setMap(currMap.getMapURL());
         

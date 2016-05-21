@@ -16,9 +16,10 @@ import DataModel.Map;
  * Created by nisan on 16/05/2016.
  */
 public class MapDatabaseHandler extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
     public static final String DATABASE_NAME = "visit";
     private static final String TABLE_MAPS = "maps";
+    private static final String TABLE_LOCATIONS = "locations";
 
     // maps table columns names
     private static final String KEY_MAP_ID = "mapId";
@@ -27,6 +28,14 @@ public class MapDatabaseHandler extends SQLiteOpenHelper {
     private static final String MAP_NAME = "mapName";
     private static final String MAP_URL = "mapURL";
     private static final String FLOOR_NUMBER = "floorNum";
+
+    // locations table columns names
+    private static final String KEY_LOCATION_ID = "locationId";
+    //private static final String REMOTE_ID = "remoteId";
+    private static final String KEY_SYMBOLIC_ID = "symbolicId";
+    private static final String MAP_ID = "mapId";
+    private static final String MAP_X_CODE = "mapXCord";
+    private static final String MAP_Y_CODE = "mapYCord";
 
     public MapDatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -44,12 +53,23 @@ public class MapDatabaseHandler extends SQLiteOpenHelper {
                 + FLOOR_NUMBER + " INTEGER,"
                 + MAP_URL + " TEXT" + ")";
         db.execSQL(CREATE_MAPS_TABLE);
+
+        String CREATE_LOCATION_TABLE= "CREATE TABLE " + TABLE_LOCATIONS + "("
+                + KEY_LOCATION_ID + " INTEGER PRIMARY KEY,"
+                + REMOTE_ID + " INTEGER,"
+                + KEY_SYMBOLIC_ID + " TEXT,"
+                + MAP_ID + " INTEGER,"
+                + MAP_X_CODE + " INTEGER,"
+                + MAP_Y_CODE + " INTEGER" + ")";
+        db.execSQL(CREATE_LOCATION_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MAPS);
+
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOCATIONS);
 
         // Create table again
         onCreate(db);
@@ -105,7 +125,7 @@ public class MapDatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(SELECT_QUERY, null); // SQL query
 
-        // loop through all fingerprint rows and add to list
+        // loop through all map rows and add to list
         if (cursor.moveToFirst()) {
             do {
                 // parse map data

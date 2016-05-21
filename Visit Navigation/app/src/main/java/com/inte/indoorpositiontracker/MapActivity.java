@@ -69,8 +69,10 @@ public class MapActivity extends Activity implements OnTouchListener {
         //addMap();
         //mApplication.deleteAllMaps();
         List<Map> maps = mApplication.getMaps();
-        currMap = maps.get(0);
-        this.setMap(currMap.getMapURL());
+        if (maps.size() > 0) {
+            currMap = maps.get(0);
+            this.setMap(currMap.getMapURL());
+        }
     }
 
     public void onStart() {
@@ -120,14 +122,14 @@ public class MapActivity extends Activity implements OnTouchListener {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // add menu items
+        // add floor items
         List<Map> maps = mApplication.getMaps();
 
     	super.onCreateOptionsMenu(menu);
-    	SubMenu sub = menu.addSubMenu(Menu.NONE, MENU_ITEM_CHOOSE_FLOOR, Menu.NONE, "Choose floor");
+    	SubMenu subFloor = menu.addSubMenu(Menu.NONE, MENU_ITEM_CHOOSE_FLOOR, Menu.NONE, "Choose floor");
 
         for (Map m : maps) {
-            sub.add(Menu.NONE, m.getId(), Menu.NONE, m.getMapName());
+            subFloor.add(Menu.NONE, m.getId(), Menu.NONE, m.getMapName());
         }
 
         return true;

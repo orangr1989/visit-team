@@ -9,10 +9,13 @@ import android.util.Log;
 
 import java.util.List;
 
+import DataModel.Location;
 import DataModel.Map;
 import Handler.Response;
 import Home.EntityHomeCallback;
+import Home.LocationHome;
 import Home.MapHome;
+import db.LocationDatabaseHandler;
 import db.MapDatabaseHandler;
 
 /**
@@ -26,6 +29,7 @@ public class SynchronizationManager extends Service {
     private boolean syncInProgress = false;
 
     private MapDatabaseHandler mMapDatabaseHandler;
+    private LocationDatabaseHandler mLocationDatabaseHandler;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -35,6 +39,7 @@ public class SynchronizationManager extends Service {
     @Override
     public void onCreate() {
         mMapDatabaseHandler = new MapDatabaseHandler(this);
+        mLocationDatabaseHandler = new LocationDatabaseHandler(this);
         sync();
     }
 
@@ -57,9 +62,26 @@ public class SynchronizationManager extends Service {
                 List<Map> maps = (List<Map>) response.getData();
 
                 mMapDatabaseHandler.addMaps(maps);
-                Log.v(TAG, "database synchronized");
-                isSynced = true;
-                syncInProgress = false;
+                Log.v(TAG, "database map synchronized");
+
+
+                LocationHome.getLocationList(new EntityHomeCallback() {
+                    @Override
+                    public void onResponse(Response<?> response) {
+                        List<Location> locations = (List<Location>) response.getData();
+
+                        mLocationDatabaseHandler.addLocations(locations);
+                        Log.v(TAG, "database location synchronized");
+                        isSynced = true;
+                        syncInProgress = false;
+                    }
+
+                    @Override
+                    public void onFailure(Response<?> response) {
+                        Log.v(TAG, "database location synchronized failed");
+                        syncInProgress = false;
+                    }
+                });
             }
 
             @Override
