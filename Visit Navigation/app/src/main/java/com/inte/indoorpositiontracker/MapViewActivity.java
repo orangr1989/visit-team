@@ -154,8 +154,8 @@ public class MapViewActivity extends MapActivity {
         intent.putExtra(EXTRA_MESSAGE_LOCATION_DEST, id);
         intent.putExtra(EXTRA_MESSAGE_MAP, currMap.getId());
 
-        intent.putExtra(EXTRA_MESSAGE_X_CORD, 687);
-        intent.putExtra(EXTRA_MESSAGE_Y_CORD, 410);
+        intent.putExtra(EXTRA_MESSAGE_X_CORD, 175);
+        intent.putExtra(EXTRA_MESSAGE_Y_CORD, 196);
 
         startActivity(intent); // start map edit mode
     }

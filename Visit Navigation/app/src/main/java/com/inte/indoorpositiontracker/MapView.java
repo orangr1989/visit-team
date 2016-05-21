@@ -202,10 +202,10 @@ public class MapView extends ImageView {
 	public WifiPointView createPath(float x, float y) {
 		WifiPointView wpView = new WifiPointView(getContext());
 		//wpView.activate();
-		float[] values = new float[9];
+		/*float[] values = new float[9];
 		mMatrix.getValues(values);
 		x = (x - values[2]) / values[0];
-		y = (y - values[5]) / values[4];
+		y = (y - values[5]) / values[4];*/
 		wpView.setPathPoint(x, y);
 		mWifiPath.add(wpView);
 
@@ -250,5 +250,14 @@ public class MapView extends ImageView {
 	    }
 	    mWifiPoints.removeAll(itemsToRemove);
 	    invalidate();
+	}
+
+	public void deletePath() {
+		ArrayList<WifiPointView> itemsToRemove = new ArrayList<WifiPointView>();
+		for (WifiPointView point : mWifiPath) {
+				itemsToRemove.add(point);
+		}
+		mWifiPath.removeAll(itemsToRemove);
+		invalidate();
 	}
 }

@@ -33,6 +33,20 @@ import Home.PathHome;
 public class MapNavigationActivity extends MapViewActivity {
 
     private static final int MENU_ITEM_EXIT = 35;
+    private static final int NEXT_MAP = 36;
+
+    // handler for callbacks to the UI thread
+    private static Handler sUpdateHandler = new Handler();
+
+    private List<Cell> cells;
+    private int cellsOver;
+
+    // runnable to refresh map (called by the handler)
+    private Runnable mRefreshMap = new Runnable() {
+        public void run() {
+            refreshMap();
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +56,7 @@ public class MapNavigationActivity extends MapViewActivity {
         // get destination cell
         int locationId = intent.getIntExtra(MapViewActivity.EXTRA_MESSAGE_LOCATION_DEST, 1);
         Location location = mApplication.getLocationById(locationId);
-        Cell cellDest = new Cell(location.getMap().getMapFloorNumber() + 1, location.getMapXcord(),
+        Cell cellDest = new Cell(location.getMap().getMapFloorNumber(), location.getMapXcord(),
                 location.getMapYcord());
 
         // get source cell
@@ -50,7 +64,7 @@ public class MapNavigationActivity extends MapViewActivity {
         Map map = mApplication.getMapById(mapId);
         int xCord = intent.getIntExtra(MapViewActivity.EXTRA_MESSAGE_X_CORD, 1);
         int yCord = intent.getIntExtra(MapViewActivity.EXTRA_MESSAGE_Y_CORD, 1);
-        Cell cellSrc = new Cell(map.getMapFloorNumber() + 1, xCord, yCord);
+        Cell cellSrc = new Cell(map.getMapFloorNumber(), xCord, yCord);
 
         PathRequest path = new PathRequest(cellSrc, cellDest, 1);
 
@@ -62,8 +76,9 @@ public class MapNavigationActivity extends MapViewActivity {
                 new EntityHomeCallback() {
                     @Override
                     public void onResponse(Response<?> response) {
-                        List<Cell> cells = (List<Cell>) response.getData();
+                        cells = (List<Cell>) response.getData();
                         setPath(cells);
+                        String nisan = "test";
                     }
 
                     @Override
@@ -76,18 +91,61 @@ public class MapNavigationActivity extends MapViewActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, MENU_ITEM_EXIT, Menu.NONE, "Exit navigation mode");
+        menu.add(Menu.NONE, NEXT_MAP, Menu.NONE, "Next");
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
-        return true;
+        switch (item.getItemId()) {
+            case MENU_ITEM_EXIT:
+                finish();
+                return true;
+            default:
+                setNextPath(cells);
+                return true;
+        }
     }
 
     public void setPath(List<Cell> cells) {
-        for (Cell c : cells) {
-            mMap.createPath((float) c.GetY(), (float) c.GetZ());
+        int floor = cells.get(0).GetX();
+        cellsOver = 0;
+
+        for (int i = 0; i < cells.size(); i++) {
+            if (cells.get(i).GetX() == floor) {
+                mMap.createPath((float) cells.get(i).GetY(), (float) cells.get(i).GetZ());
+                cells.remove(cells.get(i));
+                cellsOver++;
+            }
+        }
+
+        // need to refresh map through updateHandler since only UI thread is allowed to touch its views
+        sUpdateHandler.post(mRefreshMap);
+    }
+
+    public void setNextPath(List<Cell> cells) {
+        if (cells != null && cells.size() > cellsOver) {
+            int floor = cells.get(cellsOver).GetX();
+            List<Map> maps = mApplication.getMaps();
+            for (Map map : maps) {
+                if (map.getMapFloorNumber() == floor) {
+                    super.setMap(map.getMapURL());
+                    break;
+                }
+            }
+
+
+            mMap.deletePath();
+            for (int i = 0; i < cells.size(); i++) {
+                if (cells.get(i).GetX() == floor) {
+                    mMap.createPath((float) cells.get(i).GetY(), (float) cells.get(i).GetZ());
+                    cells.remove(cells.get(i));
+                    cellsOver++;
+                }
+            }
+
+            // need to refresh map through updateHandler since only UI thread is allowed to touch its views
+            sUpdateHandler.post(mRefreshMap);
         }
     }
 }
