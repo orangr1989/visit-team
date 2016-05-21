@@ -66,6 +66,10 @@ public class WifiPointView extends View {
 	public void setLocation(PointF location) {
 		mLocation = location;
 	}
+
+	public void setPathPoint(float x, float y) {
+		mLocation = new PointF(x, y);
+	}
 	
 	public PointF getLocation() {
 	    return mLocation;

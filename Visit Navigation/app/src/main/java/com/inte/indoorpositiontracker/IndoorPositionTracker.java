@@ -7,18 +7,20 @@ import android.app.Application;
 import android.util.Log;
 
 import DataModel.Fingerprint;
+import DataModel.Location;
 import DataModel.Map;
 import Handler.Response;
 import Home.EntityHomeCallback;
 import Home.FingerprintHome;
 import Home.MapHome;
+import db.LocationDatabaseHandler;
 import db.MapDatabaseHandler;
 
 public class IndoorPositionTracker extends Application {
     private MapDatabaseHandler mMapDatabaseHandler;
+    private LocationDatabaseHandler mLocationDatabaseHandler;
 
     private ArrayList<Fingerprint> mFingerprints;
-    private ArrayList<Map> mMaps;
 
     /** INSTANCE METHODS */
     
@@ -45,6 +47,7 @@ public class IndoorPositionTracker extends Application {
         );
 
         mMapDatabaseHandler = new MapDatabaseHandler(this);
+        mLocationDatabaseHandler = new LocationDatabaseHandler(this);
     }
 
     public ArrayList<Fingerprint> getFingerprintData() {
@@ -90,10 +93,7 @@ public class IndoorPositionTracker extends Application {
     }
 
     public ArrayList<Map> getMaps () {
-        if (mMaps == null)
-            mMaps = mMapDatabaseHandler.getAllMaps();
-
-        return  mMaps;
+        return mMapDatabaseHandler.getAllMaps();
     }
 
     public void addMap(Map map) {
@@ -106,5 +106,21 @@ public class IndoorPositionTracker extends Application {
 
     public Map getMapById(int id) {
         return mMapDatabaseHandler.getMap(id);
+    }
+
+    public ArrayList<Location> getLocations () {
+        return mLocationDatabaseHandler.getAllLocations();
+    }
+
+    public void addLocation(Location location) {
+        mLocationDatabaseHandler.addLocation(location);
+    }
+
+    public void deleteAllLocations() {
+        mLocationDatabaseHandler.deleteAllLocations();
+    }
+
+    public Location getLocationById(int id) {
+        return mLocationDatabaseHandler.getLocation(id);
     }
 }
