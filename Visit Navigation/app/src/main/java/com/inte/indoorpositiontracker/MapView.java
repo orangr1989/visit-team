@@ -1,15 +1,14 @@
 package com.inte.indoorpositiontracker;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.util.AttributeSet;
-import android.util.FloatMath;
 import android.view.MotionEvent;
 import android.widget.ImageView;
+
+import java.util.ArrayList;
 
 import DataModel.Fingerprint;
 
@@ -157,7 +156,7 @@ public class MapView extends ImageView {
 	private float spacing(MotionEvent event) {
 		float x = event.getX(0) - event.getX(1);
 		float y = event.getY(0) - event.getY(1);
-		return FloatMath.sqrt(x * x + y * y);
+		return (float)Math.sqrt(x * x + y * y);
 	}
 
 	/** Calculate the mid point of the first two fingers */

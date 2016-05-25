@@ -1,12 +1,5 @@
 package com.inte.indoorpositiontracker;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.Vector;
-
 import android.content.Intent;
 import android.graphics.PointF;
 import android.net.wifi.ScanResult;
@@ -17,32 +10,45 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 
+import com.arlib.floatingsearchview.FloatingSearchView;
+import com.arlib.floatingsearchview.suggestions.model.DataHelper;
+import com.arlib.floatingsearchview.suggestions.model.LocationSuggestion;
+import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.Vector;
+
 import DataModel.Fingerprint;
 import DataModel.Location;
 import DataModel.Measurement;
 import DataModel.measure.Wifi;
+import Handler.Response;
 import Home.EntityHomeCallback;
 import Home.LocationHome;
-import Handler.Response;
+
 
 public class MapViewActivity extends MapActivity {
     public final static String EXTRA_MESSAGE_MAP = "com.inte.indoorpositiontracker.MAP";
     public final static String EXTRA_MESSAGE_LOCATION_DEST = "com.inte.indoorpositiontracker.LOCATION_DEST";
     public final static String EXTRA_MESSAGE_X_CORD = "com.inte.indoorpositiontracker.X";
     public final static String EXTRA_MESSAGE_Y_CORD = "com.inte.indoorpositiontracker.Y";
-    
+
     private static final int MENU_ITEM_EDIT_MAP = 100;
     private static final int MENU_ITEM_CHOOSE_LOCATION = 101;
-    
+
     public static final int SCAN_DELAY = 1000; // delay for the first scan (milliseconds)
     public static final int SCAN_INTERVAL = 1000; // interval between scans (milliseconds)
     public static final int MAX_SCAN_THREADS = 2; // max amount of simultaneus scans
-    
+
     private int mScanThreadCount = 0;
-    
+
     // UI pointer to visualize user where he is on the map
     private WifiPointView mLocationPointer;
-    
+
     // handler for callbacks to the UI thread
     private static Handler sUpdateHandler = new Handler();
 
@@ -52,49 +58,123 @@ public class MapViewActivity extends MapActivity {
              refreshMap();
         }
     };
-    
+
     private boolean mPaused = false; // used to detect if the application is on map edit mode
-    
-    
+    private FloatingSearchView mSearchView;
+    private ArrayList<SearchSuggestion> list;
+
+
     /** INSTANCE METHODS*/
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mLocationPointer = mMap.createNewWifiPointOnMap(new PointF(-1000, -1000));
         mLocationPointer.activate();
-        
+        mSearchView = (FloatingSearchView) findViewById(R.id.floating_search_view);
+
+
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
 
             @Override
             public void run() {
-                if(mPaused == false) { // start scan only when this activity is active
+                if (mPaused == false) { // start scan only when this activity is active
                     mWifi.startScan();
                 }
             }
-            
+
         }, SCAN_DELAY, SCAN_INTERVAL);
+
+        mSearchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
+            @Override
+            public void onSearchTextChanged(String oldQuery, final String newQuery) {
+
+                if (!oldQuery.equals("") && newQuery.equals("")) {
+                    mSearchView.clearSuggestions();
+                } else {
+
+                    //this shows the top left circular progress
+                    //you can call it where ever you want, but
+                    //it makes sense to do it when loading something in
+                    //the background.
+                    mSearchView.showProgress();
+
+                    //simulates a query call to a data source
+                    //with a new query.
+                    //DataHelper.find(MainActivity.this, newQuery, new DataHelper.OnFindResultsListener() {
+
+                    List<Location> locs = mApplication.getLocations();
+
+                    locs.add(new Location("Angrest",currMap,50,50,50));
+
+                    String sLocations = new Gson().toJson(locs);
+
+                    DataHelper.find(sLocations, newQuery, new DataHelper.OnFindResultsListener() {
+
+                        @Override
+                        public void onResults(List<LocationSuggestion> results) {
+
+                            //this will swap the data and
+                            //render the collapse/expand animations as necessary
+                            mSearchView.swapSuggestions(results);
+
+                            //let the users know that the background
+                            //process has completed
+                            mSearchView.hideProgress();
+                        }
+                    });
+                }
+            }
+        });
+
+        mSearchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
+            @Override
+            public void onSuggestionClicked(SearchSuggestion searchSuggestion) {
+
+                LocationSuggestion locationSuggestion = (LocationSuggestion) searchSuggestion;
+
+                mSearchView.setSearchText(locationSuggestion.getBody());
+
+                Log.d("TAG", "onSuggestionClicked()");
+                // CALL TO SERVER WITH SELECTED LOCATION
+
+                // DRAW PATH
+            }
+
+            @Override
+            public void onSearchAction() {
+                Log.d("TAG", "onSearchAction()");
+            }
+
+        });
+
+        mSearchView.setOnMenuItemClickListener(new FloatingSearchView.OnMenuItemClickListener() {
+            @Override
+            public void onActionMenuItemSelected(MenuItem item) {
+                Log.d("TAG", "onActionMenuItemSelected()");
+            }
+        });
     }
-    
+
     public void onResume() {
         super.onResume();
 
         mPaused = false;
     }
-    
+
     public void onPause() {
         super.onPause();
 
         mPaused = true;
     }
-    
+
     @Override
     public void onReceiveWifiScanResults(final List<ScanResult> results) {
         IndoorPositionTracker application = (IndoorPositionTracker) getApplication();
         final ArrayList<Fingerprint> fingerprints = application.getFingerprintData(currMap.getMapName());
-        
+
         // calculating the location might take some time in case there are a lot of fingerprints (>10000),
         // so it's reasonable to limit scan thread count to make sure there are not too many of these threads
         // going on at the same time
@@ -142,7 +222,7 @@ public class MapViewActivity extends MapActivity {
             t.start(); // start new scan thread
         }
     }
-    
+
     public void startMapEditActivity() {
         Intent intent = new Intent(MapViewActivity.this, MapEditActivity.class);
         intent.putExtra(EXTRA_MESSAGE_MAP, currMap.getId());
@@ -159,7 +239,7 @@ public class MapViewActivity extends MapActivity {
 
         startActivity(intent); // start map edit mode
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // add floor items
@@ -175,7 +255,7 @@ public class MapViewActivity extends MapActivity {
         super.onCreateOptionsMenu(menu); // items for changing map
         return true;
     }
-    
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
