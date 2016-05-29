@@ -1,12 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
+<items version="2" />
 
-    <item
-        jar="C:\Git\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\Visit Navigation\library\unspecified\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="e40185adb5aaaa24ca0c55f857182096ba0575a7">
-        <dex dex="C:\Git\visit-team\Visit Navigation\app\build\intermediates\pre-dexed\debug\Visit Navigation-library-unspecified_11fe29fd2e226981e43c51a68781686b69604149.jar" />
-    </item>
-
-</items>

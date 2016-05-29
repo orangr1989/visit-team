@@ -1,5 +1,6 @@
 package Home;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import java.util.HashMap;
@@ -8,7 +9,6 @@ import Handler.PerformRequestTask;
 import Handler.PerformRequestTaskCallback;
 import Handler.Request;
 import Handler.Response;
-import android.os.AsyncTask;
 
 public class EntityHome implements PerformRequestTaskCallback {
     protected static EntityHome instance = new EntityHome();

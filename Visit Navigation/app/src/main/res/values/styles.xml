@@ -1,7 +1,19 @@
 <resources>
 
-   <!-- <style name="AppTheme" parent="android:Theme.Light" />-->
+    <style name="AppTheme" parent="android:Theme.Light" />
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+    <style name="AppTheme.Light" parent="android:Theme.Material.Light" />
 
+        <!-- inherit from the material theme -->
+        <style name="AppTheme.Angrest" parent="android:Theme.Material">
+            <!-- Main theme colors -->
+            <!--   your app branding color for the app bar -->
+            <item name="android:colorPrimary">@color/primary</item>
+            <!--   darker variant for the status bar and contextual app bars -->
+            <item name="android:colorPrimaryDark">@color/primary_dark</item>
+            <!--   theme UI controls like checkboxes and text fields -->
+            <item name="android:colorAccent">@color/accent</item>
+            <!--   theme nav bar -->
+            <item name="android:navigationBarColor">@color/navBar</item>
+        </style>
 </resources>

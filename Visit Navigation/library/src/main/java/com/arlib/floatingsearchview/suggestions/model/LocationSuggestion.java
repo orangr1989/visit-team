@@ -16,12 +16,10 @@ public  class LocationSuggestion implements SearchSuggestion {
 
     private String mLocationName;
 
-    private boolean mIsHistory;
-
     public LocationSuggestion(LocationWrapper location){
 
         this.mLocation = location;
-        this.mLocationName = location.getTitle();
+        this.mLocationName = location.getID();
     }
 
     public LocationSuggestion(Parcel source) {
@@ -34,7 +32,7 @@ public  class LocationSuggestion implements SearchSuggestion {
 
     @Override
     public String getBody() {
-        return mLocation.getTitle();
+        return mLocation.getID();
     }
 
     @Override

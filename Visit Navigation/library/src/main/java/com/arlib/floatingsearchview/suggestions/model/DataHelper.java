@@ -40,7 +40,7 @@ public class DataHelper {
 
                                         for(LocationWrapper location: sLocationWrappers){
 
-                                                if(location.getTitle().toUpperCase().startsWith(constraint.toString().toUpperCase()))
+                                                if(location.getID().toUpperCase().contains(constraint.toString().toUpperCase()))
                                                         suggestionList.add(new LocationSuggestion(location));
                                         }
 
@@ -89,7 +89,7 @@ public class DataHelper {
                 return jsonString;
         }
 
-        private static List<LocationWrapper> deserializeLocations(String jsonString){
+        public static List<LocationWrapper> deserializeLocations(String jsonString){
 
                 Gson gson = new Gson();
 

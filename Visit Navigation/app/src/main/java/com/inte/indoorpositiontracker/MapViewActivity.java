@@ -13,6 +13,7 @@ import android.view.SubMenu;
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.DataHelper;
 import com.arlib.floatingsearchview.suggestions.model.LocationSuggestion;
+import com.arlib.floatingsearchview.suggestions.model.LocationWrapper;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.google.gson.Gson;
 
@@ -34,8 +35,10 @@ import Home.LocationHome;
 public class MapViewActivity extends MapActivity {
     public final static String EXTRA_MESSAGE_MAP = "com.inte.indoorpositiontracker.MAP";
     public final static String EXTRA_MESSAGE_LOCATION_DEST = "com.inte.indoorpositiontracker.LOCATION_DEST";
+    public final static String EXTRA_MESSAGE_LOCATION_DEST_ID = "com.inte.indoorpositiontracker.LOCATION_DEST_ID";
     public final static String EXTRA_MESSAGE_X_CORD = "com.inte.indoorpositiontracker.X";
     public final static String EXTRA_MESSAGE_Y_CORD = "com.inte.indoorpositiontracker.Y";
+    public final static String EXTRA_MESSAGE_MAP_FLOOR = "com.inte.indoorpositiontracker.MAP_FLOOR";
 
     private static final int MENU_ITEM_EDIT_MAP = 100;
     private static final int MENU_ITEM_CHOOSE_LOCATION = 101;
@@ -61,7 +64,7 @@ public class MapViewActivity extends MapActivity {
 
     private boolean mPaused = false; // used to detect if the application is on map edit mode
     private FloatingSearchView mSearchView;
-    private ArrayList<SearchSuggestion> list;
+    private Location mCurrentLocation;
 
 
     /** INSTANCE METHODS*/
@@ -87,6 +90,33 @@ public class MapViewActivity extends MapActivity {
 
         }, SCAN_DELAY, SCAN_INTERVAL);
 
+        mSearchView.setOnFocusChangeListener(new FloatingSearchView.OnFocusChangeListener(){
+
+            @Override
+            public void onFocus() {
+                //this shows the top left circular progress
+                //you can call it where ever you want, but
+                //it makes sense to do it when loading something in
+                //the background.
+                mSearchView.showProgress();
+
+                //simulates a query call to a data source
+                //with a new query.
+                List<Location> locs = mApplication.getLocations();
+
+                String sLocations = new Gson().toJson(locs);
+
+                mSearchView.swapSuggestions(getAllSuggestions(sLocations));
+
+                mSearchView.hideProgress();
+            }
+
+            @Override
+            public void onFocusCleared() {
+
+            }
+        });
+
         mSearchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
             @Override
             public void onSearchTextChanged(String oldQuery, final String newQuery) {
@@ -103,11 +133,7 @@ public class MapViewActivity extends MapActivity {
 
                     //simulates a query call to a data source
                     //with a new query.
-                    //DataHelper.find(MainActivity.this, newQuery, new DataHelper.OnFindResultsListener() {
-
                     List<Location> locs = mApplication.getLocations();
-
-                    locs.add(new Location("Angrest",currMap,50,50,50));
 
                     String sLocations = new Gson().toJson(locs);
 
@@ -140,7 +166,13 @@ public class MapViewActivity extends MapActivity {
                 Log.d("TAG", "onSuggestionClicked()");
                 // CALL TO SERVER WITH SELECTED LOCATION
 
-                // DRAW PATH
+                Intent intent = new Intent(MapViewActivity.this, MapNavigationActivity.class);
+
+                intent.putExtra(EXTRA_MESSAGE_LOCATION_DEST_ID, locationSuggestion.getLocation().getID());
+                intent.putExtra(EXTRA_MESSAGE_X_CORD, mCurrentLocation.getMapXcord());
+                intent.putExtra(EXTRA_MESSAGE_Y_CORD, mCurrentLocation.getMapYcord());
+                intent.putExtra(EXTRA_MESSAGE_MAP_FLOOR, mCurrentLocation.getMap().getMapFloorNumber());
+                startActivity(intent); // send dest location id + current location(x + y + floorNum)
             }
 
             @Override
@@ -156,6 +188,23 @@ public class MapViewActivity extends MapActivity {
                 Log.d("TAG", "onActionMenuItemSelected()");
             }
         });
+    }
+
+    private List<? extends SearchSuggestion> getAllSuggestions(String locs) {
+
+        List<LocationWrapper> sLocationWrappers = new ArrayList<LocationWrapper>();
+        List<LocationSuggestion> suggestionList = new ArrayList<LocationSuggestion>();
+
+        if(sLocationWrappers.isEmpty()) {
+            sLocationWrappers = com.arlib.floatingsearchview.suggestions.model.DataHelper.deserializeLocations(locs);
+        }
+
+        for(LocationWrapper location: sLocationWrappers){
+
+                suggestionList.add(new LocationSuggestion(location));
+        }
+
+        return  suggestionList;
     }
 
     public void onResume() {
@@ -202,6 +251,8 @@ public class MapViewActivity extends MapActivity {
                                 @Override
                                 public void onResponse(Response<?> response) {
                                     Location l = (Location) response.getData();
+
+                                    mCurrentLocation = l; // update current location
 
                                     mLocationPointer.setFingerprint(l); // translate UI pointer to new location on screen
 

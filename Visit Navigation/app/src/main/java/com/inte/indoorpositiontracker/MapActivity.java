@@ -1,13 +1,6 @@
 package com.inte.indoorpositiontracker;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,19 +10,17 @@ import android.graphics.BitmapFactory;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
-import android.view.SubMenu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
+import java.util.List;
+
 import DataModel.Map;
 import Handler.DownloadImageTask;
-import Handler.Response;
-import Home.EntityHomeCallback;
-import Home.MapHome;
 
 public class MapActivity extends Activity implements OnTouchListener {
     private static final int MENU_ITEM_CHOOSE_FLOOR = 0;
@@ -70,7 +61,7 @@ public class MapActivity extends Activity implements OnTouchListener {
         //mApplication.deleteAllMaps();
         List<Map> maps = mApplication.getMaps();
         if (maps.size() > 0) {
-            currMap = maps.get(0);
+            currMap = maps.get(3);
             this.setMap(currMap.getMapURL());
         }
     }

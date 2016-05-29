@@ -33,11 +33,11 @@ public class LocationWrapper {
     private int accuracy;
 
 
-    public String getTitle() {
+    public String getID() {
         return symbolicID;
     }
 
-    public void setTitle(String title) {
+    public void setID(String title) {
         this.symbolicID = title;
     }
 
