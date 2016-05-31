@@ -40,6 +40,10 @@ public  class LocationSuggestion implements SearchSuggestion {
         return CREATOR;
     }
 
+    public String getTitle() {
+        return this.mLocationName;
+    }
+
     ///////
 
     public static final Creator<LocationSuggestion> CREATOR = new Creator<LocationSuggestion>() {

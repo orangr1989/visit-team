@@ -1,14 +1,20 @@
 package com.inte.indoorpositiontracker;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PointF;
 import android.net.wifi.ScanResult;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.SubMenu;
+import android.view.View;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.DataHelper;
@@ -48,6 +54,8 @@ public class MapViewActivity extends MapActivity {
     public static final int MAX_SCAN_THREADS = 2; // max amount of simultaneus scans
 
     private int mScanThreadCount = 0;
+    final Context context = this;
+    private long mTouchStarted; // used for detecting tap events
 
     // UI pointer to visualize user where he is on the map
     private WifiPointView mLocationPointer;
@@ -65,7 +73,7 @@ public class MapViewActivity extends MapActivity {
     private boolean mPaused = false; // used to detect if the application is on map edit mode
     private FloatingSearchView mSearchView;
     private Location mCurrentLocation;
-
+    private FloatingActionButton mLocationbtn;
 
     /** INSTANCE METHODS*/
 
@@ -76,7 +84,7 @@ public class MapViewActivity extends MapActivity {
         mLocationPointer = mMap.createNewWifiPointOnMap(new PointF(-1000, -1000));
         mLocationPointer.activate();
         mSearchView = (FloatingSearchView) findViewById(R.id.floating_search_view);
-
+        mLocationbtn = (FloatingActionButton) findViewById(R.id.myLocationButton);
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -90,7 +98,8 @@ public class MapViewActivity extends MapActivity {
 
         }, SCAN_DELAY, SCAN_INTERVAL);
 
-        mSearchView.setOnFocusChangeListener(new FloatingSearchView.OnFocusChangeListener(){
+        // floating search bar events
+        mSearchView.setOnFocusChangeListener(new FloatingSearchView.OnFocusChangeListener() {
 
             @Override
             public void onFocus() {
@@ -168,7 +177,7 @@ public class MapViewActivity extends MapActivity {
 
                 Intent intent = new Intent(MapViewActivity.this, MapNavigationActivity.class);
 
-                intent.putExtra(EXTRA_MESSAGE_LOCATION_DEST_ID, locationSuggestion.getLocation().getID());
+                intent.putExtra(EXTRA_MESSAGE_LOCATION_DEST_ID, locationSuggestion.getTitle());
                 intent.putExtra(EXTRA_MESSAGE_X_CORD, mCurrentLocation.getMapXcord());
                 intent.putExtra(EXTRA_MESSAGE_Y_CORD, mCurrentLocation.getMapYcord());
                 intent.putExtra(EXTRA_MESSAGE_MAP_FLOOR, mCurrentLocation.getMap().getMapFloorNumber());
@@ -186,6 +195,14 @@ public class MapViewActivity extends MapActivity {
             @Override
             public void onActionMenuItemSelected(MenuItem item) {
                 Log.d("TAG", "onActionMenuItemSelected()");
+            }
+        });
+
+        // floating action button myLocation click event
+        mLocationbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLocationPickerDialog();
             }
         });
     }
@@ -263,6 +280,9 @@ public class MapViewActivity extends MapActivity {
                                 @Override
                                 public void onFailure(Response<?> response) {
                                     Log.d("MapViewActivity", response.getMessage());
+
+                                    // cos' the wifi failed to calculate current location, ask the user what to do.
+                                    startLocationPickerDialog();
                                 }
                             }
                     );
@@ -272,6 +292,69 @@ public class MapViewActivity extends MapActivity {
             };
             t.start(); // start new scan thread
         }
+    }
+
+    public void startLocationPickerDialog(){
+        // Select location manually - create alert dialog
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+        // set title
+        alertDialogBuilder.setTitle("Current location");
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("Your current location was not found. " +
+                        "Scan again, or select your " +
+                        "location manually")
+                .setCancelable(false)
+                .setPositiveButton("Scan again",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // activate scan again..aka wait for another wifi scan results
+                        dialog.cancel();
+                    }
+                })
+                .setNegativeButton("Pin your location",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+
+                        dialog.cancel();
+
+                        // choose your location like edit map
+                        mMap.setOnTouchListener(new View.OnTouchListener() {
+
+                            @Override
+                            public boolean onTouch(View v, MotionEvent event) {
+                                // Handle touch events here...
+                                switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                                    case MotionEvent.ACTION_DOWN:
+                                        mTouchStarted = event.getEventTime(); // calculate tap start
+                                        break;
+                                    case MotionEvent.ACTION_UP:
+                                        if (event.getEventTime() - mTouchStarted < 150) { // user tapped the screen
+                                            PointF location = new PointF(event.getX(), event.getY()); // get touch location
+
+                                            // add pointer on screen where the user tapped and start wifi scan
+                                            if(mLocationPointer == null) {
+                                                mLocationPointer = mMap.createNewWifiPointOnMap(location);
+                                                mLocationPointer.activate();
+                                            } else {
+                                                mMap.setWifiPointViewPosition(mLocationPointer, location);
+                                            }
+                                            refreshMap(); // redraw map
+                                        }
+                                        break;
+                                }
+
+                                return false;
+                            }
+                        });
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
     }
 
     public void startMapEditActivity() {

@@ -1,6 +1,5 @@
 package com.inte.indoorpositiontracker;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -22,7 +22,7 @@ import java.util.List;
 import DataModel.Map;
 import Handler.DownloadImageTask;
 
-public class MapActivity extends Activity implements OnTouchListener {
+public class MapActivity extends AppCompatActivity implements OnTouchListener {
     private static final int MENU_ITEM_CHOOSE_FLOOR = 0;
     private static final int MENU_ITEM_BASEMENT = 2;
     private static final int MENU_ITEM_1STFLOOR = 3;
@@ -164,4 +164,3 @@ public class MapActivity extends Activity implements OnTouchListener {
         task.execute(url);
     }
 }
-
