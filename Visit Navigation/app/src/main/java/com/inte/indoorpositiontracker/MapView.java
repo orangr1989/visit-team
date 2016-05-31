@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.PointF;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ImageView;
@@ -62,9 +63,25 @@ public class MapView extends ImageView {
 			point.drawWithTransformations(canvas, values);
 		}
 
+
 	}
 
-	
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+        ImageView map = (ImageView)findViewById(R.id.mapView);
+
+        int height = map.getDrawable().getIntrinsicHeight();
+        int width = map.getDrawable().getIntrinsicWidth();
+
+        RectF drawableRect = new RectF(0, 0, width, height);
+        RectF viewRect = new RectF(0, 0, map.getWidth(), map.getHeight());
+        mMatrix.setRectToRect(drawableRect, viewRect, Matrix.ScaleToFit.CENTER);
+
+        map.setImageMatrix(mMatrix);
+    }
+
 	/**
 	 * Map moving and zooming
 	 */
