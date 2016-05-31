@@ -11,14 +11,20 @@ import DataModel.Fingerprint;
 import DataModel.Location;
 
 public class WifiPointView extends View {
-	private static final int COLOR_INACTIVE = Color.RED;
+	public  enum  POINT_TYPE {CurrentLocation, Path, FingerPrint, destPoint }
+
+	private static final int COLOR_FINGERPRINT = Color.RED;
 	private static final int COLOR_ACTIVE = Color.GREEN;
+	private static final int COLOR_PATH = Color.rgb(0,179,253);
+	private static final int DESTINATION_POINT = Color.rgb(170,47,206);
 	
 	private Fingerprint mFingerprint;
 	
 	private boolean mActive;
+	POINT_TYPE pointType;
+	String destName;
 	
-	private Paint mPaint; // draw color
+	public Paint mPaint; // draw color
 	
 	private PointF mLocation; // location on screen
 	private float mRadius; // circle radius
@@ -28,20 +34,22 @@ public class WifiPointView extends View {
 
 	private boolean mVisible;
 
-	public WifiPointView(Context context) {
+	public WifiPointView(Context context, POINT_TYPE type) {
 		super(context);
 		mPaint = new Paint();
-		mPaint.setColor(COLOR_INACTIVE);
+
 		mPaint.setTextSize(25);
 		mPaint.setAntiAlias(true);
-		
+
 		mActive = false;
 		mVisible = true;
-		mRadius = 10f;
+		mRadius = 5f;
 		mLocation = new PointF(0,0);
 		mFingerprint = null;
+		pointType = type;
+		SetPointViewProperties(pointType);
 	}
-	
+
 	@Override
 	protected void onDraw(Canvas canvas) {
 		// TODO Auto-generated method stub
@@ -51,16 +59,17 @@ public class WifiPointView extends View {
 	protected void drawWithTransformations(Canvas canvas, float[] matrixValues) {
 		mRelativeX = matrixValues[2] + mLocation.x * matrixValues[0];
 		mRelativeY = matrixValues[5] + mLocation.y * matrixValues[4];
-    		
+
 		if(mVisible == true) { // draw only if set visible
-    		if(mActive) { // choose draw color based on active state
-    		    mPaint.setColor(COLOR_ACTIVE);
-    		} else {
-    		    mPaint.setColor(COLOR_INACTIVE);
-    		}
-    		
+			SetPointViewProperties(pointType);
     		canvas.drawCircle(mRelativeX, mRelativeY, mRadius, mPaint);
 	    }
+
+		if (pointType == POINT_TYPE.destPoint) {
+			mPaint.setColor(Color.BLACK);
+			mPaint.setTextSize(16);
+			canvas.drawText(destName, mRelativeX, mRelativeY - mRadius * 2, mPaint);
+		}
 	}
 	
 	public void setLocation(PointF location) {
@@ -73,6 +82,29 @@ public class WifiPointView extends View {
 	
 	public PointF getLocation() {
 	    return mLocation;
+	}
+
+	public void SetPointViewProperties(POINT_TYPE type)
+	{
+		switch (type) {
+			case CurrentLocation:
+				mPaint.setColor(COLOR_ACTIVE);
+				mRadius = 8f;
+				break;
+			case Path: {
+				mPaint.setColor(COLOR_PATH);
+				break;
+			}
+			case FingerPrint: {
+				mPaint.setColor(COLOR_FINGERPRINT);
+				break;
+			}
+			case  destPoint: {
+				mPaint.setColor(DESTINATION_POINT);
+				break;
+			}
+			default:
+		}
 	}
 	
 	public void setSize(float radius) {

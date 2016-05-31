@@ -41,7 +41,7 @@ public class MapViewActivity extends MapActivity {
     private int mScanThreadCount = 0;
     
     // UI pointer to visualize user where he is on the map
-    private WifiPointView mLocationPointer;
+    protected WifiPointView mLocationPointer;
     
     // handler for callbacks to the UI thread
     private static Handler sUpdateHandler = new Handler();

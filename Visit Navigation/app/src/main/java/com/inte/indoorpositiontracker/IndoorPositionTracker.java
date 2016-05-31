@@ -100,6 +100,10 @@ public class IndoorPositionTracker extends Application {
         mMapDatabaseHandler.addMap(map);
     }
 
+    public void addMaps(List<Map> mapsToAdd) {
+        mMapDatabaseHandler.addMaps(mapsToAdd);
+    }
+
     public void deleteAllMaps() {
         mMapDatabaseHandler.deleteAllMaps();
     }
@@ -114,6 +118,10 @@ public class IndoorPositionTracker extends Application {
 
     public void addLocation(Location location) {
         mLocationDatabaseHandler.addLocation(location);
+    }
+
+    public void addLocations(List<Location> LocationsToAdd) {
+        mLocationDatabaseHandler.addLocations(LocationsToAdd);
     }
 
     public void deleteAllLocations() {
