@@ -40,7 +40,7 @@ public class DataHelper {
 
                                         for(LocationWrapper location: sLocationWrappers){
 
-                                                if(location.getID().toUpperCase().contains(constraint.toString().toUpperCase()))
+                                                if(location.getsymbolicID().toUpperCase().contains(constraint.toString().toUpperCase()))
                                                         suggestionList.add(new LocationSuggestion(location));
                                         }
 

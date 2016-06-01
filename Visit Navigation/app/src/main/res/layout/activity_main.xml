@@ -42,7 +42,6 @@
 		android:layout_gravity="bottom|right"
 		android:layout_marginRight="20dp"
 		android:src="@android:drawable/ic_menu_mylocation"
-		android:tint="@android:color/white"
 		app:borderWidth="0dp"
 		app:elevation="6dp"
 		app:pressedTranslationZ="12dp"

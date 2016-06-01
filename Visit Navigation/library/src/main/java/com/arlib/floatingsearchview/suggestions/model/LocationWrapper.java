@@ -16,6 +16,9 @@ import java.util.Map;
 
 public class LocationWrapper {
 
+    @SerializedName("id")
+    @Expose
+    private Integer id;
     @SerializedName("symbolicID")
     @Expose
     private String symbolicID;
@@ -33,19 +36,27 @@ public class LocationWrapper {
     private int accuracy;
 
 
-    public String getID() {
+    public Integer getID() {
+        return this.id;
+    }
+
+    public void setID(Integer id) {
+        this.id = id;
+    }
+
+    public String getsymbolicID() {
         return symbolicID;
     }
 
-    public void setID(String title) {
-        this.symbolicID = title;
+    public void setsymbolicID(String symbolic) {
+        this.symbolicID = symbolic;
     }
 
     public int getx() {
         return mapXcord;
     }
 
-    public void set(int xCord) {
+    public void setx(int xCord) {
         this.mapXcord = xCord;
     }
 

@@ -1,3 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.2.4\a60a5e993c98c864010053cb901b7eab25306568\gson-2.2.4.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="C:\Git\visit-team\Visit Navigation\app\build\intermediates\pre-dexed\debug\gson-2.2.4_638dc86c58a101b5f4182ac80140d1d0cec9f422.jar" />
+    </item>
+    <item
+        jar="C:\Git\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\me.grantland\autofittextview\0.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="81db45283d36bfc6e3380c325fb09b2283f36775">
+        <dex dex="C:\Git\visit-team\Visit Navigation\app\build\intermediates\pre-dexed\debug\me.grantland-autofittextview-0.2.0_0ea9ea672b54c9efc272829463562664716574f1.jar" />
+    </item>
+    <item
+        jar="C:\Git\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.bartoszlipinski\viewpropertyobjectanimator\1.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1828dd75d357690efb2c5f4326804e2f7ad21f6c">
+        <dex dex="C:\Git\visit-team\Visit Navigation\app\build\intermediates\pre-dexed\debug\com.bartoszlipinski-viewpropertyobjectanimator-1.2.0_351186d5c2b45ae2d01b194f03be60ee41e770e2.jar" />
+    </item>
+    <item
+        jar="C:\Users\user\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="C:\Git\visit-team\Visit Navigation\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1_006ce85cced6eb823a57555fe4999c1641a59cea.jar" />
+    </item>
+    <item
+        jar="C:\Git\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="C:\Git\visit-team\Visit Navigation\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.1.1_e86fb32ff980d4f43d6f3b9790f87639cb4e09e9.jar" />
+    </item>
+    <item
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-collections4\4.0\da217367fd25e88df52ba79e47658d4cf928b0d1\commons-collections4-4.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="da217367fd25e88df52ba79e47658d4cf928b0d1">
+        <dex dex="C:\Git\visit-team\Visit Navigation\app\build\intermediates\pre-dexed\debug\commons-collections4-4.0_3ccfb95bd52b395e23f68f1f9928a5d7817dbe9e.jar" />
+    </item>
+    <item
+        jar="C:\Git\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="C:\Git\visit-team\Visit Navigation\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1_80ea135987f2dc6d798381962b7893f9b4f2c7bc.jar" />
+    </item>
+    <item
+        jar="C:\Git\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="C:\Git\visit-team\Visit Navigation\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.0.1_4bc7e19482ce8935fe64a995c5d182cf616c7d72.jar" />
+    </item>
+    <item
+        jar="C:\Git\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d96886efea7cc74fbb3abd0e3b51d5638fc57be0">
+        <dex dex="C:\Git\visit-team\Visit Navigation\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-23.1.0_baed55f35740129cae47dc8e5d5b3d44ab25aaca.jar" />
+    </item>
+    <item
+        jar="C:\Git\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.android.support\design\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="C:\Git\visit-team\Visit Navigation\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.0.1_04752f45848c0c366fdb08a9dde4e1cc9c76cc91.jar" />
+    </item>
+    <item
+        jar="C:\Git\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="C:\Git\visit-team\Visit Navigation\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.1.1_483938f1f87fc8159b8f45c7a5e493306723dcf3.jar" />
+    </item>
+    <item
+        jar="C:\Git\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\Visit Navigation\library\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a879d26544c7850b5a9862cf21d23eb6a8157597">
+        <dex dex="C:\Git\visit-team\Visit Navigation\app\build\intermediates\pre-dexed\debug\Visit Navigation-library-unspecified_11fe29fd2e226981e43c51a68781686b69604149.jar" />
+    </item>
+
+</items>

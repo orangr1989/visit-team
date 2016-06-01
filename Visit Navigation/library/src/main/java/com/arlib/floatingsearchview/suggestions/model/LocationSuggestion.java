@@ -14,16 +14,19 @@ public  class LocationSuggestion implements SearchSuggestion {
 
     private LocationWrapper mLocation;
 
-    private String mLocationName;
+    private String mLocationSymbolicId;
+
+    private Integer mLocationId;
 
     public LocationSuggestion(LocationWrapper location){
 
         this.mLocation = location;
-        this.mLocationName = location.getID();
+        this.mLocationSymbolicId = location.getsymbolicID();
+        this.mLocationId = location.getID();
     }
 
     public LocationSuggestion(Parcel source) {
-        this.mLocationName = source.readString();
+        this.mLocationSymbolicId = source.readString();
     }
 
     public LocationWrapper getLocation(){
@@ -32,7 +35,7 @@ public  class LocationSuggestion implements SearchSuggestion {
 
     @Override
     public String getBody() {
-        return mLocation.getID();
+        return mLocation.getsymbolicID();
     }
 
     @Override
@@ -40,8 +43,12 @@ public  class LocationSuggestion implements SearchSuggestion {
         return CREATOR;
     }
 
-    public String getTitle() {
-        return this.mLocationName;
+    public Integer getId() {
+        return this.mLocationId;
+    }
+
+    public String getSymbolicId() {
+        return this.mLocationSymbolicId;
     }
 
     ///////
@@ -65,6 +72,6 @@ public  class LocationSuggestion implements SearchSuggestion {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mLocationName);
+        dest.writeString(mLocationSymbolicId);
     }
 }

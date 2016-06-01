@@ -14,7 +14,7 @@
   
     <application
         android:name="com.inte.indoorpositiontracker.IndoorPositionTracker"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_visit_launcher"
         android:theme="@style/AppTheme.Angrest"
         android:label="@string/app_name">
         <activity

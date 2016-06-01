@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Visit</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">Visit Navigation</string>
+    <string name="title_activity_main">Visit</string>
     <string name="action_voice_rec">action voice rec</string>
     <string name="action_location">action location</string>
     <string name="action_taxi">action taxi</string>

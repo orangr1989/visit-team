@@ -4,11 +4,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PointF;
+import android.graphics.drawable.Drawable;
 import android.net.wifi.ScanResult;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,10 +44,8 @@ import Home.LocationHome;
 public class MapViewActivity extends MapActivity {
     public final static String EXTRA_MESSAGE_MAP = "com.inte.indoorpositiontracker.MAP";
     public final static String EXTRA_MESSAGE_LOCATION_DEST = "com.inte.indoorpositiontracker.LOCATION_DEST";
-    public final static String EXTRA_MESSAGE_LOCATION_DEST_ID = "com.inte.indoorpositiontracker.LOCATION_DEST_ID";
     public final static String EXTRA_MESSAGE_X_CORD = "com.inte.indoorpositiontracker.X";
     public final static String EXTRA_MESSAGE_Y_CORD = "com.inte.indoorpositiontracker.Y";
-    public final static String EXTRA_MESSAGE_MAP_FLOOR = "com.inte.indoorpositiontracker.MAP_FLOOR";
 
     private static final int MENU_ITEM_EDIT_MAP = 100;
     private static final int MENU_ITEM_CHOOSE_LOCATION = 101;
@@ -177,10 +178,10 @@ public class MapViewActivity extends MapActivity {
 
                 Intent intent = new Intent(MapViewActivity.this, MapNavigationActivity.class);
 
-                intent.putExtra(EXTRA_MESSAGE_LOCATION_DEST_ID, locationSuggestion.getTitle());
+                intent.putExtra(EXTRA_MESSAGE_LOCATION_DEST, locationSuggestion.getId());
                 intent.putExtra(EXTRA_MESSAGE_X_CORD, mCurrentLocation.getMapXcord());
                 intent.putExtra(EXTRA_MESSAGE_Y_CORD, mCurrentLocation.getMapYcord());
-                intent.putExtra(EXTRA_MESSAGE_MAP_FLOOR, mCurrentLocation.getMap().getMapFloorNumber());
+                intent.putExtra(EXTRA_MESSAGE_MAP, mCurrentLocation.getMap().getId());
                 startActivity(intent); // send dest location id + current location(x + y + floorNum)
             }
 
@@ -205,6 +206,9 @@ public class MapViewActivity extends MapActivity {
                 startLocationPickerDialog();
             }
         });
+
+        Drawable fabDr= mLocationbtn.getDrawable();
+        DrawableCompat.setTint(fabDr, Color.WHITE);
     }
 
     private List<? extends SearchSuggestion> getAllSuggestions(String locs) {
