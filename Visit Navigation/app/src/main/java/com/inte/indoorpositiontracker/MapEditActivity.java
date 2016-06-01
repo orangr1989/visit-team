@@ -1,13 +1,5 @@
 package com.inte.indoorpositiontracker;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.TreeSet;
-import java.util.Vector;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -22,9 +14,17 @@ import android.view.SubMenu;
 import android.view.View;
 import android.widget.Toast;
 
+import com.arlib.floatingsearchview.FloatingSearchView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.Vector;
+
 import DataModel.Fingerprint;
 import DataModel.Location;
-import DataModel.Map;
 import DataModel.Measurement;
 import DataModel.measure.Wifi;
 
@@ -64,7 +64,11 @@ public class MapEditActivity extends MapActivity {
         int mapId = intent.getIntExtra(MapViewActivity.EXTRA_MESSAGE_MAP, 1);
         currMap = mApplication.getMapById(mapId);
         setMap(currMap.getMapURL());
-        
+
+        // visible search view
+        FloatingSearchView bar = (FloatingSearchView)findViewById(R.id.floating_search_view);
+        bar.setVisibility(View.GONE);
+
         setTitle(getTitle() + " (edit mode)");
     }
     
