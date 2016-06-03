@@ -14,7 +14,7 @@
         android:id="@+id/txt_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="40dp"
+        android:textSize="35dp"
         android:textColor="#ff0000"
         android:gravity="center_horizontal"
         android:text="Visit"

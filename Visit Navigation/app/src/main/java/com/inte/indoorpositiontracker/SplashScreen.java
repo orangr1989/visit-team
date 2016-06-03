@@ -23,13 +23,13 @@ public class SplashScreen extends Activity {
             //txtView.setText("Visit");
             txtView.setTypeface(roboto);
 
-            int secondsDelayed = 10;
+            int secondsDelayed = 5;
             new Handler().postDelayed(new Runnable() {
                 public void run() {
                     //startActivity(new Intent(SplashScreen.this, MapViewActivity.class));
                     finish();
                 }
-            }, secondsDelayed * 500);
+            }, secondsDelayed * 1000);
 
             splashLoaded = true;
         }

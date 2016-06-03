@@ -82,9 +82,6 @@ public class MapViewActivity extends MapActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent goToMainActivity = new Intent(MapViewActivity.this, SplashScreen.class);
-        startActivity(goToMainActivity);
-
         mLocationPointer = mMap.createNewWifiPointOnMap(new PointF(-1000, -1000));
         mLocationPointer.activate();
         mSearchView = (FloatingSearchView) findViewById(R.id.floating_search_view);
@@ -101,6 +98,10 @@ public class MapViewActivity extends MapActivity {
             }
 
         }, SCAN_DELAY, SCAN_INTERVAL);
+
+        // show splash screen
+        Intent goToMainActivity = new Intent(MapViewActivity.this, SplashScreen.class);
+        startActivity(goToMainActivity);
 
         // floating search bar events
         mSearchView.setOnFocusChangeListener(new FloatingSearchView.OnFocusChangeListener() {
