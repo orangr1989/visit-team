@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SubMenu;
 import android.view.View;
+import android.widget.Toast;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.DataHelper;
@@ -59,7 +60,7 @@ public class MapViewActivity extends MapActivity {
     private long mTouchStarted; // used for detecting tap events
 
     // UI pointer to visualize user where he is on the map
-    private WifiPointView mLocationPointer;
+    protected WifiPointView mLocationPointer;
 
     // handler for callbacks to the UI thread
     private static Handler sUpdateHandler = new Handler();
@@ -73,7 +74,6 @@ public class MapViewActivity extends MapActivity {
 
     private boolean mPaused = false; // used to detect if the application is on map edit mode
     private FloatingSearchView mSearchView;
-    private Location mCurrentLocation;
     private FloatingActionButton mLocationbtn;
 
     /** INSTANCE METHODS*/
@@ -81,6 +81,9 @@ public class MapViewActivity extends MapActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent goToMainActivity = new Intent(MapViewActivity.this, SplashScreen.class);
+        startActivity(goToMainActivity);
 
         mLocationPointer = mMap.createNewWifiPointOnMap(new PointF(-1000, -1000));
         mLocationPointer.activate();
@@ -179,9 +182,9 @@ public class MapViewActivity extends MapActivity {
                 Intent intent = new Intent(MapViewActivity.this, MapNavigationActivity.class);
 
                 intent.putExtra(EXTRA_MESSAGE_LOCATION_DEST, locationSuggestion.getId());
-                intent.putExtra(EXTRA_MESSAGE_X_CORD, mCurrentLocation.getMapXcord());
-                intent.putExtra(EXTRA_MESSAGE_Y_CORD, mCurrentLocation.getMapYcord());
-                intent.putExtra(EXTRA_MESSAGE_MAP, mCurrentLocation.getMap().getId());
+                intent.putExtra(EXTRA_MESSAGE_X_CORD, (int) mLocationPointer.getX());
+                intent.putExtra(EXTRA_MESSAGE_Y_CORD,(int) mLocationPointer.getY());
+                intent.putExtra(EXTRA_MESSAGE_MAP, currMap.getId());
                 startActivity(intent); // send dest location id + current location(x + y + floorNum)
             }
 
@@ -203,7 +206,10 @@ public class MapViewActivity extends MapActivity {
         mLocationbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLocationPickerDialog();
+                Toast.makeText(context, "Pin your location",
+                        Toast.LENGTH_LONG).show();
+
+                locationPicker();
             }
         });
 
@@ -273,8 +279,6 @@ public class MapViewActivity extends MapActivity {
                                 public void onResponse(Response<?> response) {
                                     Location l = (Location) response.getData();
 
-                                    mCurrentLocation = l; // update current location
-
                                     mLocationPointer.setFingerprint(l); // translate UI pointer to new location on screen
 
                                     // need to refresh map through updateHandler since only UI thread is allowed to touch its views
@@ -323,34 +327,7 @@ public class MapViewActivity extends MapActivity {
                         dialog.cancel();
 
                         // choose your location like edit map
-                        mMap.setOnTouchListener(new View.OnTouchListener() {
-
-                            @Override
-                            public boolean onTouch(View v, MotionEvent event) {
-                                // Handle touch events here...
-                                switch (event.getAction() & MotionEvent.ACTION_MASK) {
-                                    case MotionEvent.ACTION_DOWN:
-                                        mTouchStarted = event.getEventTime(); // calculate tap start
-                                        break;
-                                    case MotionEvent.ACTION_UP:
-                                        if (event.getEventTime() - mTouchStarted < 150) { // user tapped the screen
-                                            PointF location = new PointF(event.getX(), event.getY()); // get touch location
-
-                                            // add pointer on screen where the user tapped and start wifi scan
-                                            if(mLocationPointer == null) {
-                                                mLocationPointer = mMap.createNewWifiPointOnMap(location);
-                                                mLocationPointer.activate();
-                                            } else {
-                                                mMap.setWifiPointViewPosition(mLocationPointer, location);
-                                            }
-                                            refreshMap(); // redraw map
-                                        }
-                                        break;
-                                }
-
-                                return false;
-                            }
-                        });
+                        locationPicker();
                     }
                 });
 
@@ -359,6 +336,40 @@ public class MapViewActivity extends MapActivity {
 
         // show it
         alertDialog.show();
+    }
+
+    public void locationPicker(){
+        mMap.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Handle touch events here...
+                switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                    case MotionEvent.ACTION_DOWN:
+                        mTouchStarted = event.getEventTime(); // calculate tap start
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if (event.getEventTime() - mTouchStarted < 150) { // user tapped the screen
+                            PointF location = new PointF(event.getX(), event.getY()); // get touch location
+
+                            mLocationPointer.setLocation(location);
+
+                            // add pointer on screen where the user tapped and start wifi scan
+                            if(mLocationPointer == null) {
+                                mLocationPointer = mMap.createNewWifiPointOnMap(location);
+                                mLocationPointer.activate();
+                            } else {
+                                mMap.setWifiPointViewPosition(mLocationPointer, location);
+                            }
+
+                            refreshMap(); // redraw map
+                        }
+                        break;
+                }
+
+                return false;
+            }
+        });
     }
 
     public void startMapEditActivity() {
