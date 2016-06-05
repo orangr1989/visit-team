@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Path;
 import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.util.FloatMath;
@@ -33,6 +34,7 @@ public class MapView extends ImageView {
 	private ArrayList<WifiPointView> mWifiPoints;
 	private ArrayList<WifiPointView> mWifiPath;
 
+
 	
 	/** CONSTRUCTORS */
 	
@@ -46,26 +48,30 @@ public class MapView extends ImageView {
 	
 	
 	/** INSTANCE METHODS */
+
+
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		
+
 		float[] values = new float[9];
 		mMatrix.getValues(values);
-		
+
 		// draw all visible "fingerprints"
 		for(WifiPointView point : mWifiPoints) {
 			point.drawWithTransformations(canvas, values);
 		}
 
-		for(WifiPointView point : mWifiPath) {
-			point.drawWithTransformations(canvas, values);
-		}
+		if (mWifiPath.size() > 0) {
+			for (int i = 0; i < mWifiPath.size(); i += 15) {
+				mWifiPath.get(i).drawWithTransformations(canvas, values);
+			}
 
+			mWifiPath.get(mWifiPath.size() - 1).drawWithTransformations(canvas, values); //draw dest point
+		}
 	}
 
-	
 	/**
 	 * Map moving and zooming
 	 */
@@ -167,15 +173,14 @@ public class MapView extends ImageView {
 		point.set(x / 2, y / 2);
 	}
 
-	
-	
+
 	/**
 	 * Functions for creating new WifiPointViews
 	 */
 	
 	/** create new WifiPointView to given location */
 	public WifiPointView createNewWifiPointOnMap(PointF location) {
-		WifiPointView wpView = new WifiPointView(getContext());
+		WifiPointView wpView = new WifiPointView(getContext(), WifiPointView.POINT_TYPE.CurrentLocation);
 		float[] values = new float[9];
 		mMatrix.getValues(values);
 		location.set((location.x - values[2]) / values[0], (location.y - values[5]) / values[4]);
@@ -186,7 +191,7 @@ public class MapView extends ImageView {
 	
 	/** create new WifiPointView and bind it to given fingerprint */
 	public WifiPointView createNewWifiPointOnMap(Fingerprint fingerprint) {
-	    WifiPointView wpView = new WifiPointView(getContext());
+	    WifiPointView wpView = new WifiPointView(getContext(), WifiPointView.POINT_TYPE.FingerPrint);
 	    wpView.setFingerprint(fingerprint);
 	    mWifiPoints.add(wpView);
 	    return wpView;
@@ -200,21 +205,13 @@ public class MapView extends ImageView {
 	}
 
 	public WifiPointView createPath(float x, float y) {
-		WifiPointView wpView = new WifiPointView(getContext());
-		//wpView.activate();
-		/*float[] values = new float[9];
-		mMatrix.getValues(values);
-		x = (x - values[2]) / values[0];
-		y = (y - values[5]) / values[4];*/
+		WifiPointView wpView = new WifiPointView(getContext(), WifiPointView.POINT_TYPE.Path);
 		wpView.setPathPoint(x, y);
 		mWifiPath.add(wpView);
-
 		wpView.setVisible(true);
 		return wpView;
 	}
-	
-	
-	
+
 	/** set given WifiPointView to given location */
 	public void setWifiPointViewPosition(WifiPointView pointer, PointF location) {
         float[] values = new float[9];

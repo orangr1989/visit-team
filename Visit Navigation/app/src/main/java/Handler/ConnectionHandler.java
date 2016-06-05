@@ -13,7 +13,7 @@ import java.lang.Exception;
 
 public class ConnectionHandler {
     public static int port = 5000;
-    public static String host = "10.0.0.11";// "192.168.52.129" is the host that runs the server side
+    public static String host = "10.100.102.8"; // "192.168.52.129" ; // is the host that runs the server side  "10.100.102.8";
     public static String httpProtocol = "http://";
 
     /**
