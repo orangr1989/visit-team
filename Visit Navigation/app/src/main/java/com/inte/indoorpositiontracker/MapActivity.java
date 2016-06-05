@@ -1,15 +1,24 @@
 package com.inte.indoorpositiontracker;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.util.Log;
 import android.view.Menu;
 import android.view.SubMenu;
 import android.view.MenuItem;
@@ -17,119 +26,158 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
+import DataModel.Cell;
+
+import DataModel.Location;
+import DataModel.Map;
+import Handler.DownloadImageTask;
+import Handler.Response;
+import Home.EntityHomeCallback;
+import Home.LocationHome;
+import Home.MapHome;
+
+import static java.lang.Thread.*;
+
 public class MapActivity extends Activity implements OnTouchListener {
-    private static final int MENU_ITEM_CHOOSE_FLOOR = 1;
+    private static final int MENU_ITEM_CHOOSE_FLOOR = 0;
     private static final int MENU_ITEM_BASEMENT = 2;
     private static final int MENU_ITEM_1STFLOOR = 3;
     private static final int MENU_ITEM_2NDFLOOR = 4;
     private static final int MENU_ITEM_3RDFLOOR = 5;
     private static final int MENU_ITEM_4THFLOOR = 6;
-    
-    
+
+
     protected WifiManager mWifi;
     protected MapView mMap; // map object
     protected BroadcastReceiver mReceiver; // for receiving wifi scan results
     protected IndoorPositionTracker mApplication;
-    
+
     protected String mSelectedMap; // id of the map which is currently being displayed
-    
-    
-    
-    
+
+    // TODO: get dynamic map name
+    protected Map currMap = new Map();
+    //protected List<Map> maps;
+
     /** INSTANCE METHODS */
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mMap = (MapView) findViewById(R.id.mapView);
         mMap.setOnTouchListener(this);
-        
+
+        startService(new Intent(MapActivity.this,
+                SynchronizationManager.class));
+
         mApplication = (IndoorPositionTracker) getApplication();
         mWifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-        
-        this.setMap(R.drawable.angresthome); // set map to default location (== first floor)
+
+        List<Map> maps = mApplication.getMaps();
+        if (maps.size() > 0) {
+            currMap = maps.get(1);
+            this.setMap(currMap.getMapURL());
+        }
     }
 
     public void onStart() {
         super.onStart();
-        
+
         mReceiver = new BroadcastReceiver ()
         {
             @Override
-            public void onReceive(Context c, Intent intent) 
+            public void onReceive(Context c, Intent intent)
             {
                 onReceiveWifiScanResults(mWifi.getScanResults());
 
             }
         };
-        
+
         registerReceiver(mReceiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
     }
-    
+
+    protected void addMap()
+    {
+        Map m = new Map();
+        m.setId(2);
+        m.setMapFloorNumber(1);
+        m.setMapName("home");
+        m.setMapURL("http://10.0.0.11/1.jpg");
+
+        //maps.add(m);
+        mApplication.addMap(m);
+    }
+
     public void onReceiveWifiScanResults(List<ScanResult> results) {
-        
+
     }
 
     public boolean onTouch(View v, MotionEvent event) {
     	v.onTouchEvent(event);
-    	
+
         return true; // indicate event was handled
     }
-    
+
     @Override
     protected void onStop()
     {
         unregisterReceiver(mReceiver);
         super.onStop();
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // add menu items
-    	
+
+        // add floor items
+        List<Map> maps = mApplication.getMaps();
+
     	super.onCreateOptionsMenu(menu);
-    	SubMenu sub = menu.addSubMenu(Menu.NONE, MENU_ITEM_CHOOSE_FLOOR, Menu.NONE, "Choose floor");
-    	
-    	sub.add(Menu.NONE, MENU_ITEM_BASEMENT, Menu.NONE, "Basement");
-    	sub.add(Menu.NONE, MENU_ITEM_1STFLOOR, Menu.NONE, "1. floor");
-    	sub.add(Menu.NONE, MENU_ITEM_2NDFLOOR, Menu.NONE, "2. floor");
-    	sub.add(Menu.NONE, MENU_ITEM_3RDFLOOR, Menu.NONE, "3. floor");
-    	sub.add(Menu.NONE, MENU_ITEM_4THFLOOR, Menu.NONE, "4. floor");
+    	SubMenu subFloor = menu.addSubMenu(Menu.NONE, MENU_ITEM_CHOOSE_FLOOR, Menu.NONE, "Choose floor");
+
+        for (Map m : maps) {
+            subFloor.add(Menu.NONE, m.getId(), Menu.NONE, m.getMapName());
+        }
+
         return true;
+
     }
-    
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-        switch (item.getItemId()) {
-            case MENU_ITEM_BASEMENT:
-                setMap(R.drawable.pohja);
-                return true;
-            case MENU_ITEM_1STFLOOR:
-                setMap(R.drawable.kerros);
-                return true;
-            case MENU_ITEM_2NDFLOOR:
-                setMap(R.drawable.toka);
-                return true;
-            case MENU_ITEM_3RDFLOOR:
-                setMap(R.drawable.kolmas);
-                return true;
-            case MENU_ITEM_4THFLOOR:
-                setMap(R.drawable.neljas);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        Map option = mApplication.getMapById(item.getItemId());
+        if (option != null) {
+            currMap = option;
+            setMap(currMap.getMapURL());
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
     }
-    
+
     public void refreshMap() {
         mMap.invalidate(); // redraws the map screen
     }
-    
+
     public void setMap(int resId) {
         mSelectedMap = String.valueOf(resId);
         mMap.setImageResource(resId); // change map image
+    }
+
+    public void setMap(String url) {
+        DownloadImageTask task = new DownloadImageTask(this, new DownloadImageTask.DownloadImageTaskCallback() {
+            @Override
+            public void onImageDownloaded(String url, String path) {
+                Bitmap bm = BitmapFactory.decodeFile(path);
+                mMap.setImageBitmap(bm);
+            }
+
+            @Override
+            public void onImageDownloadFailure(String url) {
+
+            }
+        });
+        task.execute(url);
     }
 }
 

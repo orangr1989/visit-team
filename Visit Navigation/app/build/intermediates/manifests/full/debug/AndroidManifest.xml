@@ -5,11 +5,12 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="19"
+        android:minSdkVersion="18"
         android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name="com.inte.indoorpositiontracker.IndoorPositionTracker"
@@ -33,6 +34,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.inte.indoorpositiontracker.MapViewActivity" />
         </activity>
+        <activity
+            android:name="com.inte.indoorpositiontracker.MapNavigationActivity"
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.inte.indoorpositiontracker.MapNavigationActivity" />
+        </activity>
+
+        <service android:name="com.inte.indoorpositiontracker.SynchronizationManager" />
     </application>
 
 </manifest>

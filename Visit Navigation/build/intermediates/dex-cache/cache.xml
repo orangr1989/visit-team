@@ -1,26 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
+<items version="2" />
 
-    <item
-        jar="C:\Users\user\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\user\Desktop\Final Project App\AndroidNavApp\indoor-position-tracker-master1\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3_0242e03cd59fe7866a66bd4a95b67553c3e970c1.jar" />
-    </item>
-    <item
-        jar="C:\Users\user\Desktop\Final Project App\AndroidNavApp\indoor-position-tracker-master1\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\user\Desktop\Final Project App\AndroidNavApp\indoor-position-tracker-master1\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3_d5c97d86842d831d42dfa3a71616f7b071286cc7.jar" />
-    </item>
-    <item
-        jar="C:\Users\user\Desktop\Final Project App\AndroidNavApp\indoor-position-tracker-master1\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\user\Desktop\Final Project App\AndroidNavApp\indoor-position-tracker-master1\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-21.0.3_7ffaa0c002a7ae8bcc23e9d836d3d6bb0560fbc2.jar" />
-    </item>
-
-</items>
