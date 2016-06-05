@@ -1,15 +1,15 @@
 package com.inte.indoorpositiontracker;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.PointF;
+import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.FloatMath;
 import android.view.MotionEvent;
 import android.widget.ImageView;
+
+import java.util.ArrayList;
 
 import DataModel.Fingerprint;
 
@@ -59,17 +59,36 @@ public class MapView extends ImageView {
 			point.drawWithTransformations(canvas, values);
 		}
 
-		for(WifiPointView point : mWifiPath) {
-			point.drawWithTransformations(canvas, values);
-		}
+		if (mWifiPath.size() > 0) {
+			for (int i = 0; i < mWifiPath.size(); i += 15) {
+				mWifiPath.get(i).drawWithTransformations(canvas, values);
+			}
 
+			mWifiPath.get(mWifiPath.size() - 1).drawWithTransformations(canvas, values); //draw dest point
+		}
 	}
 
-	
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+        ImageView map = (ImageView)findViewById(R.id.mapView);
+
+        int height = map.getDrawable().getIntrinsicHeight();
+        int width = map.getDrawable().getIntrinsicWidth();
+
+        RectF drawableRect = new RectF(0, 0, width, height);
+        RectF viewRect = new RectF(0, 0, map.getWidth(), map.getHeight());
+        mMatrix.setRectToRect(drawableRect, viewRect, Matrix.ScaleToFit.CENTER);
+
+        map.setImageMatrix(mMatrix);
+
+    }
+
 	/**
 	 * Map moving and zooming
 	 */
-	
+
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		super.onTouchEvent(event);
@@ -157,7 +176,7 @@ public class MapView extends ImageView {
 	private float spacing(MotionEvent event) {
 		float x = event.getX(0) - event.getX(1);
 		float y = event.getY(0) - event.getY(1);
-		return FloatMath.sqrt(x * x + y * y);
+		return (float)Math.sqrt(x * x + y * y);
 	}
 
 	/** Calculate the mid point of the first two fingers */
@@ -175,7 +194,7 @@ public class MapView extends ImageView {
 	
 	/** create new WifiPointView to given location */
 	public WifiPointView createNewWifiPointOnMap(PointF location) {
-		WifiPointView wpView = new WifiPointView(getContext());
+		WifiPointView wpView = new WifiPointView(getContext(), WifiPointView.POINT_TYPE.CurrentLocation);
 		float[] values = new float[9];
 		mMatrix.getValues(values);
 		location.set((location.x - values[2]) / values[0], (location.y - values[5]) / values[4]);
@@ -186,7 +205,7 @@ public class MapView extends ImageView {
 	
 	/** create new WifiPointView and bind it to given fingerprint */
 	public WifiPointView createNewWifiPointOnMap(Fingerprint fingerprint) {
-	    WifiPointView wpView = new WifiPointView(getContext());
+	    WifiPointView wpView = new WifiPointView(getContext(), WifiPointView.POINT_TYPE.FingerPrint);
 	    wpView.setFingerprint(fingerprint);
 	    mWifiPoints.add(wpView);
 	    return wpView;
@@ -200,12 +219,7 @@ public class MapView extends ImageView {
 	}
 
 	public WifiPointView createPath(float x, float y) {
-		WifiPointView wpView = new WifiPointView(getContext());
-		//wpView.activate();
-		/*float[] values = new float[9];
-		mMatrix.getValues(values);
-		x = (x - values[2]) / values[0];
-		y = (y - values[5]) / values[4];*/
+		WifiPointView wpView = new WifiPointView(getContext(), WifiPointView.POINT_TYPE.Path);
 		wpView.setPathPoint(x, y);
 		mWifiPath.add(wpView);
 

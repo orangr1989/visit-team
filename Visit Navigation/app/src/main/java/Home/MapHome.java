@@ -22,7 +22,8 @@ public class MapHome implements IEntityHome  {
      *            {@link EntityHomeCallback}
      */
     public static void getMapList(EntityHomeCallback callback) {
-        EntityHome.performRequest(Request.RequestType.getMapList, callback);
+      //  EntityHome.performRequest(Request.RequestType.getMapList, callback);
+        EntityHome.performRequest(Request.RequestType.getMapList,callback);
     }
 
     /**

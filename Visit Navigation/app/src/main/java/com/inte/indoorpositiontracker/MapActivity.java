@@ -1,13 +1,5 @@
 package com.inte.indoorpositiontracker;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,21 +9,21 @@ import android.graphics.BitmapFactory;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
-import android.view.SubMenu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 import DataModel.Map;
 import Handler.DownloadImageTask;
-import Handler.Response;
-import Home.EntityHomeCallback;
-import Home.MapHome;
 
-public class MapActivity extends Activity implements OnTouchListener {
+public class MapActivity extends AppCompatActivity implements OnTouchListener {
     private static final int MENU_ITEM_CHOOSE_FLOOR = 0;
     private static final int MENU_ITEM_BASEMENT = 2;
     private static final int MENU_ITEM_1STFLOOR = 3;
@@ -56,12 +48,13 @@ public class MapActivity extends Activity implements OnTouchListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         mMap = (MapView) findViewById(R.id.mapView);
         mMap.setOnTouchListener(this);
 
-        startService(new Intent(MapActivity.this,
-                SynchronizationManager.class));
+/*        startService(new Intent(MapActivity.this,
+                SynchronizationManager.class));*/
 
         mApplication = (IndoorPositionTracker) getApplication();
         mWifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
@@ -70,7 +63,7 @@ public class MapActivity extends Activity implements OnTouchListener {
         //mApplication.deleteAllMaps();
         List<Map> maps = mApplication.getMaps();
         if (maps.size() > 0) {
-            currMap = maps.get(0);
+            currMap = maps.get(0);// TODO: must be automatic
             this.setMap(currMap.getMapURL());
         }
     }
@@ -170,7 +163,13 @@ public class MapActivity extends Activity implements OnTouchListener {
 
             }
         });
-        task.execute(url);
+
+        try {
+            task.execute(url).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }
-
