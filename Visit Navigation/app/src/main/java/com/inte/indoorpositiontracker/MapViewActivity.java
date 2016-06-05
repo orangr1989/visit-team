@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.SubMenu;
 import android.view.View;
 import android.widget.Toast;
 
@@ -41,7 +40,6 @@ import Handler.Response;
 import Home.EntityHomeCallback;
 import Home.LocationHome;
 
-
 public class MapViewActivity extends MapActivity {
     public final static String EXTRA_MESSAGE_MAP = "com.inte.indoorpositiontracker.MAP";
     public final static String EXTRA_MESSAGE_LOCATION_DEST = "com.inte.indoorpositiontracker.LOCATION_DEST";
@@ -58,6 +56,7 @@ public class MapViewActivity extends MapActivity {
     private int mScanThreadCount = 0;
     final Context context = this;
     private long mTouchStarted; // used for detecting tap events
+    private Timer mTimer;
 
     // UI pointer to visualize user where he is on the map
     protected WifiPointView mLocationPointer;
@@ -87,8 +86,8 @@ public class MapViewActivity extends MapActivity {
         mSearchView = (FloatingSearchView) findViewById(R.id.floating_search_view);
         mLocationbtn = (FloatingActionButton) findViewById(R.id.myLocationButton);
 
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
+        mTimer = new Timer();
+        mTimer.schedule(new TimerTask() {
 
             @Override
             public void run() {
@@ -98,10 +97,6 @@ public class MapViewActivity extends MapActivity {
             }
 
         }, SCAN_DELAY, SCAN_INTERVAL);
-
-        // show splash screen
-        Intent goToMainActivity = new Intent(MapViewActivity.this, SplashScreen.class);
-        startActivity(goToMainActivity);
 
         // floating search bar events
         mSearchView.setOnFocusChangeListener(new FloatingSearchView.OnFocusChangeListener() {
@@ -183,9 +178,9 @@ public class MapViewActivity extends MapActivity {
                 Intent intent = new Intent(MapViewActivity.this, MapNavigationActivity.class);
 
                 intent.putExtra(EXTRA_MESSAGE_LOCATION_DEST, locationSuggestion.getId());
-                intent.putExtra(EXTRA_MESSAGE_X_CORD, (int) mLocationPointer.getX());
-                intent.putExtra(EXTRA_MESSAGE_Y_CORD,(int) mLocationPointer.getY());
-                intent.putExtra(EXTRA_MESSAGE_MAP, currMap.getId());
+                intent.putExtra(EXTRA_MESSAGE_X_CORD, (int) mLocationPointer.getLocation().x);
+                intent.putExtra(EXTRA_MESSAGE_Y_CORD,(int) mLocationPointer.getLocation().y);
+                intent.putExtra(EXTRA_MESSAGE_MAP, currMap.getId()); // needs to be curMap.getId()
                 startActivity(intent); // send dest location id + current location(x + y + floorNum)
             }
 
@@ -210,12 +205,17 @@ public class MapViewActivity extends MapActivity {
                 Toast.makeText(context, "Pin your location",
                         Toast.LENGTH_LONG).show();
 
+                // paused wifi scan, cos' user not interesed it.
+                mTimer.cancel();
+
+                // mTimer = null;
                 locationPicker();
             }
         });
 
         Drawable fabDr= mLocationbtn.getDrawable();
         DrawableCompat.setTint(fabDr, Color.WHITE);
+
     }
 
     private List<? extends SearchSuggestion> getAllSuggestions(String locs) {
@@ -280,10 +280,12 @@ public class MapViewActivity extends MapActivity {
                                 public void onResponse(Response<?> response) {
                                     Location l = (Location) response.getData();
 
-                                    mLocationPointer.setFingerprint(l); // translate UI pointer to new location on screen
+                                    if (l.getMap().getId() == currMap.getId()) {
+                                        mLocationPointer.setFingerprint(l); // translate UI pointer to new location on screen
 
-                                    // need to refresh map through updateHandler since only UI thread is allowed to touch its views
-                                    sUpdateHandler.post(mRefreshMap);
+                                        // need to refresh map through updateHandler since only UI thread is allowed to touch its views
+                                        sUpdateHandler.post(mRefreshMap);
+                                    }
                                 }
 
                                 @Override
@@ -291,7 +293,7 @@ public class MapViewActivity extends MapActivity {
                                     Log.d("MapViewActivity", response.getMessage());
 
                                     // cos' the wifi failed to calculate current location, ask the user what to do.
-                                    startLocationPickerDialog();
+                                    //startLocationPickerDialog(); TODO: make many messages, need to disable wifi scan while user get message
                                 }
                             }
                     );
@@ -326,6 +328,10 @@ public class MapViewActivity extends MapActivity {
                     public void onClick(DialogInterface dialog,int id) {
 
                         dialog.cancel();
+
+                        // paused wifi scan, cos' user not interesed it.
+                        // mTimer.cancel();
+                       // mTimer = null;
 
                         // choose your location like edit map
                         locationPicker();
@@ -392,14 +398,6 @@ public class MapViewActivity extends MapActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // add floor items
-        List<Location> locations = mApplication.getLocations();
-
-        SubMenu subLocation = menu.addSubMenu(Menu.NONE, MENU_ITEM_CHOOSE_LOCATION, Menu.NONE, "Choose location");
-        for (Location l : locations) {
-            subLocation.add(Menu.NONE, 1000 + l.getId(), Menu.NONE, l.getSymbolicID());
-        }
-
         // add menu items
         menu.add(Menu.NONE, MENU_ITEM_EDIT_MAP, Menu.NONE, "Edit map");
         super.onCreateOptionsMenu(menu); // items for changing map

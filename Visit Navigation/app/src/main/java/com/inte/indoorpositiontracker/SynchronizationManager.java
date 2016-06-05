@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.List;
@@ -25,11 +24,11 @@ import db.MapDatabaseHandler;
 public class SynchronizationManager extends Service {
 
     private static final String TAG = SynchronizationManager.class.getSimpleName();
-    private boolean isSynced = false;
-    private boolean syncInProgress = false;
+    private static boolean isSynced = false;
+    public static boolean syncInProgress = false;
 
-    private MapDatabaseHandler mMapDatabaseHandler;
-    private LocationDatabaseHandler mLocationDatabaseHandler;
+    public static MapDatabaseHandler mMapDatabaseHandler;
+    public static LocationDatabaseHandler mLocationDatabaseHandler;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -43,7 +42,9 @@ public class SynchronizationManager extends Service {
         sync();
     }
 
-    private void sync() {
+    public void sync() {
+
+        Log.d("SynchronizationManager", "Start sync function");
 
         if (isSynced) {
             stopSelf();
@@ -90,6 +91,8 @@ public class SynchronizationManager extends Service {
                 syncInProgress = false;
             }
         });
+
+        Log.d("SynchronizationManager", "Finish sync function");
     }
 
     public class LocalBinder extends Binder {
@@ -103,4 +106,11 @@ public class SynchronizationManager extends Service {
     }
 
     private final LocalBinder mBinder = new LocalBinder();
+
+/*    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        super.onStartCommand(intent, flags, startId);
+
+        return START_REDELIVER_INTENT;
+    }*/
 }

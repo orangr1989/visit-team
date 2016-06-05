@@ -65,7 +65,7 @@ public class MapEditActivity extends MapActivity {
         currMap = mApplication.getMapById(mapId);
         setMap(currMap.getMapURL());
 
-        // visible search view
+        // uvisible search view
         FloatingSearchView bar = (FloatingSearchView)findViewById(R.id.floating_search_view);
         bar.setVisibility(View.GONE);
 

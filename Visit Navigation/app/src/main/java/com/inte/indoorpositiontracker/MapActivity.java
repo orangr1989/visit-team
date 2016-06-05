@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import DataModel.Map;
 import Handler.DownloadImageTask;
@@ -47,12 +48,13 @@ public class MapActivity extends AppCompatActivity implements OnTouchListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         mMap = (MapView) findViewById(R.id.mapView);
         mMap.setOnTouchListener(this);
 
-        startService(new Intent(MapActivity.this,
-                SynchronizationManager.class));
+/*        startService(new Intent(MapActivity.this,
+                SynchronizationManager.class));*/
 
         mApplication = (IndoorPositionTracker) getApplication();
         mWifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
@@ -61,7 +63,7 @@ public class MapActivity extends AppCompatActivity implements OnTouchListener {
         //mApplication.deleteAllMaps();
         List<Map> maps = mApplication.getMaps();
         if (maps.size() > 0) {
-            currMap = maps.get(3);
+            currMap = maps.get(0);// TODO: must be automatic
             this.setMap(currMap.getMapURL());
         }
     }
@@ -161,6 +163,13 @@ public class MapActivity extends AppCompatActivity implements OnTouchListener {
 
             }
         });
-        task.execute(url);
+
+        try {
+            task.execute(url).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }
