@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.PointF;
 import android.net.wifi.ScanResult;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -65,9 +66,13 @@ public class MapEditActivity extends MapActivity {
         currMap = mApplication.getMapById(mapId);
         setMap(currMap.getMapURL());
 
-        // uvisible search view
+        // uvisible search view + floating action button
         FloatingSearchView bar = (FloatingSearchView)findViewById(R.id.floating_search_view);
         bar.setVisibility(View.GONE);
+
+        FloatingActionButton mLocationbtn = (FloatingActionButton) findViewById(R.id.myLocationButton);
+        mLocationbtn.setVisibility(View.GONE);
+
 
         setTitle(getTitle() + " (edit mode)");
     }

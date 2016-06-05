@@ -57,6 +57,7 @@ public class MapViewActivity extends MapActivity {
     final Context context = this;
     private long mTouchStarted; // used for detecting tap events
     private Timer mTimer;
+    private boolean btnLocClicked = false;
 
     // UI pointer to visualize user where he is on the map
     protected WifiPointView mLocationPointer;
@@ -179,9 +180,12 @@ public class MapViewActivity extends MapActivity {
 
                 intent.putExtra(EXTRA_MESSAGE_LOCATION_DEST, locationSuggestion.getId());
                 intent.putExtra(EXTRA_MESSAGE_X_CORD, (int) mLocationPointer.getLocation().x);
-                intent.putExtra(EXTRA_MESSAGE_Y_CORD,(int) mLocationPointer.getLocation().y);
+                intent.putExtra(EXTRA_MESSAGE_Y_CORD, (int) mLocationPointer.getLocation().y);
                 intent.putExtra(EXTRA_MESSAGE_MAP, currMap.getId()); // needs to be curMap.getId()
                 startActivity(intent); // send dest location id + current location(x + y + floorNum)
+
+                mMap.setOnTouchListener(null); // remove manual pick location
+                mPaused = false;
             }
 
             @Override
@@ -202,21 +206,37 @@ public class MapViewActivity extends MapActivity {
         mLocationbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Pin your location",
-                        Toast.LENGTH_LONG).show();
 
-                // paused wifi scan, cos' user not interesed it.
-                mTimer.cancel();
+                if (!btnLocClicked) {
+                    Toast.makeText(context, "Choose location manually",
+                            Toast.LENGTH_LONG).show();
 
-                // mTimer = null;
-                locationPicker();
+                    // paused wifi scan, cos' user not interesed it.
+                    mPaused = true;
+                    locationPicker();
+
+                    // change button background
+                    mLocationbtn.setBackgroundTintList(getResources().getColorStateList(R.color.green));
+                    btnLocClicked = true;
+                } else {
+
+                    Toast.makeText(context, "Wifi current location",
+                            Toast.LENGTH_LONG).show();
+
+                    mPaused = false;
+
+                    // change button background
+                    mLocationbtn.setBackgroundTintList(getResources().getColorStateList(R.color.accent));
+                    btnLocClicked = false;
+
+                }
             }
         });
 
         Drawable fabDr= mLocationbtn.getDrawable();
         DrawableCompat.setTint(fabDr, Color.WHITE);
-
     }
+
 
     private List<? extends SearchSuggestion> getAllSuggestions(String locs) {
 
@@ -238,12 +258,14 @@ public class MapViewActivity extends MapActivity {
     public void onResume() {
         super.onResume();
 
+        mMap.setOnTouchListener(null); // remove manual pick location
         mPaused = false;
+        mLocationbtn.setBackgroundTintList(getResources().getColorStateList(R.color.accent));
     }
+
 
     public void onPause() {
         super.onPause();
-
         mPaused = true;
     }
 
