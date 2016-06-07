@@ -60,6 +60,7 @@ public class SplashScreen extends Activity {
                     goToMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(goToMainActivity);
                     finish();
+                    findViewById(R.id.loadingPanel).setVisibility(TextView.GONE);
                 }
             }, secondsDelayed * 1000);
         }
@@ -91,6 +92,7 @@ public class SplashScreen extends Activity {
                         syncInProgress = false;
                         startActivity(new Intent(SplashScreen.this, MapViewActivity.class));
                         finish();
+                        findViewById(R.id.loadingPanel).setVisibility(TextView.GONE);
                     }
 
                     @Override
@@ -99,6 +101,7 @@ public class SplashScreen extends Activity {
                         syncInProgress = false;
                         startActivity(new Intent(SplashScreen.this, MapViewActivity.class));
                         finish();
+                        findViewById(R.id.loadingPanel).setVisibility(TextView.GONE);
                     }
                 });
             }
@@ -109,6 +112,7 @@ public class SplashScreen extends Activity {
                 syncInProgress = false;
                 startActivity(new Intent(SplashScreen.this, MapViewActivity.class));
                 finish();
+                findViewById(R.id.loadingPanel).setVisibility(TextView.GONE);
             }
         });
     }

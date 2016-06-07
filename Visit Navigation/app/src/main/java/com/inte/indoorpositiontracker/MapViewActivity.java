@@ -209,7 +209,7 @@ public class MapViewActivity extends MapActivity {
 
                 if (!btnLocClicked) {
                     Toast.makeText(context, "Choose location manually",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     // paused wifi scan, cos' user not interesed it.
                     mPaused = true;
@@ -221,7 +221,7 @@ public class MapViewActivity extends MapActivity {
                 } else {
 
                     Toast.makeText(context, "Wifi current location",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     mPaused = false;
 
