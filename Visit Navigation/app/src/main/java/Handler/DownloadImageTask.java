@@ -21,7 +21,7 @@ import java.security.MessageDigest;
  */
 public class DownloadImageTask extends AsyncTask<String, Void, String> {
     private static final String TAG = DownloadImageTask.class.getSimpleName();
-    private static final String FILE_EXT = ".jpg";
+    private static final String FILE_EXT = ".png";
 
     private Context context;
     private DownloadImageTaskCallback callback;

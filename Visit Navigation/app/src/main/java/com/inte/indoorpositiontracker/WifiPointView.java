@@ -1,6 +1,7 @@
 package com.inte.indoorpositiontracker;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -15,8 +16,8 @@ public class WifiPointView extends View {
 
 	private static final int COLOR_FINGERPRINT = Color.YELLOW;
 	private static final int COLOR_ACTIVE = Color.GREEN;
-	private static final int COLOR_PATH = Color.rgb(0,179,253);
-	private static final int DESTINATION_POINT = Color.rgb(170,47,206);
+	private static final int COLOR_PATH = Color.rgb(0, 179, 253);
+	private static final int DESTINATION_POINT = Color.WHITE;
 
 	private Fingerprint mFingerprint;
 	
@@ -43,7 +44,7 @@ public class WifiPointView extends View {
 		
 		mActive = false;
 		mVisible = true;
-		mRadius = 10f;
+		mRadius = 20f;
 		mLocation = new PointF(0,0);
 		mFingerprint = null;
 		pointType = type;
@@ -61,14 +62,48 @@ public class WifiPointView extends View {
 		mRelativeY = matrixValues[5] + mLocation.y * matrixValues[4];
 
 		if(mVisible == true) { // draw only if set visible
+			mPaint.setStyle(Paint.Style.FILL);
 			SetPointViewProperties(pointType);
     		canvas.drawCircle(mRelativeX, mRelativeY, mRadius, mPaint);
+
+			mPaint.setStyle(Paint.Style.STROKE);
+			mPaint.setColor(Color.BLACK);
+			if (pointType == POINT_TYPE.destPoint)
+			mPaint.setStrokeWidth(8f);
+			else
+				mPaint.setStrokeWidth(5f);
+
+			canvas.drawCircle(mRelativeX, mRelativeY, mRadius, mPaint);
 	    }
 
 		if (pointType == POINT_TYPE.destPoint) {
+
+			mPaint.setStyle(Paint.Style.FILL);
 			mPaint.setColor(Color.BLACK);
-			mPaint.setTextSize(16);
-			canvas.drawText(destName, mRelativeX, mRelativeY - mRadius * 2, mPaint);
+			mPaint.setStrokeWidth(5f);
+
+			canvas.drawCircle(mRelativeX, mRelativeY, 12f, mPaint);
+
+			String str = destName;
+			Paint.FontMetrics fm = new Paint.FontMetrics();
+			mPaint.setColor(Color.BLACK);
+			mPaint.setTextSize(45f);
+
+			mPaint.getFontMetrics(fm);
+
+			int margin = 20;
+
+/*			canvas.drawRect(mRelativeX + 80f - margin,  mRelativeY - mRadius * 5 + fm.top - margin,
+					mRelativeX + 80f + mPaint.measureText(str) + margin, mRelativeY - mRadius * 5 + fm.bottom
+							+ margin, mPaint);*/
+
+			mPaint.setColor(Color.WHITE);
+			mPaint.setStrokeWidth(0);
+			mPaint.setTextSize(45f);
+			canvas.drawText(destName, mRelativeX + 80f, mRelativeY - mRadius * 5, mPaint); // TEXT
+
+			canvas.drawBitmap(BitmapFactory.decodeResource
+					(getResources(), R.drawable.pin_pointer),mRelativeX - 102.5f ,mRelativeY - 190f ,null);
 		}
 	}
 	
@@ -89,7 +124,6 @@ public class WifiPointView extends View {
 		switch (type) {
 			case CurrentLocation:
 				mPaint.setColor(COLOR_ACTIVE);
-				mRadius = 10f;
 				break;
 			case Path: {
 				mPaint.setColor(COLOR_PATH);
@@ -97,6 +131,7 @@ public class WifiPointView extends View {
 			}
 			case FingerPrint: {
 				mPaint.setColor(COLOR_FINGERPRINT);
+				mPaint.setStyle(Paint.Style.FILL);
 				break;
 			}
 			case  destPoint: {
