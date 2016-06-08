@@ -62,13 +62,18 @@ public class WifiPointView extends View {
 		mRelativeY = matrixValues[5] + mLocation.y * matrixValues[4];
 
 		if(mVisible == true) { // draw only if set visible
-			mPaint.setStyle(Paint.Style.FILL);
-			SetPointViewProperties(pointType);
-    		canvas.drawCircle(mRelativeX, mRelativeY, mRadius, mPaint);
 
+			// Draw whole circle
+			mPaint.setStyle(Paint.Style.FILL);
+
+			// Set point specific color
+			SetPointViewProperties(pointType);
+			canvas.drawCircle(mRelativeX, mRelativeY, mRadius, mPaint);
+
+			// Draw border
 			mPaint.setStyle(Paint.Style.STROKE);
 			mPaint.setColor(Color.BLACK);
-			if (pointType == POINT_TYPE.destPoint)
+			if (pointType == POINT_TYPE.destPoint) // if dest point -> put thick border
 			mPaint.setStrokeWidth(8f);
 			else
 				mPaint.setStrokeWidth(5f);
@@ -78,13 +83,13 @@ public class WifiPointView extends View {
 
 		if (pointType == POINT_TYPE.destPoint) {
 
+			// draw little vertex
 			mPaint.setStyle(Paint.Style.FILL);
 			mPaint.setColor(Color.BLACK);
 			mPaint.setStrokeWidth(5f);
 
 			canvas.drawCircle(mRelativeX, mRelativeY, 12f, mPaint);
 
-			String str = destName;
 			Paint.FontMetrics fm = new Paint.FontMetrics();
 			mPaint.setColor(Color.BLACK);
 			mPaint.setTextSize(45f);
@@ -93,15 +98,19 @@ public class WifiPointView extends View {
 
 			int margin = 20;
 
-/*			canvas.drawRect(mRelativeX + 80f - margin,  mRelativeY - mRadius * 5 + fm.top - margin,
-					mRelativeX + 80f + mPaint.measureText(str) + margin, mRelativeY - mRadius * 5 + fm.bottom
-							+ margin, mPaint);*/
+			// draw background rectangle
+			canvas.drawRect(mRelativeX + 80f - margin,  mRelativeY - mRadius * 5 + fm.top - margin,
+					mRelativeX + 80f + mPaint.measureText(destName) + margin, mRelativeY - mRadius * 5 + fm.bottom
+							+ margin, mPaint);
 
+			// Draw text
 			mPaint.setColor(Color.WHITE);
 			mPaint.setStrokeWidth(0);
 			mPaint.setTextSize(45f);
+			mPaint.setAntiAlias(true);
 			canvas.drawText(destName, mRelativeX + 80f, mRelativeY - mRadius * 5, mPaint); // TEXT
 
+			// Draw Pin
 			canvas.drawBitmap(BitmapFactory.decodeResource
 					(getResources(), R.drawable.pin_pointer),mRelativeX - 102.5f ,mRelativeY - 190f ,null);
 		}
@@ -131,7 +140,7 @@ public class WifiPointView extends View {
 			}
 			case FingerPrint: {
 				mPaint.setColor(COLOR_FINGERPRINT);
-				mPaint.setStyle(Paint.Style.FILL);
+				//mPaint.setStyle(Paint.Style.FILL);
 				break;
 			}
 			case  destPoint: {

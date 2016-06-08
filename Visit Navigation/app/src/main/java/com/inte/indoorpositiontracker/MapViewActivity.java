@@ -4,14 +4,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.PointF;
-import android.graphics.drawable.Drawable;
 import android.net.wifi.ScanResult;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -233,8 +231,12 @@ public class MapViewActivity extends MapActivity {
             }
         });
 
-        Drawable fabDr= mLocationbtn.getDrawable();
-        DrawableCompat.setTint(fabDr, Color.WHITE);
+        // check if wifi turned off, and ask the userto turn it
+        //WifiManager wifi = (WifiManager)getSystemService(Context.WIFI_SERVICE);
+        if (!mWifi.isWifiEnabled()){
+            startActivateWifiDialog();
+        }
+
     }
 
 
@@ -325,6 +327,38 @@ public class MapViewActivity extends MapActivity {
             };
             t.start(); // start new scan thread
         }
+    }
+
+    public void startActivateWifiDialog(){
+        // Select location manually - create alert dialog
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+        // set title
+        alertDialogBuilder.setTitle("Use wifi?");
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("This app wants to change " +
+                            "your device wifi settings")
+                .setCancelable(false)
+                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // activate scan again..aka wait for another wifi scan results
+                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                        dialog.cancel();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
     }
 
     public void startLocationPickerDialog(){

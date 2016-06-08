@@ -1,6 +1,9 @@
 package com.inte.indoorpositiontracker;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -8,9 +11,9 @@ import android.util.Log;
 import android.widget.TextView;
 
 import java.util.List;
-import DataModel.Map;
 
 import DataModel.Location;
+import DataModel.Map;
 import Handler.Response;
 import Home.EntityHomeCallback;
 import Home.LocationHome;
@@ -24,6 +27,7 @@ public class SplashScreen extends Activity {
     private static final String TAG = SplashScreen.class.getSimpleName();
     private static boolean isSynced = false;
     public static boolean syncInProgress = false;
+    final Context context = this;
 
     public static MapDatabaseHandler mMapDatabaseHandler;
     public static LocationDatabaseHandler mLocationDatabaseHandler;
@@ -66,7 +70,7 @@ public class SplashScreen extends Activity {
         }
     }
 
-    private  void SyncData(){
+    private  void SyncData() {
 
         mMapDatabaseHandler = new MapDatabaseHandler(this);
         mLocationDatabaseHandler = new LocationDatabaseHandler(this);
@@ -110,10 +114,36 @@ public class SplashScreen extends Activity {
             public void onFailure(Response<?> response) {
                 Log.v(TAG, "database map synchronized failed");
                 syncInProgress = false;
-                startActivity(new Intent(SplashScreen.this, MapViewActivity.class));
-                finish();
+                //Tell the user that there isnt connection to server, the app close.
+                serverError();
                 findViewById(R.id.loadingPanel).setVisibility(TextView.GONE);
             }
         });
+    }
+
+    private void serverError(){
+        // Select location manually - create alert dialog
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+        // set title
+        alertDialogBuilder.setTitle("Error connecting to server");
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("Error occured on get data from server, " +
+                        "check your internet connection")
+                .setCancelable(false)
+                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        System.exit(0); // kill App
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
     }
 }
