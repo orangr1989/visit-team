@@ -197,7 +197,7 @@ public class MapNavigationActivity extends MapViewActivity {
         }
 
         if (!successLoadMap) {
-            Toast.makeText(getApplicationContext(), "Problem load map", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Problem to load map", Toast.LENGTH_SHORT).show();
             return;
         }
 
