@@ -30,13 +30,76 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da165278-344d-417b-a906-f09fb9913acc" name="Default" comment="add visit image&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/pin_pointer.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/Handler/DownloadImageTask.java" afterPath="$PROJECT_DIR$/app/src/main/java/Handler/DownloadImageTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/WifiPointView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/WifiPointView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" />
+    <list default="true" id="da165278-344d-417b-a906-f09fb9913acc" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-hdpi/ic_arrow_back_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-mdpi/ic_arrow_back_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xhdpi/ic_arrow_back_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xxhdpi/ic_arrow_back_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xxxhdpi/ic_arrow_back_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-hdpi/ic_clear_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-mdpi/ic_clear_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xhdpi/ic_clear_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xxhdpi/ic_clear_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xxxhdpi/ic_clear_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-hdpi/ic_history_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-mdpi/ic_history_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xhdpi/ic_history_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xxhdpi/ic_history_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xxxhdpi/ic_history_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-hdpi/ic_invert_colors_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-mdpi/ic_invert_colors_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xhdpi/ic_invert_colors_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xxhdpi/ic_invert_colors_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xxxhdpi/ic_invert_colors_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-hdpi/ic_mic_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-mdpi/ic_mic_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xhdpi/ic_mic_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xxhdpi/ic_mic_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xxxhdpi/ic_mic_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-hdpi/ic_more_vert_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-mdpi/ic_more_vert_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xhdpi/ic_more_vert_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xxhdpi/ic_more_vert_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xxxhdpi/ic_more_vert_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-hdpi/ic_search_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-mdpi/ic_search_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xhdpi/ic_search_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xxhdpi/ic_search_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-xxxhdpi/ic_search_black_24dp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/androidTest/java/com/arlib/floatingsearchview/ApplicationTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/java/com/arlib/floatingsearchview/util/view/BodyTextView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/java/com/arlib/floatingsearchview/FloatingSearchView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/java/com/arlib/floatingsearchview/util/adapter/GestureDetectorListenerAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/java/com/arlib/floatingsearchview/util/view/IconImageView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/java/com/arlib/floatingsearchview/util/MenuPopupHelper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/java/com/arlib/floatingsearchview/util/view/MenuView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/java/com/arlib/floatingsearchview/util/adapter/OnItemTouchListenerAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/java/com/arlib/floatingsearchview/suggestions/model/SearchSuggestion.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/java/com/arlib/floatingsearchview/suggestions/SearchSuggestionsAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/java/com/arlib/floatingsearchview/util/adapter/TextWatcherAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/java/com/arlib/floatingsearchview/util/Util.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/layout/action_item_layout.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/values/attrs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/build.gradle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/values/colors.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/values/dimens.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable/divider_background.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/layout/floating_search_layout.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/library.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/maven-push.gradle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable/oval_btn_selector.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-v21/oval_btn_selector.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/layout/overflow_action_item_layout.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/proguard-rules.pro" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-v21/rect_btn_selector.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/layout/search_query_section.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/layout/search_suggestion_item.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/layout/search_suggestions_section.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable/suggestion_item_background.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/library/src/main/res/drawable-v21/suggestion_item_background.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/Handler/ConnectionHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/Handler/ConnectionHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Visit Navigation.iws" />
@@ -96,7 +159,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Handler/ConnectionHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
+              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -139,7 +202,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_splash.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="activity_splash.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
           <provider selected="true" editor-type-id="android-designer">
             <state />
@@ -159,11 +222,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapViewActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MapViewActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.51724136">
-              <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.7983539">
+              <caret line="287" column="40" selection-start-line="287" selection-start-column="40" selection-end-line="287" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2684#2771#0" expanded="true" />
@@ -2861,11 +2924,11 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapNavigationActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Handler/DownloadImageTask.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/Handler/ConnectionHandler.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/WifiPointView.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/Handler/ConnectionHandler.java" />
       </list>
     </option>
   </component>
@@ -3134,94 +3197,6 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Visit Navigation" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Visit Navigation" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Visit Navigation" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Visit Navigation" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Visit Navigation" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="indoorpositiontracker" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Visit Navigation" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -3318,7 +3293,7 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Final Project App/LiranCheck/indoorpositiontracker/indoorpositiontracker/MapView.java" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="LGD855b51000a3" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="4d004df74ebf31e1" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_19" />
     <property name="android.project.structure.last.selected" value="Project" />
     <property name="android.project.structure.proportion" value="0.15" />
@@ -3648,7 +3623,13 @@
       <option name="project" value="LOCAL" />
       <updated>1465153608047</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="design nav points&#10;add louder control to splash">
+      <created>1465312091465</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1465312091465</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3673,7 +3654,7 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21635434" sideWeight="0.47655067" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5178876" sideWeight="0.47655067" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3407155" sideWeight="0.42057487" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -3721,7 +3702,8 @@
     <MESSAGE value="add visit image" />
     <MESSAGE value="add visit image&#10;fix mylocation button to toggle" />
     <MESSAGE value="add visit image&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="add visit image&#10;" />
+    <MESSAGE value="design nav points&#10;add louder control to splash" />
+    <option name="LAST_COMMIT_MESSAGE" value="design nav points&#10;add louder control to splash" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3774,6 +3756,18 @@
           <properties />
           <option name="timeStamp" value="133" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java</url>
+          <line>285</line>
+          <properties />
+          <option name="timeStamp" value="135" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java</url>
+          <line>279</line>
+          <properties />
+          <option name="timeStamp" value="136" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml</url>
           <line>15</line>
@@ -3783,7 +3777,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="134" />
+      <option name="time" value="137" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
@@ -3795,6 +3789,8 @@
         <watch expression="                intent.putExtra(EXTRA_MESSAGE_MAP, currMap.getId()); // needs to be curMap.getId()&#10;" />
         <watch expression="currMap" />
         <watch expression="currMap.getId()" />
+        <watch expression="" />
+        <watch expression="results.size()" language="JAVA" custom="" />
       </configuration>
     </watches-manager>
   </component>
@@ -4289,16 +4285,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Handler/ConnectionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/pin_pointer.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -4324,10 +4310,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0357144">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="38" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Handler/ConnectionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.51724136">
-          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.7983539">
+          <caret line="287" column="40" selection-start-line="287" selection-start-column="40" selection-end-line="287" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2684#2771#0" expanded="true" />
@@ -4345,38 +4373,6 @@
             <element signature="e#14424#15800#0" expanded="true" />
             <element signature="e#15799#15800#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0357144">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="38" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
