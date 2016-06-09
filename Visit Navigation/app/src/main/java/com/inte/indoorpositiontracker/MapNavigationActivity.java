@@ -165,6 +165,11 @@ public class MapNavigationActivity extends MapViewActivity {
                     Toast.makeText(getApplicationContext(), "There is no path to floor: " + (currentFloorPath - 1), Toast.LENGTH_LONG).show();
                 return true;
             }
+            case android.R.id.home:
+                // this takes the user 'back', as if they pressed the left-facing triangle icon on the main android toolbar.
+                // if this doesn't work as desired, another possibility is to call `finish()` here.
+                onBackPressed();
+                return true;
             default:
                 return true;
         }
@@ -197,7 +202,7 @@ public class MapNavigationActivity extends MapViewActivity {
         }
 
         if (!successLoadMap) {
-            Toast.makeText(getApplicationContext(), "Problem load map", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Problem to load map", Toast.LENGTH_SHORT).show();
             return;
         }
 
