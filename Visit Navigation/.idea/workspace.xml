@@ -34,10 +34,9 @@
     <list default="true" id="da165278-344d-417b-a906-f09fb9913acc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/Handler/ConnectionHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/Handler/ConnectionHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapNavigationActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapNavigationActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/WifiPointView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/WifiPointView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/proguard-rules.pro" afterPath="$PROJECT_DIR$/library/proguard-rules.pro" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Visit Navigation.iws" />
@@ -60,7 +59,9 @@
         <task path="$PROJECT_DIR$/app">
           <activation />
         </task>
-        <projects_view />
+        <projects_view>
+          <tree_state />
+        </projects_view>
       </state>
     </system>
   </component>
@@ -69,28 +70,85 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SplashScreen.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java">
+      <file leaf-file-name="MapNavigationActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapNavigationActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.94011974">
-              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state vertical-scroll-proportion="2.7297297">
+              <caret line="211" column="40" selection-start-line="211" selection-start-column="40" selection-end-line="211" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1871#2306#0" expanded="true" />
-                <element signature="e#2305#2306#0" expanded="true" />
+                <element signature="e#4241#4995#0" expanded="true" />
+                <element signature="e#4994#4995#0" expanded="true" />
+                <element signature="e#5058#5059#0" expanded="true" />
+                <element signature="e#5126#5127#0" expanded="true" />
+                <element signature="e#5208#6197#0" expanded="true" />
+                <element signature="e#6196#6197#0" expanded="true" />
+                <element signature="e#7341#7576#0" expanded="true" />
+                <element signature="e#7575#7576#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_splash.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
+      <file leaf-file-name="Activity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/app/Activity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.5172415">
-              <caret line="6" column="32" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1026" column="0" selection-start-line="1026" selection-start-column="0" selection-end-line="1026" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SplashScreen.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="146" column="27" selection-start-line="124" selection-start-column="6" selection-end-line="146" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MapViewActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="29.896551">
+              <caret line="56" column="25" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/settings.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.074074">
+              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="proguard-rules.pro" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/library/proguard-rules.pro">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -99,101 +157,25 @@
       <file leaf-file-name="WifiPointView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/WifiPointView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2142856">
-              <caret line="107" column="36" selection-start-line="107" selection-start-column="36" selection-end-line="107" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="189" column="16" selection-start-line="189" selection-start-column="16" selection-end-line="189" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4510#4511#0" expanded="true" />
-                <element signature="e#4531#4532#0" expanded="true" />
+                <element signature="e#3555#3556#0" expanded="true" />
+                <element signature="e#3581#3582#0" expanded="true" />
+                <element signature="e#4789#4790#0" expanded="true" />
+                <element signature="e#4817#4818#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <file leaf-file-name="MapActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+              <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MapNavigationActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapNavigationActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-103.75862">
-              <caret line="222" column="5" selection-start-line="222" selection-start-column="5" selection-end-line="222" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.767857">
-              <caret line="51" column="43" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="colors.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="53" selection-start-line="9" selection-start-column="53" selection-end-line="9" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MapViewActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.6896553">
-              <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2584#2671#0" expanded="true" />
-                <element signature="e#2670#2671#0" expanded="true" />
-                <element signature="e#3343#3585#0" expanded="true" />
-                <element signature="e#3584#3585#0" expanded="true" />
-                <element signature="e#4571#6091#0" expanded="true" />
-                <element signature="e#5458#6047#0" expanded="true" />
-                <element signature="e#6046#6047#0" expanded="true" />
-                <element signature="e#6090#6091#0" expanded="true" />
-                <element signature="e#7332#7333#0" expanded="true" />
-                <element signature="e#7396#7397#0" expanded="true" />
-                <element signature="e#7459#7681#0" expanded="true" />
-                <element signature="e#7680#7681#0" expanded="true" />
-                <element signature="e#7782#8811#0" expanded="true" />
-                <element signature="e#8810#8811#0" expanded="true" />
-                <element signature="e#10653#12792#0" expanded="true" />
-                <element signature="e#10860#10866#0" expanded="true" />
-                <element signature="e#12791#12792#0" expanded="true" />
-                <element signature="e#15713#17089#0" expanded="true" />
-                <element signature="e#17088#17089#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MapView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.8965516">
-              <caret line="197" column="38" selection-start-line="197" selection-start-column="38" selection-end-line="197" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -2329,7 +2311,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="$PROJECT_DIR$" value="4392356789301" />
-        <entry key="C:\Git\visit-team\Visit Navigation" value="7321652488379" />
+        <entry key="C:\Git\visit-team\Visit Navigation" value="7322060674736" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2845,7 +2827,6 @@
         <option value="$PROJECT_DIR$/library/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/library/src/main/res/layout/search_suggestions_section.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/db/MapDatabaseHandler.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Home/MapHome.java" />
@@ -2861,16 +2842,19 @@
         <option value="$PROJECT_DIR$/app/src/main/java/Handler/DownloadImageTask.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/Handler/ConnectionHandler.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/WifiPointView.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapView.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapNavigationActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/anim/heart_pulse.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/WifiPointView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/Handler/ConnectionHandler.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/DataModel/Map.java" />
+        <option value="$PROJECT_DIR$/library/proguard-rules.pro" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapNavigationActivity.java" />
       </list>
     </option>
   </component>
@@ -2881,14 +2865,17 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
+  </component>
   <component name="NamedScopeManager">
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="1364" />
-    <option name="height" value="726" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -2913,6 +2900,168 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Visit Navigation" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Visit Navigation" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Visit Navigation" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Visit Navigation" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Visit Navigation" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="indoorpositiontracker" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Visit Navigation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src/main">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src/main">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="res">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src/main">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="java">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -3117,209 +3266,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Visit Navigation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Visit Navigation" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Visit Navigation" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Visit Navigation" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Visit Navigation" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Visit Navigation" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Visit Navigation" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="indoorpositiontracker" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Visit Navigation" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scratches" />
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="app">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="app">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="app">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="app">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src/main">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="app">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="app">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src/main">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="res">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="app">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="app">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src/main">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3703,7 +3650,13 @@
       <option name="project" value="LOCAL" />
       <updated>1465420537468</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="wifi message if turned off&#10;close app in splash if server down&#10;back button to mapviewactivity from navScreen work">
+      <created>1465424303782</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1465424303782</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3716,40 +3669,40 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1364" height="726" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23466258" sideWeight="0.5217391" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.6572935" sideWeight="0.4547546" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6801406" sideWeight="0.80368096" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3321617" sideWeight="0.8136503" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33919156" sideWeight="0.4892638" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33901194" sideWeight="0.4591528" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23466258" sideWeight="0.5217391" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15720859" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="104" y="165" width="1182" height="544" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.6572935" sideWeight="0.5452454" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28620103" sideWeight="0.48487142" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.49544764" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.7768313" sideWeight="0.4614221" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15658094" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="104" y="165" width="1182" height="544" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25553662" sideWeight="0.8184569" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.7768313" sideWeight="0.5385779" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28620103" sideWeight="0.48487142" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.49544764" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49403748" sideWeight="0.3260212" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33128834" sideWeight="0.47826087" order="5" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33919156" sideWeight="0.5828221" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49403748" sideWeight="0.3260212" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30635402" sideWeight="0.47857141" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34582624" sideWeight="0.5620272" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30635402" sideWeight="0.5214286" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38841566" sideWeight="0.7019667" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -3781,7 +3734,8 @@
     <MESSAGE value="add dimension file" />
     <MESSAGE value="add another permission" />
     <MESSAGE value="make toast short" />
-    <option name="LAST_COMMIT_MESSAGE" value="make toast short" />
+    <MESSAGE value="wifi message if turned off&#10;close app in splash if server down&#10;back button to mapviewactivity from navScreen work" />
+    <option name="LAST_COMMIT_MESSAGE" value="wifi message if turned off&#10;close app in splash if server down&#10;back button to mapviewactivity from navScreen work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3798,361 +3752,75 @@
           <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/Home/MapHome.java</url>
           <line>14</line>
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SynchronizationManager.java</url>
           <line>81</line>
           <properties />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SynchronizationManager.java</url>
           <line>113</line>
           <properties />
           <option name="timeStamp" value="104" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java</url>
           <line>388</line>
           <properties />
           <option name="timeStamp" value="111" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java</url>
           <line>116</line>
           <properties />
           <option name="timeStamp" value="125" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapNavigationActivity.java</url>
-          <line>99</line>
-          <properties />
-          <option name="timeStamp" value="133" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java</url>
           <line>103</line>
           <properties />
           <option name="timeStamp" value="143" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java</url>
           <line>104</line>
           <properties />
           <option name="timeStamp" value="144" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java</url>
-          <line>64</line>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapNavigationActivity.java</url>
+          <line>106</line>
           <properties />
-          <option name="timeStamp" value="145" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java</url>
-          <line>65</line>
-          <properties />
-          <option name="timeStamp" value="146" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java</url>
-          <line>82</line>
-          <properties />
-          <option name="timeStamp" value="147" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/WifiPointView.java</url>
-          <line>137</line>
-          <properties />
-          <option name="timeStamp" value="152" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapView.java</url>
-          <line>222</line>
-          <properties />
-          <option name="timeStamp" value="154" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/WifiPointView.java</url>
-          <line>134</line>
-          <properties />
-          <option name="timeStamp" value="155" />
+          <option name="timeStamp" value="190" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="156" />
+      <option name="time" value="198" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
-        <watch expression="this.getAssets()" />
-        <watch expression=" map.getDrawable().getIntrinsicHeight()" />
-        <watch expression="map.getDrawable()" language="JAVA" custom="" />
-        <watch expression="new StartingService().execute().get()" />
-        <watch expression="success[0]" />
-        <watch expression="                intent.putExtra(EXTRA_MESSAGE_MAP, currMap.getId()); // needs to be curMap.getId()&#10;" />
-        <watch expression="currMap" />
-        <watch expression="currMap.getId()" />
-        <watch expression="" />
-        <watch expression="results.size()" language="JAVA" custom="" />
+        <watch expression="Math.sqrt(Math.pow((currCellX - currentLocation.x), 2) +&#10;                         Math.pow((currCellY - currentLocation.y), 2));" />
+        <watch expression="currCellX" />
+        <watch expression="currCellY" />
+        <watch expression="currentLocation" />
+        <watch expression="mLocationPointer.getLocation().x" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_visit_launcher.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/ic_visit_launcher.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-mdpi/circle_background.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/os/Looper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11792" column="29" selection-start-line="11792" selection-start-column="29" selection-end-line="11792" selection-end-column="29" />
-          <folding>
-            <element signature="e#462283#462284#0" expanded="false" />
-            <element signature="e#462331#462332#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1-sources.jar!/android/support/v4/app/FragmentActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="360" column="0" selection-start-line="360" selection-start-column="0" selection-end-line="360" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/IndoorPositionTracker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/app/LoadedApk.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="211" column="0" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/content/ComponentName.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#13727#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#5190#5191#0" expanded="false" />
-            <element signature="e#5248#5249#0" expanded="false" />
-            <element signature="e#5352#5353#0" expanded="false" />
-            <element signature="e#5383#5384#0" expanded="false" />
-            <element signature="e#5487#5488#0" expanded="false" />
-            <element signature="e#5516#5517#0" expanded="false" />
-            <element signature="e#7401#7402#0" expanded="false" />
-            <element signature="e#7447#7448#0" expanded="false" />
-            <element signature="e#8185#8186#0" expanded="false" />
-            <element signature="e#8240#8241#0" expanded="false" />
-            <element signature="e#10121#10122#0" expanded="false" />
-            <element signature="e#10179#10180#0" expanded="false" />
-            <element signature="e#10225#10226#0" expanded="false" />
-            <element signature="e#10296#10297#0" expanded="false" />
-            <element signature="e#10808#10809#0" expanded="false" />
-            <element signature="e#10870#10871#0" expanded="false" />
-            <element signature="e#11137#11138#0" expanded="false" />
-            <element signature="e#11161#11162#0" expanded="false" />
-            <element signature="e#12626#12627#0" expanded="false" />
-            <element signature="e#12678#12679#0" expanded="false" />
-            <element signature="e#12731#12732#0" expanded="false" />
-            <element signature="e#12785#12786#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/app/ContextImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1749" column="0" selection-start-line="1749" selection-start-column="0" selection-end-line="1749" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#77237#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#2799#2800#0" expanded="false" />
-            <element signature="e#2826#2827#0" expanded="false" />
-            <element signature="e#6967#6968#0" expanded="false" />
-            <element signature="e#7016#7017#0" expanded="false" />
-            <element signature="e#7069#7070#0" expanded="false" />
-            <element signature="e#7102#7103#0" expanded="false" />
-            <element signature="e#7590#7591#0" expanded="false" />
-            <element signature="e#7629#7630#0" expanded="false" />
-            <element signature="e#7680#7681#0" expanded="false" />
-            <element signature="e#7726#7727#0" expanded="false" />
-            <element signature="e#8133#8134#0" expanded="false" />
-            <element signature="e#8170#8171#0" expanded="false" />
-            <element signature="e#17511#17512#0" expanded="false" />
-            <element signature="e#17567#17568#0" expanded="false" />
-            <element signature="e#18805#18806#0" expanded="false" />
-            <element signature="e#18857#18858#0" expanded="false" />
-            <element signature="e#19481#19482#0" expanded="false" />
-            <element signature="e#19539#19540#0" expanded="false" />
-            <element signature="e#19608#19609#0" expanded="false" />
-            <element signature="e#19667#19668#0" expanded="false" />
-            <element signature="e#65249#65250#0" expanded="false" />
-            <element signature="e#65283#65284#0" expanded="false" />
-            <element signature="e#65367#65368#0" expanded="false" />
-            <element signature="e#65409#65410#0" expanded="false" />
-            <element signature="e#66063#66064#0" expanded="false" />
-            <element signature="e#66107#66108#0" expanded="false" />
-            <element signature="e#71360#71361#0" expanded="false" />
-            <element signature="e#71399#71400#0" expanded="false" />
-            <element signature="e#71438#71439#0" expanded="false" />
-            <element signature="e#71474#71475#0" expanded="false" />
-            <element signature="e#71514#71515#0" expanded="false" />
-            <element signature="e#71551#71552#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/content/ContextWrapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="514" column="0" selection-start-line="514" selection-start-column="0" selection-end-line="514" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#23046#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#1824#1825#0" expanded="false" />
-            <element signature="e#1852#1853#0" expanded="false" />
-            <element signature="e#2455#2456#0" expanded="false" />
-            <element signature="e#2483#2484#0" expanded="false" />
-            <element signature="e#2536#2537#0" expanded="false" />
-            <element signature="e#2576#2577#0" expanded="false" />
-            <element signature="e#2633#2634#0" expanded="false" />
-            <element signature="e#2676#2677#0" expanded="false" />
-            <element signature="e#2739#2740#0" expanded="false" />
-            <element signature="e#2787#2788#0" expanded="false" />
-            <element signature="e#2852#2853#0" expanded="false" />
-            <element signature="e#2901#2902#0" expanded="false" />
-            <element signature="e#2952#2953#0" expanded="false" />
-            <element signature="e#2996#2997#0" expanded="false" />
-            <element signature="e#3060#3061#0" expanded="false" />
-            <element signature="e#3112#3113#0" expanded="false" />
-            <element signature="e#3169#3170#0" expanded="false" />
-            <element signature="e#3206#3207#0" expanded="false" />
-            <element signature="e#3271#3272#0" expanded="false" />
-            <element signature="e#3315#3316#0" expanded="false" />
-            <element signature="e#3370#3371#0" expanded="false" />
-            <element signature="e#3409#3410#0" expanded="false" />
-            <element signature="e#3466#3467#0" expanded="false" />
-            <element signature="e#3511#3512#0" expanded="false" />
-            <element signature="e#3563#3564#0" expanded="false" />
-            <element signature="e#3608#3609#0" expanded="false" />
-            <element signature="e#3681#3682#0" expanded="false" />
-            <element signature="e#3730#3731#0" expanded="false" />
-            <element signature="e#3801#3802#0" expanded="false" />
-            <element signature="e#3848#3849#0" expanded="false" />
-            <element signature="e#3913#3914#0" expanded="false" />
-            <element signature="e#3962#3963#0" expanded="false" />
-            <element signature="e#4026#4027#0" expanded="false" />
-            <element signature="e#4079#4080#0" expanded="false" />
-            <element signature="e#4135#4136#0" expanded="false" />
-            <element signature="e#4184#4185#0" expanded="false" />
-            <element signature="e#4266#4267#0" expanded="false" />
-            <element signature="e#4319#4320#0" expanded="false" />
-            <element signature="e#4861#4862#0" expanded="false" />
-            <element signature="e#4906#4907#0" expanded="false" />
-            <element signature="e#4970#4971#0" expanded="false" />
-            <element signature="e#5022#5023#0" expanded="false" />
-            <element signature="e#5070#5071#0" expanded="false" />
-            <element signature="e#5109#5110#0" expanded="false" />
-            <element signature="e#5156#5157#0" expanded="false" />
-            <element signature="e#5198#5199#0" expanded="false" />
-            <element signature="e#5253#5254#0" expanded="false" />
-            <element signature="e#5303#5304#0" expanded="false" />
-            <element signature="e#5369#5370#0" expanded="false" />
-            <element signature="e#5423#5424#0" expanded="false" />
-            <element signature="e#5492#5493#0" expanded="false" />
-            <element signature="e#5547#5548#0" expanded="false" />
-            <element signature="e#5592#5593#0" expanded="false" />
-            <element signature="e#5632#5633#0" expanded="false" />
-            <element signature="e#5680#5681#0" expanded="false" />
-            <element signature="e#5721#5722#0" expanded="false" />
-            <element signature="e#5768#5769#0" expanded="false" />
-            <element signature="e#5810#5811#0" expanded="false" />
-            <element signature="e#5861#5862#0" expanded="false" />
-            <element signature="e#5907#5908#0" expanded="false" />
-            <element signature="e#5962#5963#0" expanded="false" />
-            <element signature="e#6012#6013#0" expanded="false" />
-            <element signature="e#6070#6071#0" expanded="false" />
-            <element signature="e#6121#6122#0" expanded="false" />
-            <element signature="e#6179#6180#0" expanded="false" />
-            <element signature="e#6230#6231#0" expanded="false" />
-            <element signature="e#6293#6294#0" expanded="false" />
-            <element signature="e#6340#6341#0" expanded="false" />
-            <element signature="e#6825#6826#0" expanded="false" />
-            <element signature="e#6874#6875#0" expanded="false" />
-            <element signature="e#6936#6937#0" expanded="false" />
-            <element signature="e#6986#6987#0" expanded="false" />
-            <element signature="e#7038#7039#0" expanded="false" />
-            <element signature="e#7081#7082#0" expanded="false" />
-            <element signature="e#7149#7150#0" expanded="false" />
-            <element signature="e#7192#7193#0" expanded="false" />
-            <element signature="e#7261#7262#0" expanded="false" />
-            <element signature="e#7305#7306#0" expanded="false" />
-            <element signature="e#7387#7388#0" expanded="false" />
-            <element signature="e#7449#7450#0" expanded="false" />
-            <element signature="e#8057#8058#0" expanded="false" />
-            <element signature="e#8100#8101#0" expanded="false" />
-            <element signature="e#8537#8538#0" expanded="false" />
-            <element signature="e#8593#8594#0" expanded="false" />
-            <element signature="e#8972#8973#0" expanded="false" />
-            <element signature="e#9018#9019#0" expanded="false" />
-            <element signature="e#10085#10086#0" expanded="false" />
-            <element signature="e#10128#10129#0" expanded="false" />
-            <element signature="e#14393#14394#0" expanded="false" />
-            <element signature="e#14442#14443#0" expanded="false" />
-            <element signature="e#14912#14913#0" expanded="false" />
-            <element signature="e#14963#14964#0" expanded="false" />
-            <element signature="e#16806#16807#0" expanded="false" />
-            <element signature="e#16852#16853#0" expanded="false" />
-            <element signature="e#17653#17654#0" expanded="false" />
-            <element signature="e#17694#17695#0" expanded="false" />
-            <element signature="e#17975#17976#0" expanded="false" />
-            <element signature="e#18026#18027#0" expanded="false" />
-            <element signature="e#22436#22437#0" expanded="false" />
-            <element signature="e#22476#22477#0" expanded="false" />
-            <element signature="e#22837#22838#0" expanded="false" />
-            <element signature="e#22880#22881#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4179,7 +3847,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="234" column="0" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4187,7 +3854,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.742373">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4195,7 +3861,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4211,7 +3876,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4235,7 +3899,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12195122">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4259,7 +3922,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.851852">
           <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4277,7 +3939,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4290,7 +3951,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4314,7 +3974,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4322,33 +3981,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Handler/ConnectionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/app/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5979" column="0" selection-start-line="5979" selection-start-column="0" selection-end-line="5979" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/app/Instrumentation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1106" column="0" selection-start-line="1106" selection-start-column="0" selection-end-line="1106" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4371,22 +4003,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapEditActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7931035">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/os/Handler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.06940874">
@@ -4398,73 +4014,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/WifiPointView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2142856">
-          <caret line="107" column="36" selection-start-line="107" selection-start-column="36" selection-end-line="107" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4510#4511#0" expanded="true" />
-            <element signature="e#4531#4532#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.8965516">
-          <caret line="197" column="38" selection-start-line="197" selection-start-column="38" selection-end-line="197" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="53" selection-start-line="9" selection-start-column="53" selection-end-line="9" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.767857">
-          <caret line="51" column="43" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.6896553">
-          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2584#2671#0" expanded="true" />
-            <element signature="e#2670#2671#0" expanded="true" />
-            <element signature="e#3343#3585#0" expanded="true" />
-            <element signature="e#3584#3585#0" expanded="true" />
-            <element signature="e#4571#6091#0" expanded="true" />
-            <element signature="e#5458#6047#0" expanded="true" />
-            <element signature="e#6046#6047#0" expanded="true" />
-            <element signature="e#6090#6091#0" expanded="true" />
-            <element signature="e#7332#7333#0" expanded="true" />
-            <element signature="e#7396#7397#0" expanded="true" />
-            <element signature="e#7459#7681#0" expanded="true" />
-            <element signature="e#7680#7681#0" expanded="true" />
-            <element signature="e#7782#8811#0" expanded="true" />
-            <element signature="e#8810#8811#0" expanded="true" />
-            <element signature="e#10653#12792#0" expanded="true" />
-            <element signature="e#10860#10866#0" expanded="true" />
-            <element signature="e#12791#12792#0" expanded="true" />
-            <element signature="e#15713#17089#0" expanded="true" />
-            <element signature="e#17088#17089#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4476,16 +4029,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapNavigationActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-103.75862">
-          <caret line="222" column="5" selection-start-line="222" selection-start-column="5" selection-end-line="222" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -4493,18 +4036,215 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.5172415">
           <caret line="6" column="32" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapEditActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="267" column="17" selection-start-line="267" selection-start-column="17" selection-end-line="267" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_action_search.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-mdpi/circle_background.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/graphics/Color.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="39" column="63" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/DataModel/Cell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37393767">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="e#416#417#0" expanded="true" />
+            <element signature="e#445#446#0" expanded="true" />
+            <element signature="e#503#504#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.4660494">
+          <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="234" column="0" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3387#3388#0" expanded="true" />
+            <element signature="e#3424#3425#0" expanded="true" />
+            <element signature="e#7544#7545#0" expanded="true" />
+            <element signature="e#7575#7576#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Handler/ConnectionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+          <folding>
+            <element signature="e#1775#1776#0" expanded="false" />
+            <element signature="e#1817#1818#0" expanded="false" />
+            <element signature="e#1858#1859#0" expanded="false" />
+            <element signature="e#1885#1886#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.navigation/app/raw/main.nvg.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="navigationeditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/app/Instrumentation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3323263">
+          <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/SplashScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.94011974">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="146" column="27" selection-start-line="124" selection-start-column="6" selection-end-line="146" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1871#2306#0" expanded="true" />
-            <element signature="e#2305#2306#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/WifiPointView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="189" column="16" selection-start-line="189" selection-start-column="16" selection-end-line="189" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3555#3556#0" expanded="true" />
+            <element signature="e#3581#3582#0" expanded="true" />
+            <element signature="e#4789#4790#0" expanded="true" />
+            <element signature="e#4817#4818#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/DataModel/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/proguard-rules.pro">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.074074">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/app/Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1026" column="0" selection-start-line="1026" selection-start-column="0" selection-end-line="1026" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapViewActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="29.896551">
+          <caret line="56" column="25" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1-sources.jar!/android/support/v4/app/FragmentActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3323263">
+          <caret line="167" column="16" selection-start-line="167" selection-start-column="16" selection-end-line="167" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/inte/indoorpositiontracker/MapNavigationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.7297297">
+          <caret line="211" column="40" selection-start-line="211" selection-start-column="40" selection-end-line="211" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4241#4995#0" expanded="true" />
+            <element signature="e#4994#4995#0" expanded="true" />
+            <element signature="e#5058#5059#0" expanded="true" />
+            <element signature="e#5126#5127#0" expanded="true" />
+            <element signature="e#5208#6197#0" expanded="true" />
+            <element signature="e#6196#6197#0" expanded="true" />
+            <element signature="e#7341#7576#0" expanded="true" />
+            <element signature="e#7575#7576#0" expanded="true" />
           </folding>
         </state>
       </provider>

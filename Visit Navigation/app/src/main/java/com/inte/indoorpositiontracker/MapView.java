@@ -226,8 +226,17 @@ public class MapView extends ImageView {
 		wpView.setVisible(true);
 		return wpView;
 	}
-	
-	
+
+	public WifiPointView updatePath(float x, float y, int cellId) {
+		WifiPointView wpView = new WifiPointView(getContext(), WifiPointView.POINT_TYPE.CompletePath);
+		wpView.setPathPoint(x, y);
+		//mWifiPath.add(wpView);
+		mWifiPath.set(cellId,wpView);
+
+		wpView.setVisible(true);
+		return wpView;
+	}
+
 	
 	/** set given WifiPointView to given location */
 	public void setWifiPointViewPosition(WifiPointView pointer, PointF location) {
