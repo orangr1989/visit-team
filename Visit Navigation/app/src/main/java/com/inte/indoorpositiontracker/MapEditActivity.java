@@ -152,7 +152,7 @@ public class MapEditActivity extends MapActivity {
         sub.add(Menu.NONE, MENU_ITEM_SHOW_FINGERPRINTS, Menu.NONE, (mShowFingerprints ? "Hide fingerprints" : "Show fingerprints"));
         sub.add(Menu.NONE, MENU_ITEM_DELETE_FINGERPRINTS, Menu.NONE, "Delete all fingerprints");
    
-        menu.add(Menu.NONE, MENU_ITEM_EXIT, Menu.NONE, "Exit edit mode");
+        //menu.add(Menu.NONE, MENU_ITEM_EXIT, Menu.NONE, "Exit edit mode");
         super.onCreateOptionsMenu(menu); // items for changing map
         return true;
     }

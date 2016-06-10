@@ -61,7 +61,8 @@ public class MapView extends ImageView {
 
 		if (mWifiPath.size() > 0) {
 			for (int i = 0; i < mWifiPath.size(); i += 15) {
-				mWifiPath.get(i).drawWithTransformations(canvas, values);
+				if ((i % 15 == 0) || (mWifiPath.get(i).info != ""))
+					mWifiPath.get(i).drawWithTransformations(canvas, values);
 			}
 
 			mWifiPath.get(mWifiPath.size() - 1).drawWithTransformations(canvas, values); //draw dest point

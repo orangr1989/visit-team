@@ -51,5 +51,36 @@
 		android:layout_marginEnd="55dp"
 		android:layout_marginBottom="20dp" />
 
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/upButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom|right"
+			android:layout_marginRight="140dp"
+			android:visibility="gone"
+			app:borderWidth="0dp"
+			app:pressedTranslationZ="12dp"
+			android:elevation="8dp"
+			app:fabSize="normal"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentEnd="true"
+			android:layout_marginEnd="55dp"
+			android:layout_marginBottom="20dp" />
+
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/downButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom|right"
+			android:layout_marginRight="210dp"
+			android:visibility="gone"
+			app:borderWidth="0dp"
+			app:pressedTranslationZ="12dp"
+			app:fabSize="normal"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentEnd="true"
+			android:layout_marginEnd="55dp"
+			android:layout_marginBottom="20dp" />
+
 	</RelativeLayout>
 </android.support.v4.widget.DrawerLayout>
