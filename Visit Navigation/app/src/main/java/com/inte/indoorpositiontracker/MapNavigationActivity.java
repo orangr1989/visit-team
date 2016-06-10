@@ -1,8 +1,10 @@
 package com.inte.indoorpositiontracker;
 
 import android.content.Intent;
+import android.graphics.PointF;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.view.Menu;
@@ -32,18 +34,24 @@ public class MapNavigationActivity extends MapViewActivity {
     private static final int MENU_ITEM_EXIT = 35;
     private static final int NEXT_MAP = 36;
     private static final int PREVIOUS_MAP = 37;
+    private static final int MINIMAL_DISTANCE = 100;
+    private static final int INDICATE_PATH_INTERVAL = 1000;
 
     // handler for callbacks to the UI thread
     private static Handler sUpdateHandler = new Handler();
+    private final Context navContext = this;
 
     private List<Cell> cells;
     private int currentFloorPath;
     private Map currentMap;
     Timer CheckNavCompleteTimer;
+    private Timer mPathIndicateTimer;
     int distanceThreshold = 100;
     Cell destCell;
     Location destLocation;
     int actualFloorNum;
+    boolean isPathAccepted = false;
+    boolean btnLocClicked = false;
 
     Handler guiMsgHandler;
 
@@ -86,8 +94,11 @@ public class MapNavigationActivity extends MapViewActivity {
         FloatingSearchView bar = (FloatingSearchView)findViewById(R.id.floating_search_view);
         bar.setVisibility(View.GONE);
 
-        FloatingActionButton mLocationbtn = (FloatingActionButton) findViewById(R.id.myLocationButton);
-        mLocationbtn.setVisibility(View.GONE);
+        final FloatingActionButton mLocationbtn = (FloatingActionButton) findViewById(R.id.myLocationButton);
+        //mLocationbtn.setVisibility(View.GONE);
+
+        // hide current wifi fingerprint
+        mLocationPointer.setVisible(false);
 
         Intent intent = getIntent();
         // get destination cell
@@ -116,21 +127,150 @@ public class MapNavigationActivity extends MapViewActivity {
         setTitle(getTitle() + " (navigation)");
 
         PathHome.getPath(path,
-                         new EntityHomeCallback() {
+                new EntityHomeCallback() {
                     @Override
-                            public void onResponse(Response<?> response) {
-                                cells = (List<Cell>) response.getData();
-                                setPath(cells, cells.get(0).GetX());
-                                String nisan = "test";
-                            }
+                    public void onResponse(Response<?> response) {
+                        cells = (List<Cell>) response.getData();
+                        setPath(cells, cells.get(0).GetX());
+                        isPathAccepted = true;
+                    }
 
-                            @Override
-                            public void onFailure(Response<?> response) {
-                                Toast.makeText(getApplicationContext(), "Fail to get path" , Toast.LENGTH_LONG).show();
-                            }
-            });
+                    @Override
+                    public void onFailure(Response<?> response) {
+                        Toast.makeText(getApplicationContext(),
+                                "Fail to get path",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
 
-        TimerNavComplete();
+        mPathIndicateTimer = new Timer();
+        mPathIndicateTimer.schedule(new TimerTask() {
+
+            private Handler updateUI = new Handler() {
+
+              @Override
+              public void dispatchMessage(Message msg){
+                  if (isPathAccepted && mLocationPointer.getLocation().x > -1000) {
+                      // check the closed path's point.
+                      int mCloseCellId = getCloseCell(mLocationPointer.getLocation());
+
+                      // check if lower than max distance (100)
+                      if (calcDistanceFromPath(mLocationPointer.getLocation(),
+                              cells.get(mCloseCellId).GetY(),
+                              cells.get(mCloseCellId).GetZ()) < MINIMAL_DISTANCE) {
+
+                          completePathPointsToCell(mCloseCellId);
+                      }
+                  }
+              }
+            };
+
+                @Override
+                public void run() {
+                    updateUI.sendEmptyMessage(0);
+                }
+        }, 0, INDICATE_PATH_INTERVAL);
+
+        mLocationbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!btnLocClicked) {
+                    Toast.makeText(getApplicationContext(), "Show current location",
+                            Toast.LENGTH_SHORT).show();
+
+                    mLocationPointer.setVisible(true);
+
+                    // change button background
+                    mLocationbtn.setBackgroundTintList(getResources().getColorStateList(R.color.green));
+                    btnLocClicked = true;
+                } else {
+
+                    Toast.makeText(getApplicationContext(), "Hide current location",
+                            Toast.LENGTH_SHORT).show();
+
+                    mLocationPointer.setVisible(false);
+
+                    // change button background
+                    mLocationbtn.setBackgroundTintList(getResources().getColorStateList(R.color.accent));
+                    btnLocClicked = false;
+
+                }
+            }
+        });
+        //TimerNavComplete();
+    }
+
+    private void completePathPointsToCell(int cellId) {
+
+        for (int i = 0; i <= cellId; i++) {
+            // update the completed cells
+            if (cells.get(i).GetX() == currentFloorPath) {
+                WifiPointView wifiPoint = mMap.updatePath((float) cells.get(i).GetY(),
+                        (float) cells.get(i).GetZ(), i);
+            }
+        }
+
+        if (cellId == cells.size() - 1)
+        {
+            showFinishPathAlert();
+            isPathAccepted = false;
+
+            /*Toast.makeText(getApplicationContext(), "You arrived your destination!",
+                    Toast.LENGTH_SHORT).show();*/
+        }
+    }
+
+    private void showFinishPathAlert() {
+        // Select location manually - create alert dialog
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        // set title
+        alertDialogBuilder.setTitle("Finish navigation");
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("You arrived your destination!")
+                .setCancelable(false)
+                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        onBackPressed();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
+
+    private int getCloseCell(PointF location) {
+
+        int cellId = 0;
+        double minDistance = MINIMAL_DISTANCE;
+        double currentCellDistance = 0;
+
+        for (int i = 0; i < cells.size(); i++)
+        {
+            currentCellDistance = calcDistanceFromPath(location,
+                                                       cells.get(i).GetY(),
+                                                       cells.get(i).GetZ());
+
+            if (minDistance >= currentCellDistance){
+                minDistance = currentCellDistance;
+                cellId = i;
+            }
+        }
+        return cellId;
+    }
+
+    private double calcDistanceFromPath(PointF currentLocation, int currCellX, int currCellY) {
+
+        ///////// d=√((x1-x2)^2+(y1-y2)^2)
+        return Math.sqrt(Math.pow((currCellX - currentLocation.x), 2) +
+                         Math.pow((currCellY - currentLocation.y), 2));
     }
 
     private void TimerNavComplete() {
@@ -144,7 +284,8 @@ public class MapNavigationActivity extends MapViewActivity {
             if (IsUserArriveDestination()) {
                 guiMsgHandler.post(new Runnable(){
                     public void run() {
-                        Toast.makeText(getApplicationContext(), "You Arrive to Destination!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "You Arrive to Destination!",
+                                       Toast.LENGTH_LONG).show();
                     }
                 });
 

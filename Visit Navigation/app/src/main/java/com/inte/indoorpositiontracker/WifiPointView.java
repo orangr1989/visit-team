@@ -12,11 +12,12 @@ import DataModel.Fingerprint;
 import DataModel.Location;
 
 public class WifiPointView extends View {
-	public  enum  POINT_TYPE {CurrentLocation, Path, FingerPrint, destPoint }
+	public  enum  POINT_TYPE {CurrentLocation, Path,CompletePath, FingerPrint, destPoint }
 
 	private static final int COLOR_FINGERPRINT = Color.YELLOW;
 	private static final int COLOR_ACTIVE = Color.GREEN;
 	private static final int COLOR_PATH = Color.rgb(0, 179, 253);
+	private static final int COLOR_COMPLETE = Color.parseColor("#008000");
 	private static final int DESTINATION_POINT = Color.WHITE;
 
 	private Fingerprint mFingerprint;
@@ -141,6 +142,10 @@ public class WifiPointView extends View {
 				mPaint.setColor(COLOR_PATH);
 				break;
 			}
+			case CompletePath: {
+				mPaint.setColor(COLOR_COMPLETE);
+				break;
+			}
 			case FingerPrint: {
 				mPaint.setColor(COLOR_FINGERPRINT);
 				mPaint.setStyle(Paint.Style.FILL);
@@ -157,7 +162,7 @@ public class WifiPointView extends View {
 	public void setSize(float radius) {
 	    mRadius = radius;
 	}
-	
+
 	public void setFingerprint(Fingerprint fingerprint) {
 		mFingerprint = fingerprint;
 		mLocation = new PointF((float)fingerprint.getLocation().getMapXcord(),
