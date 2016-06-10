@@ -60,11 +60,11 @@ public class MapNavigationActivity extends MapViewActivity {
 
         FloatingActionButton up = (FloatingActionButton) findViewById(R.id.upButton);
         up.setVisibility(View.VISIBLE);
-        up.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.up));
+        //up.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.up));
 
         FloatingActionButton down = (FloatingActionButton) findViewById(R.id.downButton);
         down.setVisibility(View.VISIBLE);
-        down.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.down));
+        //down.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.down));
 
         up.setOnClickListener(new View.OnClickListener() {
             @Override
