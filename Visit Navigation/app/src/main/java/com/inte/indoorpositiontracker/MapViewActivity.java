@@ -1,15 +1,20 @@
 package com.inte.indoorpositiontracker;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.PointF;
 import android.net.wifi.ScanResult;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,6 +48,8 @@ public class MapViewActivity extends MapActivity {
     public final static String EXTRA_MESSAGE_LOCATION_DEST = "com.inte.indoorpositiontracker.LOCATION_DEST";
     public final static String EXTRA_MESSAGE_X_CORD = "com.inte.indoorpositiontracker.X";
     public final static String EXTRA_MESSAGE_Y_CORD = "com.inte.indoorpositiontracker.Y";
+
+    private final static  int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 1;
 
     private static final int MENU_ITEM_EDIT_MAP = 100;
     private static final int MENU_ITEM_CHOOSE_LOCATION = 101;
@@ -79,6 +86,8 @@ public class MapViewActivity extends MapActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        checkPermission();
 
         mLocationPointer = mMap.createNewWifiPointOnMap(new PointF(-1000, -1000));
         mLocationPointer.activate();
@@ -239,6 +248,21 @@ public class MapViewActivity extends MapActivity {
 
     }
 
+    private boolean checkPermission() {
+
+        List<String> permissionsList = new ArrayList<String>();
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            permissionsList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        }
+
+        if (permissionsList.size() > 0) {
+            ActivityCompat.requestPermissions((Activity) this, permissionsList.toArray(new String[permissionsList.size()]),
+                    REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
+            return false;
+        }
+        return true;
+    }
 
     private List<? extends SearchSuggestion> getAllSuggestions(String locs) {
 

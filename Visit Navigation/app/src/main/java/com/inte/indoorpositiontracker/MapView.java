@@ -61,7 +61,8 @@ public class MapView extends ImageView {
 
 		if (mWifiPath.size() > 0) {
 			for (int i = 0; i < mWifiPath.size(); i += 15) {
-				mWifiPath.get(i).drawWithTransformations(canvas, values);
+				if ((i % 15 == 0) || (mWifiPath.get(i).info != ""))
+					mWifiPath.get(i).drawWithTransformations(canvas, values);
 			}
 
 			mWifiPath.get(mWifiPath.size() - 1).drawWithTransformations(canvas, values); //draw dest point
@@ -226,8 +227,17 @@ public class MapView extends ImageView {
 		wpView.setVisible(true);
 		return wpView;
 	}
-	
-	
+
+	public WifiPointView updatePath(float x, float y, int cellId) {
+		WifiPointView wpView = new WifiPointView(getContext(), WifiPointView.POINT_TYPE.CompletePath);
+		wpView.setPathPoint(x, y);
+		//mWifiPath.add(wpView);
+		mWifiPath.set(cellId,wpView);
+
+		wpView.setVisible(true);
+		return wpView;
+	}
+
 	
 	/** set given WifiPointView to given location */
 	public void setWifiPointViewPosition(WifiPointView pointer, PointF location) {

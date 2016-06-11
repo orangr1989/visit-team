@@ -15,3 +15,18 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-keep class com.nineoldandroids.** { *; }
+-dontwarn com.nineoldandroids.**
+
+-keep class ir.adad.** { *; }
+-dontwarn ir.adad.**
+
+-keep class android.support.v4.** { *; }
+-dontwarn android.support.v4.**
+
+-keep class toolfa.android.base.ui.PagerSlidingTabStrip { *; }
+-dontwarn toolfa.android.base.ui.PagerSlidingTabStrip
+
+-keep class toolfa.android.sega.ActivityEmulator { *; }
+-keep class toolfa.android.sega.Zip { *; }
