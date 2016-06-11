@@ -46,7 +46,7 @@ public class MapNavigationActivity extends MapViewActivity {
 
     private List<Cell> cells;
     private int currentFloorPath;
-    private Map currentMap;
+    //private Map currentMap;
     Timer CheckNavCompleteTimer;
     private Timer mPathIndicateTimer;
     int distanceThreshold = 100;
@@ -119,16 +119,16 @@ public class MapNavigationActivity extends MapViewActivity {
 
         // get source cell
         int mapId = intent.getIntExtra(MapViewActivity.EXTRA_MESSAGE_MAP, 1);
-        currentMap = mApplication.getMapById(mapId);
-        actualFloorNum = GetActualFloorNum(currentMap.getMapName());
+        currMap = mApplication.getMapById(mapId);
+        actualFloorNum = GetActualFloorNum(currMap.getMapName());
         int currentXCord = intent.getIntExtra(MapViewActivity.EXTRA_MESSAGE_X_CORD, 1);
         int currentYCord = intent.getIntExtra(MapViewActivity.EXTRA_MESSAGE_Y_CORD, 1);
-        int currentFloorNumber = currentMap.getMapFloorNumber();
+        int currentFloorNumber = currMap.getMapFloorNumber();
         Cell currentCell = new Cell(currentFloorNumber, currentXCord, currentYCord);
 
         PathRequest path = new PathRequest(currentCell, destCell, 1);
 
-        super.setMap(currentMap.getMapURL());
+        super.setMap(currMap.getMapURL());
 
         setTitle(getTitle() + " (navigation)");
 
@@ -370,14 +370,14 @@ public class MapNavigationActivity extends MapViewActivity {
     public void setPath(List<Cell> cells, int floorToDraw) {
         boolean successLoadMap = true;
 
-        if (currentMap.getMapFloorNumber() != floorToDraw) {
+        if (currMap.getMapFloorNumber() != floorToDraw) {
             successLoadMap = false;
             List<Map> maps = mApplication.getMaps();
             for (Map map : maps) {
                 if (map.getMapFloorNumber() == floorToDraw) {
                     super.setMap(map.getMapURL());
-                    currentMap = mApplication.getMapById(map.getId());
-                    actualFloorNum = GetActualFloorNum(currentMap.getMapName());
+                    currMap = mApplication.getMapById(map.getId());
+                    actualFloorNum = GetActualFloorNum(currMap.getMapName());
                     successLoadMap = true;
                     break;
                 }
