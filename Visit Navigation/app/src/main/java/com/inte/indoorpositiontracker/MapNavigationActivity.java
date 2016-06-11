@@ -1,5 +1,7 @@
 package com.inte.indoorpositiontracker;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PointF;
 import android.os.Bundle;
@@ -7,6 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,6 +58,9 @@ public class MapNavigationActivity extends MapViewActivity {
 
     Handler guiMsgHandler;
 
+    FloatingActionButton up;
+    FloatingActionButton down;
+
     // runnable to refresh map (called by the handler)
     private Runnable mRefreshMap = new Runnable() {
         public void run() {
@@ -66,12 +72,12 @@ public class MapNavigationActivity extends MapViewActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FloatingActionButton up = (FloatingActionButton) findViewById(R.id.upButton);
-        up.setVisibility(View.VISIBLE);
+        up = (FloatingActionButton) findViewById(R.id.upButton);
+
         //up.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.up));
 
-        FloatingActionButton down = (FloatingActionButton) findViewById(R.id.downButton);
-        down.setVisibility(View.VISIBLE);
+        down = (FloatingActionButton) findViewById(R.id.downButton);
+
         //down.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.down));
 
         up.setOnClickListener(new View.OnClickListener() {
@@ -396,6 +402,8 @@ public class MapNavigationActivity extends MapViewActivity {
                 }
 
                 if (IsMoveBetweenFloor(currentCell.GetX() , cells.get(i + 1).GetX())) {
+                    up.setVisibility(View.VISIBLE);
+                    down.setVisibility(View.VISIBLE);
                     if (currentCell.GetX() < cells.get(i + 1).GetX())
                         wifiPoint.info = "Go up to floor: " + (actualFloorNum + 1);
                     else

@@ -1,3 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.1.1_35519b28c4fc2b3027bf27075fd0090e3a8e1966\classes.dex" />
+    </item>
+    <item
+        jar="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.1.1_7bfb90d5ecee825f9dff24fabd9de06eee73b90a\classes.dex" />
+    </item>
+    <item
+        jar="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d35f634b05a26b68e8b6ac4f3cd4dc2abaac898e">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_c85d7a9e0a396fe39bbf9fe351be1bd19883d517\classes.dex" />
+    </item>
+    <item
+        jar="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d96886efea7cc74fbb3abd0e3b51d5638fc57be0">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-23.1.0_77f09f64281a599958c2b39714eeb050edcb0dc2\classes.dex" />
+    </item>
+    <item
+        jar="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\me.grantland\autofittextview\0.2.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="81db45283d36bfc6e3380c325fb09b2283f36775">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\me.grantland-autofittextview-0.2.0_ca25578bb12678213f8a95f3edd2a7b3c9f6dc8b\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\nisan\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.1.1_6def2e9d242118b83e0a0bc1fcc68700db1d58b2\classes.dex" />
+    </item>
+    <item
+        jar="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.bartoszlipinski\viewpropertyobjectanimator\1.2.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1828dd75d357690efb2c5f4326804e2f7ad21f6c">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.bartoszlipinski-viewpropertyobjectanimator-1.2.0_be63c3794fa85ef8aa53911ae12010a5707c1667\classes.dex" />
+    </item>
+    <item
+        jar="C:\Program Files\Android\Android Studio\gradle\m2repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.2.4_313aff129984a0a45e086871ec03bfcc02e7284e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.1.1_0e81aea2e0d3fff22dcd7bf6c1df0cb4ed745695\classes.dex" />
+    </item>
+    <item
+        jar="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.0.1_7480076b590e598116b6c0e5bc53151343d337d9\classes.dex" />
+    </item>
+    <item
+        jar="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\exploded-aar\com.android.support\design\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.0.1_44045990414342cdaa8d4170eb9cec02bd49f3d9\classes.dex" />
+    </item>
+    <item
+        jar="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="7bc75bf07c6019de9f87ac599a92464bc4de2280">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_874516b38ec960bac42b91514d0ad7ed39286c35\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\nisan\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-collections4\4.0\da217367fd25e88df52ba79e47658d4cf928b0d1\commons-collections4-4.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="da217367fd25e88df52ba79e47658d4cf928b0d1">
+        <dex dex="C:\Nisan\AndroidProjects\visit-team\Visit Navigation\app\build\intermediates\transforms\dex\debug\folders\1000\10\commons-collections4-4.0_093ac20e98aafac94de1226e3e5d5ba466367bc7\classes.dex" />
+    </item>
+
+</items>

@@ -17,7 +17,7 @@ public class WifiPointView extends View {
 	private static final int COLOR_FINGERPRINT = Color.YELLOW;
 	private static final int COLOR_ACTIVE = Color.GREEN;
 	private static final int COLOR_PATH = Color.rgb(0, 179, 253);
-	private static final int COLOR_COMPLETE = Color.parseColor("#008000");
+	private static final int COLOR_COMPLETE = Color.parseColor("#61DB6E");
 	private static final int DESTINATION_POINT = Color.WHITE;
 
 	private Fingerprint mFingerprint;
