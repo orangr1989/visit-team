@@ -43,5 +43,10 @@ public class Cell {
         System.out.println(this.x +  " " + this.y + " " + this.z);
     }
 
-
+    public boolean IsEqual(Cell cell)
+    {
+        return (this.GetX() == cell.GetX() &&
+                this.GetY() == cell.GetY() &&
+                this.GetZ() == cell.GetZ());
+    }
 }

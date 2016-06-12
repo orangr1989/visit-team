@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,6 +37,7 @@ public class MapNavigationActivity extends MapViewActivity {
     private static final int NEXT_MAP = 36;
     private static final int PREVIOUS_MAP = 37;
     private static final int MINIMAL_DISTANCE = 100;
+    private static final int NAXIMAL_DISTANCE = 250;
     private static final int INDICATE_PATH_INTERVAL = 1000;
 
     // handler for callbacks to the UI thread
@@ -55,11 +55,13 @@ public class MapNavigationActivity extends MapViewActivity {
     int actualFloorNum;
     boolean isPathAccepted = false;
     boolean btnLocClicked = false;
+    Cell currSourceCell;
 
     Handler guiMsgHandler;
 
     FloatingActionButton up;
     FloatingActionButton down;
+    FloatingActionButton mLocationbtn;
 
     // runnable to refresh map (called by the handler)
     private Runnable mRefreshMap = new Runnable() {
@@ -73,12 +75,7 @@ public class MapNavigationActivity extends MapViewActivity {
         super.onCreate(savedInstanceState);
 
         up = (FloatingActionButton) findViewById(R.id.upButton);
-
-        //up.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.up));
-
         down = (FloatingActionButton) findViewById(R.id.downButton);
-
-        //down.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.down));
 
         up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,8 +97,7 @@ public class MapNavigationActivity extends MapViewActivity {
         FloatingSearchView bar = (FloatingSearchView)findViewById(R.id.floating_search_view);
         bar.setVisibility(View.GONE);
 
-        final FloatingActionButton mLocationbtn = (FloatingActionButton) findViewById(R.id.myLocationButton);
-        //mLocationbtn.setVisibility(View.GONE);
+        mLocationbtn = (FloatingActionButton) findViewById(R.id.myLocationButton);
 
         // hide current wifi fingerprint
         mLocationPointer.setVisible(false);
@@ -123,31 +119,15 @@ public class MapNavigationActivity extends MapViewActivity {
         actualFloorNum = GetActualFloorNum(currMap.getMapName());
         int currentXCord = intent.getIntExtra(MapViewActivity.EXTRA_MESSAGE_X_CORD, 1);
         int currentYCord = intent.getIntExtra(MapViewActivity.EXTRA_MESSAGE_Y_CORD, 1);
-        int currentFloorNumber = currMap.getMapFloorNumber();
-        Cell currentCell = new Cell(currentFloorNumber, currentXCord, currentYCord);
-
-        PathRequest path = new PathRequest(currentCell, destCell, 1);
-
+        currSourceCell = new Cell(currMap.getMapFloorNumber(), currentXCord, currentYCord);
+        
         super.setMap(currMap.getMapURL());
 
         setTitle(getTitle() + " (navigation)");
 
-        PathHome.getPath(path,
-                new EntityHomeCallback() {
-                    @Override
-                    public void onResponse(Response<?> response) {
-                        cells = (List<Cell>) response.getData();
-                        setPath(cells, cells.get(0).GetX());
-                        isPathAccepted = true;
-                    }
-
-                    @Override
-                    public void onFailure(Response<?> response) {
-                        Toast.makeText(getApplicationContext(),
-                                "Fail to get path",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
+        // Request path from server
+        PathRequest path = new PathRequest(currSourceCell, destCell, 1);
+        getPathFromServer(path);
 
         mPathIndicateTimer = new Timer();
         mPathIndicateTimer.schedule(new TimerTask() {
@@ -160,17 +140,42 @@ public class MapNavigationActivity extends MapViewActivity {
                       // check the closed path's point.
                       int mCloseCellId = getCloseCell(mLocationPointer.getLocation());
 
-                      // check if lower than max distance (100)
-                      if (calcDistanceFromPath(mLocationPointer.getLocation(),
+                      double distance = calcDistanceFromPath(mLocationPointer.getLocation(),
                               cells.get(mCloseCellId).GetY(),
-                              cells.get(mCloseCellId).GetZ()) < MINIMAL_DISTANCE) {
+                              cells.get(mCloseCellId).GetZ());
+
+                      // check if lower than max distance (100)
+                      if (distance < MINIMAL_DISTANCE) {
 
                           completePathPointsToCell(mCloseCellId);
+                      }
+                      else if (distance > MINIMAL_DISTANCE && distance < NAXIMAL_DISTANCE)
+                          changeMyLocationVisibilty(true);
+                      else if (distance > NAXIMAL_DISTANCE){
+
+                              Cell currentCell = new Cell(currMap.getMapFloorNumber(),
+                                      (int)mLocationPointer.getLocation().x,
+                                      (int)mLocationPointer.getLocation().y);
+
+                              if (!currSourceCell.IsEqual(currentCell)) {
+
+                                  // set new current source
+                                  currSourceCell = currentCell;
+
+                                  // delete old path
+                                  mMap.deletePath();
+
+                                  // request new Path from server..
+                                  PathRequest path = new PathRequest(currSourceCell, destCell, 1);
+
+                                  getPathFromServer(path);
+
+                                  changeMyLocationVisibilty(false);
+                              }
                       }
                   }
               }
             };
-
                 @Override
                 public void run() {
                     updateUI.sendEmptyMessage(0);
@@ -185,26 +190,59 @@ public class MapNavigationActivity extends MapViewActivity {
                     Toast.makeText(getApplicationContext(), "Show current location",
                             Toast.LENGTH_SHORT).show();
 
-                    mLocationPointer.setVisible(true);
-
-                    // change button background
-                    mLocationbtn.setBackgroundTintList(getResources().getColorStateList(R.color.green));
-                    btnLocClicked = true;
+                    changeMyLocationVisibilty(true);
                 } else {
 
                     Toast.makeText(getApplicationContext(), "Hide current location",
                             Toast.LENGTH_SHORT).show();
 
-                    mLocationPointer.setVisible(false);
-
-                    // change button background
-                    mLocationbtn.setBackgroundTintList(getResources().getColorStateList(R.color.accent));
-                    btnLocClicked = false;
-
+                    changeMyLocationVisibilty(false);
                 }
             }
         });
-        //TimerNavComplete();
+    }
+
+    private void getPathFromServer(PathRequest path) {
+
+        PathHome.getPath(path,
+                new EntityHomeCallback() {
+                    @Override
+                    public void onResponse(Response<?> response) {
+                        cells = (List<Cell>) response.getData();
+                        setPath(cells, cells.get(0).GetX());
+                        if (!isPathAccepted) isPathAccepted = true;
+                        else {
+                            Toast.makeText(getApplicationContext(),
+                                    "Your path has been updated..",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Response<?> response) {
+                        Toast.makeText(getApplicationContext(),
+                                "Fail to get path",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+    private void changeMyLocationVisibilty(boolean visibility) {
+
+        // show/ hide green point
+        mLocationPointer.setVisible(visibility);
+
+        if (visibility){
+            // the myLocation option changed to visible
+            mLocationbtn.setBackgroundTintList(getResources().getColorStateList(R.color.green));
+            btnLocClicked = visibility;
+        }
+        else
+        {
+            // the myLocation option changed to hide
+            mLocationbtn.setBackgroundTintList(getResources().getColorStateList(R.color.accent));
+            btnLocClicked = false;
+        }
     }
 
     private void completePathPointsToCell(int cellId) {
@@ -279,26 +317,6 @@ public class MapNavigationActivity extends MapViewActivity {
                          Math.pow((currCellY - currentLocation.y), 2));
     }
 
-    private void TimerNavComplete() {
-        guiMsgHandler = new Handler();
-        CheckNavCompleteTimer = new Timer(true);
-        CheckNavCompleteTimer.scheduleAtFixedRate(new RemindTask(), 0, 3000);
-    }
-
-    class RemindTask extends TimerTask {
-        public void run() {
-            if (IsUserArriveDestination()) {
-                guiMsgHandler.post(new Runnable(){
-                    public void run() {
-                        Toast.makeText(getApplicationContext(), "You Arrive to Destination!",
-                                       Toast.LENGTH_LONG).show();
-                    }
-                });
-
-                CheckNavCompleteTimer.cancel(); //Terminate the timer thread
-            }
-        }
-    }
     private  void TryGoDown()
     {
         if (IsExistPath(currentFloorPath - 1))
@@ -313,13 +331,6 @@ public class MapNavigationActivity extends MapViewActivity {
             setPath(cells, currentFloorPath + 1);
         else
             Toast.makeText(getApplicationContext(), "There is no path to floor: " + (actualFloorNum + 1), Toast.LENGTH_SHORT).show();
-    }
-
-
-    public boolean IsUserArriveDestination()
-    {
-        double distance = GetDistanceBetweenCurrentToDest();
-        return distance < distanceThreshold;
     }
 
     public double GetDistanceBetweenCurrentToDest()
