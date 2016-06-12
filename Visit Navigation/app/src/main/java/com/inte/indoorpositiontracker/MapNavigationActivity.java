@@ -169,6 +169,8 @@ public class MapNavigationActivity extends MapViewActivity {
                                   PathRequest path = new PathRequest(currSourceCell, destCell, 1);
 
                                   getPathFromServer(path);
+
+                                  changeMyLocationVisibilty(false);
                               }
                       }
                   }
