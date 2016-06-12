@@ -63,7 +63,7 @@ public class MapActivity extends AppCompatActivity implements OnTouchListener {
         //mApplication.deleteAllMaps();
         List<Map> maps = mApplication.getMaps();
         if (maps.size() > 0) {
-            currMap = maps.get(0);// TODO: must be automatic
+            currMap = maps.get(1);// TODO: must be automatic
             this.setMap(currMap.getMapURL());
         }
     }
