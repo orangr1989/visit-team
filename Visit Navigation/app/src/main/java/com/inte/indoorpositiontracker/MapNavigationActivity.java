@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -120,8 +119,6 @@ public class MapNavigationActivity extends MapViewActivity {
         actualFloorNum = GetActualFloorNum(currMap.getMapName());
         int currentXCord = intent.getIntExtra(MapViewActivity.EXTRA_MESSAGE_X_CORD, 1);
         int currentYCord = intent.getIntExtra(MapViewActivity.EXTRA_MESSAGE_Y_CORD, 1);
-        int currentFloorNumber = currMap.getMapFloorNumber();
-        Cell currentCell = new Cell(currentFloorNumber, currentXCord, currentYCord);
         currSourceCell = new Cell(currMap.getMapFloorNumber(), currentXCord, currentYCord);
         
         super.setMap(currMap.getMapURL());
@@ -143,18 +140,20 @@ public class MapNavigationActivity extends MapViewActivity {
                       // check the closed path's point.
                       int mCloseCellId = getCloseCell(mLocationPointer.getLocation());
 
-                      // check if lower than max distance (100)
-                      if (calcDistanceFromPath(mLocationPointer.getLocation(),
+                      double distance = calcDistanceFromPath(mLocationPointer.getLocation(),
                               cells.get(mCloseCellId).GetY(),
-                              cells.get(mCloseCellId).GetZ()) < MINIMAL_DISTANCE) {
+                              cells.get(mCloseCellId).GetZ());
+
+                      // check if lower than max distance (100)
+                      if (distance < MINIMAL_DISTANCE) {
 
                           completePathPointsToCell(mCloseCellId);
                       }
-                      else if (calcDistanceFromPath(mLocationPointer.getLocation(),
-                              cells.get(mCloseCellId).GetY(),
-                              cells.get(mCloseCellId).GetZ()) > NAXIMAL_DISTANCE){
+                      else if (distance > MINIMAL_DISTANCE && distance < NAXIMAL_DISTANCE)
+                          changeMyLocationVisibilty(true);
+                      else if (distance > NAXIMAL_DISTANCE){
 
-                              Cell currentCell = new Cell(currentMap.getMapFloorNumber(),
+                              Cell currentCell = new Cell(currMap.getMapFloorNumber(),
                                       (int)mLocationPointer.getLocation().x,
                                       (int)mLocationPointer.getLocation().y);
 
@@ -163,14 +162,11 @@ public class MapNavigationActivity extends MapViewActivity {
                                   // set new current source
                                   currSourceCell = currentCell;
 
-                                  // show green point (current location)
-                                  changeMyLocationVisibilty(true);
-
                                   // delete old path
                                   mMap.deletePath();
 
                                   // request new Path from server..
-                                  PathRequest path = new PathRequest(currentCell, destCell, 1);
+                                  PathRequest path = new PathRequest(currSourceCell, destCell, 1);
 
                                   getPathFromServer(path);
                               }
