@@ -247,11 +247,13 @@ public class MapNavigationActivity extends MapViewActivity {
 
     private void completePathPointsToCell(int cellId) {
 
+        int cellIndex = 0;
         for (int i = 0; i <= cellId; i++) {
             // update the completed cells
             if (cells.get(i).GetX() == currentFloorPath) {
                 WifiPointView wifiPoint = mMap.updatePath((float) cells.get(i).GetY(),
-                        (float) cells.get(i).GetZ(), i);
+                        (float) cells.get(i).GetZ(), cellIndex);
+                cellIndex++;
             }
         }
 
