@@ -13,8 +13,8 @@ import java.lang.Exception;
 
 public class ConnectionHandler {
     public static int port = 5000;
-    //public static String host = "193.106.55.48"; // collage server
-    public static String host = "192.168.1.19";// "192.168.1.11" is the host that runs the server side
+    public static String host = "193.106.55.48"; // collage server
+    //public static String host = "10.0.0.11";// "192.168.1.11" is the host that runs the server side
     public static String httpProtocol = "http://";
 
     /**
